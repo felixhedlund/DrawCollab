@@ -14,6 +14,9 @@
 		F7BBF9111CB3A8C100C0254B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7BBF90F1CB3A8C100C0254B /* LaunchScreen.storyboard */; };
 		F7BBF91C1CB3A8C100C0254B /* DrawCollabTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BBF91B1CB3A8C100C0254B /* DrawCollabTests.swift */; };
 		F7BBF9271CB3A8C200C0254B /* DrawCollabUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BBF9261CB3A8C200C0254B /* DrawCollabUITests.swift */; };
+		F7BBF9351CB3A98D00C0254B /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BBF9341CB3A98D00C0254B /* ColorPickerViewController.swift */; };
+		F7BBF9371CB3A99500C0254B /* Colors.plist in Resources */ = {isa = PBXBuildFile; fileRef = F7BBF9361CB3A99500C0254B /* Colors.plist */; };
+		F7BBF9391CB3AE7700C0254B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BBF9381CB3AE7700C0254B /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +50,9 @@
 		F7BBF9221CB3A8C200C0254B /* DrawCollabUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DrawCollabUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7BBF9261CB3A8C200C0254B /* DrawCollabUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawCollabUITests.swift; sourceTree = "<group>"; };
 		F7BBF9281CB3A8C200C0254B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F7BBF9341CB3A98D00C0254B /* ColorPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
+		F7BBF9361CB3A99500C0254B /* Colors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Colors.plist; sourceTree = "<group>"; };
+		F7BBF9381CB3AE7700C0254B /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,10 +105,13 @@
 			children = (
 				F7BBF9061CB3A8C100C0254B /* AppDelegate.swift */,
 				F7BBF9081CB3A8C100C0254B /* ViewController.swift */,
+				F7BBF9341CB3A98D00C0254B /* ColorPickerViewController.swift */,
 				F7BBF90A1CB3A8C100C0254B /* Main.storyboard */,
 				F7BBF90D1CB3A8C100C0254B /* Assets.xcassets */,
 				F7BBF90F1CB3A8C100C0254B /* LaunchScreen.storyboard */,
 				F7BBF9121CB3A8C100C0254B /* Info.plist */,
+				F7BBF9361CB3A99500C0254B /* Colors.plist */,
+				F7BBF9381CB3AE7700C0254B /* Extensions.swift */,
 			);
 			path = DrawCollab;
 			sourceTree = "<group>";
@@ -229,6 +238,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7BBF9371CB3A99500C0254B /* Colors.plist in Resources */,
 				F7BBF9111CB3A8C100C0254B /* LaunchScreen.storyboard in Resources */,
 				F7BBF90E1CB3A8C100C0254B /* Assets.xcassets in Resources */,
 				F7BBF90C1CB3A8C100C0254B /* Main.storyboard in Resources */,
@@ -257,7 +267,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F7BBF9091CB3A8C100C0254B /* ViewController.swift in Sources */,
+				F7BBF9391CB3AE7700C0254B /* Extensions.swift in Sources */,
 				F7BBF9071CB3A8C100C0254B /* AppDelegate.swift in Sources */,
+				F7BBF9351CB3A98D00C0254B /* ColorPickerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
