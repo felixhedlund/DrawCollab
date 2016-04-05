@@ -1,0 +1,505 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F7BBF9071CB3A8C100C0254B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BBF9061CB3A8C100C0254B /* AppDelegate.swift */; };
+		F7BBF9091CB3A8C100C0254B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BBF9081CB3A8C100C0254B /* ViewController.swift */; };
+		F7BBF90C1CB3A8C100C0254B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7BBF90A1CB3A8C100C0254B /* Main.storyboard */; };
+		F7BBF90E1CB3A8C100C0254B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7BBF90D1CB3A8C100C0254B /* Assets.xcassets */; };
+		F7BBF9111CB3A8C100C0254B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7BBF90F1CB3A8C100C0254B /* LaunchScreen.storyboard */; };
+		F7BBF91C1CB3A8C100C0254B /* DrawCollabTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BBF91B1CB3A8C100C0254B /* DrawCollabTests.swift */; };
+		F7BBF9271CB3A8C200C0254B /* DrawCollabUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BBF9261CB3A8C200C0254B /* DrawCollabUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F7BBF9181CB3A8C100C0254B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F7BBF8FB1CB3A8C100C0254B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F7BBF9021CB3A8C100C0254B;
+			remoteInfo = DrawCollab;
+		};
+		F7BBF9231CB3A8C200C0254B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F7BBF8FB1CB3A8C100C0254B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F7BBF9021CB3A8C100C0254B;
+			remoteInfo = DrawCollab;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F7BBF9031CB3A8C100C0254B /* DrawCollab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawCollab.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F7BBF9061CB3A8C100C0254B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F7BBF9081CB3A8C100C0254B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F7BBF90B1CB3A8C100C0254B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F7BBF90D1CB3A8C100C0254B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F7BBF9101CB3A8C100C0254B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F7BBF9121CB3A8C100C0254B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F7BBF9171CB3A8C100C0254B /* DrawCollabTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DrawCollabTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F7BBF91B1CB3A8C100C0254B /* DrawCollabTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawCollabTests.swift; sourceTree = "<group>"; };
+		F7BBF91D1CB3A8C100C0254B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F7BBF9221CB3A8C200C0254B /* DrawCollabUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DrawCollabUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F7BBF9261CB3A8C200C0254B /* DrawCollabUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawCollabUITests.swift; sourceTree = "<group>"; };
+		F7BBF9281CB3A8C200C0254B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F7BBF9001CB3A8C100C0254B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F7BBF9141CB3A8C100C0254B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F7BBF91F1CB3A8C200C0254B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F7BBF8FA1CB3A8C100C0254B = {
+			isa = PBXGroup;
+			children = (
+				F7BBF9051CB3A8C100C0254B /* DrawCollab */,
+				F7BBF91A1CB3A8C100C0254B /* DrawCollabTests */,
+				F7BBF9251CB3A8C200C0254B /* DrawCollabUITests */,
+				F7BBF9041CB3A8C100C0254B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F7BBF9041CB3A8C100C0254B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F7BBF9031CB3A8C100C0254B /* DrawCollab.app */,
+				F7BBF9171CB3A8C100C0254B /* DrawCollabTests.xctest */,
+				F7BBF9221CB3A8C200C0254B /* DrawCollabUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F7BBF9051CB3A8C100C0254B /* DrawCollab */ = {
+			isa = PBXGroup;
+			children = (
+				F7BBF9061CB3A8C100C0254B /* AppDelegate.swift */,
+				F7BBF9081CB3A8C100C0254B /* ViewController.swift */,
+				F7BBF90A1CB3A8C100C0254B /* Main.storyboard */,
+				F7BBF90D1CB3A8C100C0254B /* Assets.xcassets */,
+				F7BBF90F1CB3A8C100C0254B /* LaunchScreen.storyboard */,
+				F7BBF9121CB3A8C100C0254B /* Info.plist */,
+			);
+			path = DrawCollab;
+			sourceTree = "<group>";
+		};
+		F7BBF91A1CB3A8C100C0254B /* DrawCollabTests */ = {
+			isa = PBXGroup;
+			children = (
+				F7BBF91B1CB3A8C100C0254B /* DrawCollabTests.swift */,
+				F7BBF91D1CB3A8C100C0254B /* Info.plist */,
+			);
+			path = DrawCollabTests;
+			sourceTree = "<group>";
+		};
+		F7BBF9251CB3A8C200C0254B /* DrawCollabUITests */ = {
+			isa = PBXGroup;
+			children = (
+				F7BBF9261CB3A8C200C0254B /* DrawCollabUITests.swift */,
+				F7BBF9281CB3A8C200C0254B /* Info.plist */,
+			);
+			path = DrawCollabUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F7BBF9021CB3A8C100C0254B /* DrawCollab */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F7BBF92B1CB3A8C200C0254B /* Build configuration list for PBXNativeTarget "DrawCollab" */;
+			buildPhases = (
+				F7BBF8FF1CB3A8C100C0254B /* Sources */,
+				F7BBF9001CB3A8C100C0254B /* Frameworks */,
+				F7BBF9011CB3A8C100C0254B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DrawCollab;
+			productName = DrawCollab;
+			productReference = F7BBF9031CB3A8C100C0254B /* DrawCollab.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F7BBF9161CB3A8C100C0254B /* DrawCollabTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F7BBF92E1CB3A8C200C0254B /* Build configuration list for PBXNativeTarget "DrawCollabTests" */;
+			buildPhases = (
+				F7BBF9131CB3A8C100C0254B /* Sources */,
+				F7BBF9141CB3A8C100C0254B /* Frameworks */,
+				F7BBF9151CB3A8C100C0254B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F7BBF9191CB3A8C100C0254B /* PBXTargetDependency */,
+			);
+			name = DrawCollabTests;
+			productName = DrawCollabTests;
+			productReference = F7BBF9171CB3A8C100C0254B /* DrawCollabTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F7BBF9211CB3A8C200C0254B /* DrawCollabUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F7BBF9311CB3A8C200C0254B /* Build configuration list for PBXNativeTarget "DrawCollabUITests" */;
+			buildPhases = (
+				F7BBF91E1CB3A8C200C0254B /* Sources */,
+				F7BBF91F1CB3A8C200C0254B /* Frameworks */,
+				F7BBF9201CB3A8C200C0254B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F7BBF9241CB3A8C200C0254B /* PBXTargetDependency */,
+			);
+			name = DrawCollabUITests;
+			productName = DrawCollabUITests;
+			productReference = F7BBF9221CB3A8C200C0254B /* DrawCollabUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F7BBF8FB1CB3A8C100C0254B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Felix Hedlund";
+				TargetAttributes = {
+					F7BBF9021CB3A8C100C0254B = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					F7BBF9161CB3A8C100C0254B = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = F7BBF9021CB3A8C100C0254B;
+					};
+					F7BBF9211CB3A8C200C0254B = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = F7BBF9021CB3A8C100C0254B;
+					};
+				};
+			};
+			buildConfigurationList = F7BBF8FE1CB3A8C100C0254B /* Build configuration list for PBXProject "DrawCollab" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F7BBF8FA1CB3A8C100C0254B;
+			productRefGroup = F7BBF9041CB3A8C100C0254B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F7BBF9021CB3A8C100C0254B /* DrawCollab */,
+				F7BBF9161CB3A8C100C0254B /* DrawCollabTests */,
+				F7BBF9211CB3A8C200C0254B /* DrawCollabUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F7BBF9011CB3A8C100C0254B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F7BBF9111CB3A8C100C0254B /* LaunchScreen.storyboard in Resources */,
+				F7BBF90E1CB3A8C100C0254B /* Assets.xcassets in Resources */,
+				F7BBF90C1CB3A8C100C0254B /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F7BBF9151CB3A8C100C0254B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F7BBF9201CB3A8C200C0254B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F7BBF8FF1CB3A8C100C0254B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F7BBF9091CB3A8C100C0254B /* ViewController.swift in Sources */,
+				F7BBF9071CB3A8C100C0254B /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F7BBF9131CB3A8C100C0254B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F7BBF91C1CB3A8C100C0254B /* DrawCollabTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F7BBF91E1CB3A8C200C0254B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F7BBF9271CB3A8C200C0254B /* DrawCollabUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F7BBF9191CB3A8C100C0254B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F7BBF9021CB3A8C100C0254B /* DrawCollab */;
+			targetProxy = F7BBF9181CB3A8C100C0254B /* PBXContainerItemProxy */;
+		};
+		F7BBF9241CB3A8C200C0254B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F7BBF9021CB3A8C100C0254B /* DrawCollab */;
+			targetProxy = F7BBF9231CB3A8C200C0254B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F7BBF90A1CB3A8C100C0254B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F7BBF90B1CB3A8C100C0254B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F7BBF90F1CB3A8C100C0254B /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F7BBF9101CB3A8C100C0254B /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F7BBF9291CB3A8C200C0254B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F7BBF92A1CB3A8C200C0254B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F7BBF92C1CB3A8C200C0254B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = DrawCollab/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "se.tactel.-.DrawCollab";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		F7BBF92D1CB3A8C200C0254B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = DrawCollab/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "se.tactel.-.DrawCollab";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		F7BBF92F1CB3A8C200C0254B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = DrawCollabTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "se.tactel.-.DrawCollabTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DrawCollab.app/DrawCollab";
+			};
+			name = Debug;
+		};
+		F7BBF9301CB3A8C200C0254B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = DrawCollabTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "se.tactel.-.DrawCollabTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DrawCollab.app/DrawCollab";
+			};
+			name = Release;
+		};
+		F7BBF9321CB3A8C200C0254B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = DrawCollabUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "se.tactel.-.DrawCollabUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = DrawCollab;
+			};
+			name = Debug;
+		};
+		F7BBF9331CB3A8C200C0254B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = DrawCollabUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "se.tactel.-.DrawCollabUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = DrawCollab;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F7BBF8FE1CB3A8C100C0254B /* Build configuration list for PBXProject "DrawCollab" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F7BBF9291CB3A8C200C0254B /* Debug */,
+				F7BBF92A1CB3A8C200C0254B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F7BBF92B1CB3A8C200C0254B /* Build configuration list for PBXNativeTarget "DrawCollab" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F7BBF92C1CB3A8C200C0254B /* Debug */,
+				F7BBF92D1CB3A8C200C0254B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		F7BBF92E1CB3A8C200C0254B /* Build configuration list for PBXNativeTarget "DrawCollabTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F7BBF92F1CB3A8C200C0254B /* Debug */,
+				F7BBF9301CB3A8C200C0254B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		F7BBF9311CB3A8C200C0254B /* Build configuration list for PBXNativeTarget "DrawCollabUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F7BBF9321CB3A8C200C0254B /* Debug */,
+				F7BBF9331CB3A8C200C0254B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F7BBF8FB1CB3A8C100C0254B /* Project object */;
+}
