@@ -71,7 +71,7 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
         if let point = lastBrushImagePoint{
             //brushImageView.center = point
             brushLeading.constant = -20 + point.x - brushImageView.frame.size.width/2
-            brushTop.constant = -20 + point.y - brushImageView.frame.size.width/2
+            brushTop.constant = -20 + point.y - brushImageView.frame.size.width/2 - 44
         }
     }
     
