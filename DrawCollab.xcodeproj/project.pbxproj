@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F701CE7F1CB690EA007890A2 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = F701CE7E1CB690EA007890A2 /* Podfile */; };
 		F75AE11C1CB4FE5000836BE4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75AE11B1CB4FE5000836BE4 /* MainViewController.swift */; };
 		F75AE1201CB50EA100836BE4 /* MCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75AE11F1CB50EA100836BE4 /* MCManager.swift */; };
 		F75AE1221CB5430100836BE4 /* ConnectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75AE1211CB5430100836BE4 /* ConnectionTableViewCell.swift */; };
+		F75AE1251CB54EFC00836BE4 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75AE1241CB54EFC00836BE4 /* WelcomeViewController.swift */; };
 		F7BBF9071CB3A8C100C0254B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BBF9061CB3A8C100C0254B /* AppDelegate.swift */; };
 		F7BBF9091CB3A8C100C0254B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BBF9081CB3A8C100C0254B /* ViewController.swift */; };
 		F7BBF90C1CB3A8C100C0254B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7BBF90A1CB3A8C100C0254B /* Main.storyboard */; };
@@ -40,9 +42,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F701CE7E1CB690EA007890A2 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		F75AE11B1CB4FE5000836BE4 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		F75AE11F1CB50EA100836BE4 /* MCManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MCManager.swift; sourceTree = "<group>"; };
 		F75AE1211CB5430100836BE4 /* ConnectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionTableViewCell.swift; sourceTree = "<group>"; };
+		F75AE1241CB54EFC00836BE4 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		F7BBF9031CB3A8C100C0254B /* DrawCollab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawCollab.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7BBF9061CB3A8C100C0254B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F7BBF9081CB3A8C100C0254B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +90,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F701CE7D1CB690DB007890A2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F701CE7E1CB690EA007890A2 /* Podfile */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		F75AE1161CB4FDFE00836BE4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -123,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				F75AE11E1CB50E7B00836BE4 /* Multipeer Connectivity */,
+				F75AE1241CB54EFC00836BE4 /* WelcomeViewController.swift */,
 				F75AE11B1CB4FE5000836BE4 /* MainViewController.swift */,
 				F75AE1211CB5430100836BE4 /* ConnectionTableViewCell.swift */,
 				F7BBF9081CB3A8C100C0254B /* ViewController.swift */,
@@ -145,6 +158,7 @@
 				F7BBF91A1CB3A8C100C0254B /* DrawCollabTests */,
 				F7BBF9251CB3A8C200C0254B /* DrawCollabUITests */,
 				F7BBF9041CB3A8C100C0254B /* Products */,
+				F701CE7D1CB690DB007890A2 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -295,6 +309,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F701CE7F1CB690EA007890A2 /* Podfile in Resources */,
 				F7BBF9371CB3A99500C0254B /* Colors.plist in Resources */,
 				F7BBF9111CB3A8C100C0254B /* LaunchScreen.storyboard in Resources */,
 				F7BBF90E1CB3A8C100C0254B /* Assets.xcassets in Resources */,
@@ -324,6 +339,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F7BBF9091CB3A8C100C0254B /* ViewController.swift in Sources */,
+				F75AE1251CB54EFC00836BE4 /* WelcomeViewController.swift in Sources */,
 				F7BBF9391CB3AE7700C0254B /* Extensions.swift in Sources */,
 				F7BBF9071CB3A8C100C0254B /* AppDelegate.swift in Sources */,
 				F7BBF9351CB3A98D00C0254B /* ColorPickerViewController.swift in Sources */,
