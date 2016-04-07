@@ -49,4 +49,14 @@ extension UIImage {
         
         return coloredImage
     }
+    
+    class func roundedRectImageFromImage(image:UIImage,imageSize:CGSize,cornerRadius:CGFloat)->UIImage{
+        UIGraphicsBeginImageContextWithOptions(imageSize,false,0.0)
+        let bounds=CGRect(origin: CGPointZero, size: imageSize)
+        UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius).addClip()
+        image.drawInRect(bounds)
+        let finalImage=UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return finalImage
+    }
 }

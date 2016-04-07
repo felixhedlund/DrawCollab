@@ -70,11 +70,17 @@
                                                     <constraint firstAttribute="width" secondItem="rvW-tA-81V" secondAttribute="height" multiplier="1:1" id="cwA-0K-2zG"/>
                                                 </constraints>
                                                 <state key="normal" image="profile"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
                                                 <variation key="default">
                                                     <mask key="constraints">
                                                         <exclude reference="3kd-7Q-1K8"/>
                                                     </mask>
                                                 </variation>
+                                                <connections>
+                                                    <action selector="didPressImageButton:" destination="Si8-fN-L1n" eventType="touchUpInside" id="EQe-KB-XGe"/>
+                                                </connections>
                                             </button>
                                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l8Q-GV-aRY">
                                                 <rect key="frame" x="360" y="50" width="50" height="50"/>
@@ -177,12 +183,16 @@
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="leadingMargin" secondItem="8Iu-8u-282" secondAttribute="leading" id="DAz-zF-TaX"/>
                             <constraint firstItem="d3h-CP-s2N" firstAttribute="top" secondItem="8Iu-8u-282" secondAttribute="bottom" constant="8" id="Dop-GW-hjh"/>
                             <constraint firstAttribute="trailingMargin" secondItem="8Iu-8u-282" secondAttribute="trailing" id="URv-p1-Dzf"/>
                             <constraint firstItem="8Iu-8u-282" firstAttribute="top" secondItem="cho-bc-mWA" secondAttribute="bottom" constant="8" id="ZuR-pd-opu"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="GUL-QF-B48" appends="YES" id="ztD-6V-Ibs"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="UiE-Hy-Vl9"/>
                     <connections>
@@ -190,11 +200,18 @@
                         <outlet property="imageButton" destination="rvW-tA-81V" id="DrG-la-YGF"/>
                         <outlet property="joinButton" destination="tDq-FP-8An" id="lAT-BH-VWF"/>
                         <outlet property="nicknameTextField" destination="O6l-Fb-6DD" id="228-jO-JVv"/>
+                        <outlet property="tapGesture" destination="GUL-QF-B48" id="ShK-Bn-wF8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fvJ-Pp-bm9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="GUL-QF-B48">
+                    <connections>
+                        <action selector="didTapView:" destination="Si8-fN-L1n" id="fdN-jW-rjx"/>
+                        <outlet property="delegate" destination="Si8-fN-L1n" id="ilr-lN-aih"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-963" y="565"/>
+            <point key="canvasLocation" x="-721" y="552"/>
         </scene>
         <!--Main-->
         <scene sceneID="07m-HK-N4V">
