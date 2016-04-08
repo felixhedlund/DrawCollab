@@ -8,7 +8,7 @@
 
 import UIKit
 import MultipeerConnectivity
-class MainViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizerDelegate, UITableViewDelegate, UITableViewDataSource, MCBrowserViewControllerDelegate {
+class HostViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizerDelegate, UITableViewDelegate, UITableViewDataSource, MCBrowserViewControllerDelegate {
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var visibleSwitch: UISwitch!
     @IBOutlet weak var browseDevicesButton: UIButton!
@@ -19,6 +19,7 @@ class MainViewController: UIViewController, UITextFieldDelegate, UIGestureRecogn
     var appDelegate: AppDelegate!
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.setNavigationBarHidden(false, animated: true)
         appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.mcManager.setupPeerAndSessionWithDisplayName(UIDevice.currentDevice().name)
         appDelegate.mcManager.advertiseSelf(visibleSwitch.on)

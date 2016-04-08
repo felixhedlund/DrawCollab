@@ -20,13 +20,24 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.setNavigationBarHidden(true, animated: false)
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
+        self.navigationController?.setNeedsStatusBarAppearanceUpdate()
         nicknameTextField.text = UIDevice.currentDevice().name
         self.imagePicker = UIImagePickerController()
         self.imagePicker?.delegate = self
         self.imagePicker?.allowsEditing = true
+        
 //        imageButton.layer.cornerRadius = 50
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
     }
 
     override func didReceiveMemoryWarning() {
@@ -80,6 +91,15 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate, UIImagePicke
         }
         
     }
+    @IBAction func didPressHostButton(sender: AnyObject) {
+        let hostController = UIStoryboard(name: "Host", bundle: nil).instantiateViewControllerWithIdentifier("Host") as! HostViewController
+        self.navigationController?.pushViewController(hostController, animated: true)
+        //self.presentViewController(editModal, animated: true, completion: nil)
+    }
+    
+    @IBAction func didPressJoinButton(sender: AnyObject) {
+    }
+    
     
     
     
