@@ -10,7 +10,6 @@
         <!--Draw-->
         <scene sceneID="qHt-0w-yVN">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1Ei-25-HZQ" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="Draw" extendedLayoutIncludesOpaqueBars="YES" id="5Gt-59-P0s" customClass="ViewController" customModule="DrawCollab" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Htx-je-lqe"/>
@@ -105,20 +104,20 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="v5n-at-9me"/>
                                 <exclude reference="ECQ-MP-oCm"/>
-                                <exclude reference="F8D-dS-a3a"/>
-                                <exclude reference="Pph-K5-9go"/>
-                                <exclude reference="IIn-iP-Hxr"/>
-                                <exclude reference="X9K-FB-tSk"/>
+                                <exclude reference="v5n-at-9me"/>
                                 <exclude reference="MVE-7f-fDj"/>
                                 <exclude reference="nNz-QZ-sIk"/>
                                 <exclude reference="oRs-D8-Nhj"/>
                                 <exclude reference="y3f-Er-f81"/>
-                                <exclude reference="f1W-Il-Xhh"/>
+                                <exclude reference="F8D-dS-a3a"/>
+                                <exclude reference="IIn-iP-Hxr"/>
+                                <exclude reference="Pph-K5-9go"/>
+                                <exclude reference="X9K-FB-tSk"/>
                                 <exclude reference="6qs-NM-THd"/>
-                                <exclude reference="mT8-K1-JGH"/>
                                 <exclude reference="amK-cJ-UIW"/>
+                                <exclude reference="f1W-Il-Xhh"/>
+                                <exclude reference="mT8-K1-JGH"/>
                                 <exclude reference="w46-J2-9Qu"/>
                             </mask>
                         </variation>
@@ -142,13 +141,13 @@
                         <outlet property="toolbar" destination="xo8-tU-ZFL" id="xyj-pq-r2e"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Ei-25-HZQ" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="665" y="658"/>
         </scene>
         <!--Color Picker View Controller-->
         <scene sceneID="ece-E4-Vbe">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tM9-mm-eAl" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="sbColorPicker" id="Vio-MO-Lnl" customClass="ColorPickerViewController" customModule="DrawCollab" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cnb-e5-oNc"/>
@@ -263,6 +262,7 @@
                         <outlet property="opacityValue" destination="sWh-eO-Gxx" id="4va-ZI-KHp"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tM9-mm-eAl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1051.5" y="657.5"/>
         </scene>

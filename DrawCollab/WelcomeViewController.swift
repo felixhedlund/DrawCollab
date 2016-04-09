@@ -17,10 +17,10 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     
     @IBOutlet var tapGesture: UITapGestureRecognizer!
     var imagePicker: UIImagePickerController?
-    
+    var appDelegate: AppDelegate!
     override func viewDidLoad() {
         super.viewDidLoad()
-        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
         self.navigationController?.setNeedsStatusBarAppearanceUpdate()
         nicknameTextField.text = UIDevice.currentDevice().name
@@ -28,12 +28,26 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate, UIImagePicke
         self.imagePicker?.delegate = self
         self.imagePicker?.allowsEditing = true
         
+        
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        if let imageData = userDefaults.objectForKey("ProfilePicture") as? NSData{
+            if let image = UIImage(data: imageData){
+                let roundedImage = UIImage.roundedRectImageFromImage(image, imageSize: image.size, cornerRadius: image.size.width/2)
+                imageButton.setImage(roundedImage, forState: .Normal)
+            }
+        }
+        
+        if let name = userDefaults.stringForKey("HostName"){
+            nicknameTextField.text = name
+        }
 //        imageButton.layer.cornerRadius = 50
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: false)
+        UINavigationBar.appearance().tintColor = UIColor(red: 0, green: 122/255, blue: 255/255, alpha: 1)
+        appDelegate.mcManager.resetManager()
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -52,6 +66,13 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate, UIImagePicke
         let roundedImage = UIImage.roundedRectImageFromImage(image, imageSize: image.size, cornerRadius: image.size.width/2)
         self.imageButton.setImage(roundedImage, forState: .Normal)
         self.imagePicker?.dismissViewControllerAnimated(true, completion: nil)
+        
+        
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        let data = UIImageJPEGRepresentation(roundedImage, 1)
+        userDefaults.setObject(data, forKey: "ProfilePicture")
+        userDefaults.synchronize()
+
     }
     
     @IBAction func didPressImageButton(sender: AnyObject) {
@@ -92,12 +113,26 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate, UIImagePicke
         
     }
     @IBAction func didPressHostButton(sender: AnyObject) {
-        let hostController = UIStoryboard(name: "Host", bundle: nil).instantiateViewControllerWithIdentifier("Host") as! HostViewController
-        self.navigationController?.pushViewController(hostController, animated: true)
+        if let name = nicknameTextField.text{
+            if name.characters.count > 0{
+                let hostController = UIStoryboard(name: "Host", bundle: nil).instantiateViewControllerWithIdentifier("Host") as! HostViewController
+                hostController.setupWithHostNamePicture(name, image: self.imageButton.currentImage!)
+                self.navigationController?.pushViewController(hostController, animated: true)
+            }
+        }
+        
+        
         //self.presentViewController(editModal, animated: true, completion: nil)
     }
     
     @IBAction func didPressJoinButton(sender: AnyObject) {
+        if let name = nicknameTextField.text{
+            if name.characters.count > 0{
+                let joinController = UIStoryboard(name: "Join", bundle: nil).instantiateViewControllerWithIdentifier("Join") as! JoinViewController
+                joinController.setupWithProfileNamePicture(name, image: self.imageButton.currentImage!)
+                self.navigationController?.pushViewController(joinController, animated: true)
+            }
+        }
     }
     
     
@@ -114,7 +149,11 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
-        
+        if let text = nicknameTextField.text{
+            let userDefaults = NSUserDefaults.standardUserDefaults()
+            userDefaults.setObject(text, forKey: "HostName")
+            userDefaults.synchronize()
+        }
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {

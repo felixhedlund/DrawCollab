@@ -12,10 +12,13 @@
 		F757D33A1CB6A36300B63B8D /* Host.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F757D3391CB6A36300B63B8D /* Host.storyboard */; };
 		F757D33C1CB6A37600B63B8D /* Join.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F757D33B1CB6A37600B63B8D /* Join.storyboard */; };
 		F757D33E1CB6A39300B63B8D /* Draw.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F757D33D1CB6A39300B63B8D /* Draw.storyboard */; };
-		F75AE11C1CB4FE5000836BE4 /* HostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75AE11B1CB4FE5000836BE4 /* HostViewController.swift */; };
+		F75AE11C1CB4FE5000836BE4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75AE11B1CB4FE5000836BE4 /* MainViewController.swift */; };
 		F75AE1201CB50EA100836BE4 /* MCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75AE11F1CB50EA100836BE4 /* MCManager.swift */; };
-		F75AE1221CB5430100836BE4 /* ConnectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75AE1211CB5430100836BE4 /* ConnectionTableViewCell.swift */; };
 		F75AE1251CB54EFC00836BE4 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75AE1241CB54EFC00836BE4 /* WelcomeViewController.swift */; };
+		F76F69D51CB7A9A30081CBE4 /* ConnectionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76F69D41CB7A9A30081CBE4 /* ConnectionCollectionViewCell.swift */; };
+		F76F69D71CB7AB230081CBE4 /* HostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76F69D61CB7AB230081CBE4 /* HostViewController.swift */; };
+		F76F69D91CB7EF690081CBE4 /* Modals.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F76F69D81CB7EF690081CBE4 /* Modals.storyboard */; };
+		F76F69DC1CB7F0470081CBE4 /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76F69DB1CB7F0470081CBE4 /* JoinViewController.swift */; };
 		F7BBF9071CB3A8C100C0254B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BBF9061CB3A8C100C0254B /* AppDelegate.swift */; };
 		F7BBF9091CB3A8C100C0254B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BBF9081CB3A8C100C0254B /* ViewController.swift */; };
 		F7BBF90C1CB3A8C100C0254B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7BBF90A1CB3A8C100C0254B /* Main.storyboard */; };
@@ -53,10 +56,13 @@
 		F757D3391CB6A36300B63B8D /* Host.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Host.storyboard; sourceTree = "<group>"; };
 		F757D33B1CB6A37600B63B8D /* Join.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Join.storyboard; sourceTree = "<group>"; };
 		F757D33D1CB6A39300B63B8D /* Draw.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Draw.storyboard; sourceTree = "<group>"; };
-		F75AE11B1CB4FE5000836BE4 /* HostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HostViewController.swift; sourceTree = "<group>"; };
+		F75AE11B1CB4FE5000836BE4 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		F75AE11F1CB50EA100836BE4 /* MCManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MCManager.swift; sourceTree = "<group>"; };
-		F75AE1211CB5430100836BE4 /* ConnectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionTableViewCell.swift; sourceTree = "<group>"; };
 		F75AE1241CB54EFC00836BE4 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		F76F69D41CB7A9A30081CBE4 /* ConnectionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionCollectionViewCell.swift; sourceTree = "<group>"; };
+		F76F69D61CB7AB230081CBE4 /* HostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HostViewController.swift; sourceTree = "<group>"; };
+		F76F69D81CB7EF690081CBE4 /* Modals.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Modals.storyboard; sourceTree = "<group>"; };
+		F76F69DB1CB7F0470081CBE4 /* JoinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinViewController.swift; sourceTree = "<group>"; };
 		F7BBF9031CB3A8C100C0254B /* DrawCollab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawCollab.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7BBF9061CB3A8C100C0254B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F7BBF9081CB3A8C100C0254B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -127,6 +133,7 @@
 				F757D33B1CB6A37600B63B8D /* Join.storyboard */,
 				F757D33D1CB6A39300B63B8D /* Draw.storyboard */,
 				F7BBF90F1CB3A8C100C0254B /* LaunchScreen.storyboard */,
+				F76F69D81CB7EF690081CBE4 /* Modals.storyboard */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -159,10 +166,10 @@
 			isa = PBXGroup;
 			children = (
 				F75AE11E1CB50E7B00836BE4 /* Multipeer Connectivity */,
-				F75AE1241CB54EFC00836BE4 /* WelcomeViewController.swift */,
-				F75AE11B1CB4FE5000836BE4 /* HostViewController.swift */,
-				F75AE1211CB5430100836BE4 /* ConnectionTableViewCell.swift */,
-				F7BBF9081CB3A8C100C0254B /* ViewController.swift */,
+				F76F69D21CB7A4910081CBE4 /* Welcome */,
+				F76F69D11CB7A48A0081CBE4 /* Host */,
+				F76F69DA1CB7F0360081CBE4 /* Join */,
+				F76F69D31CB7A4A60081CBE4 /* Draw */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -173,6 +180,40 @@
 				F75AE11F1CB50EA100836BE4 /* MCManager.swift */,
 			);
 			name = "Multipeer Connectivity";
+			sourceTree = "<group>";
+		};
+		F76F69D11CB7A48A0081CBE4 /* Host */ = {
+			isa = PBXGroup;
+			children = (
+				F75AE11B1CB4FE5000836BE4 /* MainViewController.swift */,
+				F76F69D41CB7A9A30081CBE4 /* ConnectionCollectionViewCell.swift */,
+				F76F69D61CB7AB230081CBE4 /* HostViewController.swift */,
+			);
+			name = Host;
+			sourceTree = "<group>";
+		};
+		F76F69D21CB7A4910081CBE4 /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				F75AE1241CB54EFC00836BE4 /* WelcomeViewController.swift */,
+			);
+			name = Welcome;
+			sourceTree = "<group>";
+		};
+		F76F69D31CB7A4A60081CBE4 /* Draw */ = {
+			isa = PBXGroup;
+			children = (
+				F7BBF9081CB3A8C100C0254B /* ViewController.swift */,
+			);
+			name = Draw;
+			sourceTree = "<group>";
+		};
+		F76F69DA1CB7F0360081CBE4 /* Join */ = {
+			isa = PBXGroup;
+			children = (
+				F76F69DB1CB7F0470081CBE4 /* JoinViewController.swift */,
+			);
+			name = Join;
 			sourceTree = "<group>";
 		};
 		F7BBF8FA1CB3A8C100C0254B = {
@@ -338,6 +379,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F701CE7F1CB690EA007890A2 /* Podfile in Resources */,
+				F76F69D91CB7EF690081CBE4 /* Modals.storyboard in Resources */,
 				F7BBF9371CB3A99500C0254B /* Colors.plist in Resources */,
 				F7BBF9111CB3A8C100C0254B /* LaunchScreen.storyboard in Resources */,
 				F757D33E1CB6A39300B63B8D /* Draw.storyboard in Resources */,
@@ -419,12 +461,14 @@
 			files = (
 				F7BBF9091CB3A8C100C0254B /* ViewController.swift in Sources */,
 				F75AE1251CB54EFC00836BE4 /* WelcomeViewController.swift in Sources */,
+				F76F69DC1CB7F0470081CBE4 /* JoinViewController.swift in Sources */,
 				F7BBF9391CB3AE7700C0254B /* Extensions.swift in Sources */,
 				F7BBF9071CB3A8C100C0254B /* AppDelegate.swift in Sources */,
+				F76F69D51CB7A9A30081CBE4 /* ConnectionCollectionViewCell.swift in Sources */,
 				F7BBF9351CB3A98D00C0254B /* ColorPickerViewController.swift in Sources */,
-				F75AE11C1CB4FE5000836BE4 /* HostViewController.swift in Sources */,
+				F76F69D71CB7AB230081CBE4 /* HostViewController.swift in Sources */,
+				F75AE11C1CB4FE5000836BE4 /* MainViewController.swift in Sources */,
 				F75AE1201CB50EA100836BE4 /* MCManager.swift in Sources */,
-				F75AE1221CB5430100836BE4 /* ConnectionTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

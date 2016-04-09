@@ -1,5 +1,5 @@
 //
-//  HostViewController.swift
+//  JoinViewController.swift
 //  DrawCollab
 //
 //  Created by Felix Hedlund on 08/04/16.
@@ -7,62 +7,58 @@
 //
 
 import UIKit
+import MultipeerConnectivity
+class JoinViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
-class HostViewController: UIViewController, SearchForMultiPeerHostDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
-    @IBOutlet weak var hostNameLabel: UILabel!
-    @IBOutlet weak var hostProfilePicture: UIImageView!
-    @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var startButton: UIButton!
+    @IBOutlet weak var profileName: UILabel!
+    @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var infoLabel: UILabel!
-    @IBOutlet weak var searchForPeersActivityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var waitingForHostLabel: UILabel!
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var searchingForHostsActivityIndicator: UIActivityIndicatorView!
     
     var name: String!
     var image: UIImage!
     var appDelegate: AppDelegate!
+    var browser: MCNearbyServiceBrowser!
     override func viewDidLoad() {
         super.viewDidLoad()
-        appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        //appDelegate.mcManager.joinDelegate = self
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         navigationController?.setNavigationBarHidden(false, animated: true)
+        profileName.text = name
+        self.profileImageView.image = image
+        waitingForHostLabel.hidden = false
         
-        self.setupHost()
+        appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         var imageString: String? = nil
         let imageData = UIImageJPEGRepresentation(image, 1)
         imageString = imageData?.base64EncodedStringWithOptions(.EncodingEndLineWithCarriageReturn)
         appDelegate.mcManager.setupPeerAndSessionWithDisplayNameAndImage(name, imageStringEncoded: imageString)
-        appDelegate.mcManager.searchForPeers()
-        searchForPeersActivityIndicator.startAnimating()
+        
+        appDelegate.mcManager.advertiseSelf(true)
+        searchingForHostsActivityIndicator.startAnimating()
         // Do any additional setup after loading the view.
     }
+    
     override func viewWillAppear(animated: Bool) {
-        appDelegate.mcManager.hostDelegate = self
+        
     }
     
-    func setupWithHostNamePicture(name: String, image: UIImage){
+    func setupWithProfileNamePicture(name: String, image: UIImage){
         self.name = name
         self.image = image
     }
     
-    private func setupHost(){
-        hostNameLabel.text = name
-        self.hostProfilePicture.image = image
-    }
     
-    func peerWasLost() {
-        print("Peer was lost")
-        self.collectionView.reloadData()
-    }
-    
-    func peerWasFound() {
-        print("Peer was found")
-        self.collectionView.reloadData()
-        infoLabel.text = "Press peer to add to session..."
-    }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return appDelegate.mcManager.peers.count
+        return 0
+        //return appDelegate.mcManager.peers.count
     }
     
+    
+    //TODO
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("connectionCell", forIndexPath: indexPath) as! ConnectionCollectionViewCell
         let peer = appDelegate.mcManager.peers[indexPath.row]
@@ -70,7 +66,7 @@ class HostViewController: UIViewController, SearchForMultiPeerHostDelegate, UICo
         if let i = peer.image{
             image = i
         }
-        cell.setupConnectionCell(indexPath.row, profileImage: image, profileName: peer.displayName, isHost: true)
+        //cell.setupConnectionCell(image, profileName: peer.displayName, isHost: true)
         return cell
     }
 
