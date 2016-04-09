@@ -61,11 +61,11 @@ class JoinViewController: UIViewController, UICollectionViewDelegate, UICollecti
     //TODO
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("connectionCell", forIndexPath: indexPath) as! ConnectionCollectionViewCell
-        let peer = appDelegate.mcManager.peers[indexPath.row]
-        var image = UIImage(named: "profile")
-        if let i = peer.image{
-            image = i
-        }
+//        let peer = appDelegate.mcManager.peers[indexPath.row]
+//        var image = UIImage(named: "profile")
+//        if let i = peer.image{
+//            image = i
+//        }
         //cell.setupConnectionCell(image, profileName: peer.displayName, isHost: true)
         return cell
     }

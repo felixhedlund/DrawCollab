@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import MultipeerConnectivity
 class HostViewController: UIViewController, SearchForMultiPeerHostDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     @IBOutlet weak var hostNameLabel: UILabel!
     @IBOutlet weak var hostProfilePicture: UIImageView!
@@ -35,7 +35,7 @@ class HostViewController: UIViewController, SearchForMultiPeerHostDelegate, UICo
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(animated: Bool) {
-        appDelegate.mcManager.hostDelegate = self
+        appDelegate.mcManager.delegate = self
     }
     
     func setupWithHostNamePicture(name: String, image: UIImage){
@@ -48,15 +48,18 @@ class HostViewController: UIViewController, SearchForMultiPeerHostDelegate, UICo
         self.hostProfilePicture.image = image
     }
     
-    func peerWasLost() {
-        print("Peer was lost")
-        self.collectionView.reloadData()
-    }
-    
-    func peerWasFound() {
-        print("Peer was found")
-        self.collectionView.reloadData()
-        infoLabel.text = "Press peer to add to session..."
+    func peersChanged() {
+        dispatch_async(dispatch_get_main_queue(),{
+            
+            if self.appDelegate.mcManager.peers.count > 0{
+                self.infoLabel.text = "Press a profile to add friend..."
+            }else{
+                self.infoLabel.text = "Searching for nearby profiles..."
+            }
+            self.collectionView.reloadData()
+            
+        })
+        
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -70,7 +73,7 @@ class HostViewController: UIViewController, SearchForMultiPeerHostDelegate, UICo
         if let i = peer.image{
             image = i
         }
-        cell.setupConnectionCell(indexPath.row, profileImage: image, profileName: peer.displayName, isHost: true)
+        cell.setupConnectionCell(indexPath.row, profileImage: image, profileName: peer.displayName, isHost: true, state: peer.state)
         return cell
     }
 

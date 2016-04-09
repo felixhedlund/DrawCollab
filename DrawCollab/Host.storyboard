@@ -259,14 +259,23 @@
                                                                                 <action selector="didPressProfile:" destination="h51-dy-e0a" eventType="touchUpInside" id="Vu6-a2-orb"/>
                                                                             </connections>
                                                                         </button>
+                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add" translatesAutoresizingMaskIntoConstraints="NO" id="Ycq-9y-peQ">
+                                                                            <rect key="frame" x="77" y="26" width="26" height="26"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" secondItem="Ycq-9y-peQ" secondAttribute="height" multiplier="1:1" id="01r-l1-KgQ"/>
+                                                                            </constraints>
+                                                                        </imageView>
                                                                     </subviews>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 </view>
                                                                 <constraints>
                                                                     <constraint firstItem="tWd-aI-6ML" firstAttribute="width" secondItem="h51-dy-e0a" secondAttribute="width" multiplier="1:1.4" id="32W-jP-ehF"/>
                                                                     <constraint firstAttribute="bottomMargin" secondItem="tWd-aI-6ML" secondAttribute="bottom" id="Buy-La-MwX"/>
+                                                                    <constraint firstItem="Ycq-9y-peQ" firstAttribute="top" secondItem="tWd-aI-6ML" secondAttribute="top" id="HWz-d9-fZE"/>
                                                                     <constraint firstItem="IyI-cE-jxW" firstAttribute="top" secondItem="h51-dy-e0a" secondAttribute="topMargin" id="WuY-0G-TvP"/>
+                                                                    <constraint firstItem="Ycq-9y-peQ" firstAttribute="trailing" secondItem="tWd-aI-6ML" secondAttribute="trailing" id="a4q-sa-4TC"/>
                                                                     <constraint firstItem="IyI-cE-jxW" firstAttribute="centerX" secondItem="h51-dy-e0a" secondAttribute="centerX" id="ed0-Pj-oG2"/>
+                                                                    <constraint firstItem="Ycq-9y-peQ" firstAttribute="width" secondItem="tWd-aI-6ML" secondAttribute="width" multiplier="0.3:1" id="kcR-Nh-ATF"/>
                                                                     <constraint firstItem="IyI-cE-jxW" firstAttribute="bottom" secondItem="tWd-aI-6ML" secondAttribute="top" constant="-2" id="wyi-DQ-elk"/>
                                                                     <constraint firstItem="tWd-aI-6ML" firstAttribute="centerX" secondItem="h51-dy-e0a" secondAttribute="centerX" id="z7s-OA-A32"/>
                                                                 </constraints>
@@ -278,6 +287,7 @@
                                                                 <connections>
                                                                     <outlet property="profileButton" destination="tWd-aI-6ML" id="Fmt-y5-NBp"/>
                                                                     <outlet property="profileName" destination="IyI-cE-jxW" id="gUL-xz-4XI"/>
+                                                                    <outlet property="statusImage" destination="Ycq-9y-peQ" id="bEo-RY-gHf"/>
                                                                 </connections>
                                                             </collectionViewCell>
                                                         </cells>
@@ -332,6 +342,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="add" width="367" height="400"/>
         <image name="canvas-start" width="431" height="431"/>
         <image name="profile" width="432" height="431"/>
     </resources>
