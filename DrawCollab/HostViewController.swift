@@ -26,7 +26,7 @@ class HostViewController: UIViewController, SearchForMultiPeerHostDelegate, UICo
         navigationController?.setNavigationBarHidden(false, animated: true)
         
         self.setupHost()
-        let imageData = UIImageJPEGRepresentation(image, 0.5)
+        let imageData = UIImageJPEGRepresentation(image, 0.3)
         appDelegate.mcManager.setupPeerAndSessionWithDisplayNameAndImage(name, imageData: imageData)
         searchForPeersActivityIndicator.startAnimating()
         // Do any additional setup after loading the view.

@@ -179,6 +179,8 @@ class MCManager: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDelegate {
                print("Could not send imageData")
             }
         }
+        
+        
     }
     
     func browser(browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
@@ -233,6 +235,39 @@ class MCManager: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDelegate {
         }
     }
     
+    func sendDrawImageToPeers(image: UIImage, peerToAvoid: MCPeerID?){
+        let data = UIImagePNGRepresentation(image)
+        
+        
+        
+        if let d = data{
+            if let s = session{
+                var peers = [MCPeerID]()
+                for peer in s.connectedPeers{
+                    if let p = peerToAvoid{
+                        if p == peer{
+                            break
+                        }else{
+                            peers.append(peer)
+                        }
+                    }else{
+                        peers.append(peer)
+                    }
+                }
+                for host in peers{
+                    do {
+                        try s.sendData(d, toPeers: [host], withMode: .Unreliable)
+                    } catch {
+                        print("Could not send draw imageData")
+                    }
+                    
+                }
+            }
+        }
+        
+        
+    }
+    
     func session(session: MCSession, peer peerID: MCPeerID, didChangeState state: MCSessionState) {
         //let dictionary = ["peerID": peerID, "state": state.rawValue]
         let peer = Peer(id: peerID, displayName: peerID.displayName, image: nil, state: state)
@@ -259,20 +294,32 @@ class MCManager: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDelegate {
     }
     
     func session(session: MCSession, didReceiveData data: NSData, fromPeer peerID: MCPeerID) {
-        let dataString = NSString(data: data, encoding: NSUTF8StringEncoding)
-        var isString = false
-        if let string = dataString{
-            if string == "StartGame"{
-                self.delegate?.stringWasReceived(string)
-                isString = true
-            }
-        }
-        if !isString{
+        if let drawController = delegate as? DrawViewController{
             let image = UIImage(data: data)
             if let i = image{
                 self.delegate?.imageWasReceived(i, peer: peerID)
+                if drawController.isHost{
+                    self.sendDrawImageToPeers(i, peerToAvoid: peerID)
+                }
+            }
+        }else{
+            let dataString = NSString(data: data, encoding: NSUTF8StringEncoding)
+            var isString = false
+            if let string = dataString{
+                if string == "StartGame"{
+                    self.delegate?.stringWasReceived(string)
+                    isString = true
+                }
+            }
+            if !isString{
+                let image = UIImage(data: data)
+                if let i = image{
+                    self.delegate?.imageWasReceived(i, peer: peerID)
+                }
             }
         }
+        
+        
     }
     
     func session(session: MCSession, didStartReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, withProgress progress: NSProgress) {

@@ -61,15 +61,23 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
     }
     
     func peersChanged(){
-        self.collectionView.reloadData()
+        dispatch_async(dispatch_get_main_queue(),{
+            self.collectionView.reloadData()
+        })
+        
+        
+        
     }
     func imageWasReceived(image: UIImage, peer: MCPeerID){
-        UIGraphicsBeginImageContext(self.mainImage.frame.size)
-        self.mainImage.image?.drawInRect(CGRectMake(0, 0, self.background.frame.size.width, self.background.frame.size.height), blendMode: CGBlendMode.Normal, alpha: 1)
-        image.drawInRect(CGRectMake(0, 0, self.background.frame.size.width, self.background.frame.size.height), blendMode: CGBlendMode.Normal, alpha: opacity)
-        self.mainImage.image = UIGraphicsGetImageFromCurrentImageContext()
-        self.drawImage.image = nil
-        UIGraphicsEndImageContext()
+        dispatch_async(dispatch_get_main_queue(),{
+            UIGraphicsBeginImageContext(self.mainImage.frame.size)
+            self.mainImage.image?.drawInRect(CGRectMake(0, 0, self.background.frame.size.width, self.background.frame.size.height), blendMode: CGBlendMode.Normal, alpha: 1)
+            image.drawInRect(CGRectMake(0, 0, self.background.frame.size.width, self.background.frame.size.height), blendMode: CGBlendMode.Normal, alpha: 1)
+            self.mainImage.image = UIGraphicsGetImageFromCurrentImageContext()
+            self.drawImage.image = nil
+            UIGraphicsEndImageContext()
+        })
+        
     }
     func stringWasReceived(receivedString: NSString){
         print("String was received inGame: \(receivedString)")
@@ -184,10 +192,14 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
             self.drawImage.image?.drawInRect(CGRectMake(0, 0, self.background.frame.size.width, self.background.frame.size.height), blendMode: CGBlendMode.Normal, alpha: 1.0)
         }else{
             CGContextSetAlpha(UIGraphicsGetCurrentContext(), opacity)
-            //CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), red, green, blue, opacity)
-            self.drawImage.image?.drawInRect(CGRectMake(0, 0, self.background.frame.size.width, self.background.frame.size.height), blendMode: CGBlendMode.Normal, alpha: opacity)
+            self.drawImage.image?.drawInRect(CGRectMake(0, 0, self.background.frame.size.width, self.background.frame.size.height), blendMode: CGBlendMode.Normal, alpha: 1) //opacity
         }
         self.mainImage.image = UIGraphicsGetImageFromCurrentImageContext()
+        
+        if let i = drawImage.image{
+            self.appDelegate.mcManager.sendDrawImageToPeers(i, peerToAvoid: nil)
+        }
+        
         self.drawImage.image = nil
         UIGraphicsEndImageContext()
         brushImageView.image = nil

@@ -31,7 +31,7 @@ class JoinViewController: UIViewController, UICollectionViewDelegate, UICollecti
         waitingForHostLabel.hidden = false
         
         appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let imageData = UIImageJPEGRepresentation(image, 0.5)
+        let imageData = UIImageJPEGRepresentation(image, 0.3)
         appDelegate.mcManager.setupPeerAndSessionWithDisplayNameAndImage(name, imageData: imageData)
         searchingForHostsActivityIndicator.startAnimating()
         // Do any additional setup after loading the view.
