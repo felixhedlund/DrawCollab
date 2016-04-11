@@ -10,6 +10,8 @@ import MultipeerConnectivity
 
 protocol SearchForMultiPeerHostDelegate{
     func peersChanged()
+    func imageWasReceived(image: UIImage, peer: MCPeerID)
+    func stringWasReceived(receivedString: NSString)
 }
 
 
@@ -30,6 +32,7 @@ class Peer: Comparable{
     var displayName: String!
     var image: UIImage?
     var state: MCSessionState!
+    var deviceID: String!
     init(id: MCPeerID, displayName: String, image: UIImage?, state: MCSessionState){
         self.state = state
         self.id = id
@@ -55,7 +58,7 @@ class MCManager: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDelegate {
     var advertiser: MCAdvertiserAssistant?
     var arrConnectedDevices: NSMutableArray!
     
-    var discoveryImageStringEncoded: String?
+    var discoveryImageData: NSData?
     var delegate: SearchForMultiPeerHostDelegate?
     var peers: [Peer]!
     override init(){
@@ -76,9 +79,18 @@ class MCManager: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDelegate {
         
     }
     
-    func setupPeerAndSessionWithDisplayNameAndImage(displayName: String, imageStringEncoded: String?){
+    func removeAllNonConnectedPeers(){
+        for p in peers{
+            if p.state != MCSessionState.Connected{
+                let index = peers.indexOf(p)
+                peers.removeAtIndex(index!)
+            }
+        }
+    }
+    
+    func setupPeerAndSessionWithDisplayNameAndImage(displayName: String, imageData: NSData?){
         peers = [Peer]()
-        self.discoveryImageStringEncoded = imageStringEncoded
+        self.discoveryImageData = imageData
         arrConnectedDevices = NSMutableArray()
         peerID = MCPeerID(displayName: displayName)
         session = MCSession(peer: peerID!)
@@ -118,9 +130,55 @@ class MCManager: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDelegate {
     
     }
     
+    func removePeer(peer: MCPeerID){
+        var index = 0
+        for p in peers{
+            if p.id == peer{
+                peers.removeAtIndex(index)
+            }
+            index += 1
+        }
+        delegate?.peersChanged()
+    }
+    
+    func disconnectFromHost(){
+        if let d = delegate{
+            self.peers.removeAll()
+            self.resetManager()
+            self.advertiseSelf(true)
+            self.delegate = d
+            d.peersChanged()
+        }
+        
+    }
+    
+    func sendStartGameRequest(){
+        let connectedPeers = session?.connectedPeers
+        if connectedPeers?.count > 0{
+            let startString = "StartGame"
+            let data = startString.dataUsingEncoding(NSUTF8StringEncoding)
+            
+            do {
+                try session?.sendData(data!, toPeers: connectedPeers!, withMode: .Reliable)
+            } catch {
+                print("Could not send start game")
+            }
+        }
+    }
+    
     func sendJoinRequest(rowForPeer: Int){
         let peer = self.peers[rowForPeer].id
         browser?.invitePeer(peer, toSession: self.session!, withContext: nil, timeout: 30)
+    }
+    
+    func sendProfileImageToPeer(peer: MCPeerID){
+        if let imageData = discoveryImageData{
+            do {
+               try self.session?.sendData(imageData, toPeers: [peer], withMode: MCSessionSendDataMode.Unreliable)
+            } catch {
+               print("Could not send imageData")
+            }
+        }
     }
     
     func browser(browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
@@ -149,6 +207,16 @@ class MCManager: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDelegate {
             del.peersChanged()
         }
         
+    }
+    
+    func changePeerImage(image: UIImage, peer: MCPeerID){
+        for p in peers{
+            if p.id == peer{
+                p.updateImage(image)
+                break
+            }
+        }
+        delegate?.peersChanged()
     }
     
     func browser(browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
@@ -183,12 +251,28 @@ class MCManager: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDelegate {
                 self.peers.append(peer)
             }
         }
+        if state == MCSessionState.Connected{
+            self.sendProfileImageToPeer(peerID)
+        }
         delegate?.peersChanged()
 //        NSNotificationCenter.defaultCenter().postNotificationName("MCDidChangeStateNotification", object: nil, userInfo: dictionary)
     }
     
     func session(session: MCSession, didReceiveData data: NSData, fromPeer peerID: MCPeerID) {
-        
+        let dataString = NSString(data: data, encoding: NSUTF8StringEncoding)
+        var isString = false
+        if let string = dataString{
+            if string == "StartGame"{
+                self.delegate?.stringWasReceived(string)
+                isString = true
+            }
+        }
+        if !isString{
+            let image = UIImage(data: data)
+            if let i = image{
+                self.delegate?.imageWasReceived(i, peer: peerID)
+            }
+        }
     }
     
     func session(session: MCSession, didStartReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, withProgress progress: NSProgress) {

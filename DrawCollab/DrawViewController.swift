@@ -7,12 +7,11 @@
 //
 
 import UIKit
-
-class ViewController: UIViewController, UIPopoverPresentationControllerDelegate, ColorPickerDelegate {
-    @IBOutlet weak var penButton: UIBarButtonItem!
-    @IBOutlet weak var erasorButton: UIBarButtonItem!
-    @IBOutlet weak var colorButton: UIBarButtonItem!
-    @IBOutlet weak var toolbar: UIToolbar!
+import MultipeerConnectivity
+class DrawViewController: UIViewController, UIPopoverPresentationControllerDelegate, ColorPickerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, SearchForMultiPeerHostDelegate {
+    @IBOutlet weak var penButton: UIButton!
+    @IBOutlet weak var erasorButton: UIButton!
+    //@IBOutlet weak var colorButton: UIBarButtonItem!
     
     @IBOutlet weak var background: UIView!
     @IBOutlet weak var mainImage: UIImageView!
@@ -22,6 +21,12 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
     @IBOutlet weak var brushImageViewWidth: NSLayoutConstraint!
     @IBOutlet weak var brushLeading: NSLayoutConstraint!
     @IBOutlet weak var brushTop: NSLayoutConstraint!
+    @IBOutlet weak var exitButton: UIButton!
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    var appDelegate: AppDelegate!
+    
+    var isHost = false
     var lastPoint: CGPoint?
     var lastBrushImagePoint: CGPoint?
     var mouseSwiped = false
@@ -33,15 +38,41 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
     var brushSize: Float = 10.0
     
     var brushImage = UIImage(named: "brush")
+    
+    var penButtonIsEnabled = true
     override func viewDidLoad() {
         super.viewDidLoad()
+        appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.mcManager.removeAllNonConnectedPeers()
         red = 20/255
         green = 100/255
         blue = 150/255
-        self.colorButton.tintColor = UIColor(red: red, green: green, blue: blue, alpha: opacity)
+        let penImage = UIImage(named: "pencil")
+        self.penButton.setImage(penImage!.maskWithColor(UIColor(red: red, green: green, blue: blue, alpha: opacity)), forState: .Normal)
         self.didPressPen(penButton)
         self.view.bringSubviewToFront(brushImageView)
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+   
+
+    override func viewWillAppear(animated: Bool) {
+        appDelegate.mcManager.delegate = self
+    }
+    
+    func peersChanged(){
+        self.collectionView.reloadData()
+    }
+    func imageWasReceived(image: UIImage, peer: MCPeerID){
+        UIGraphicsBeginImageContext(self.mainImage.frame.size)
+        self.mainImage.image?.drawInRect(CGRectMake(0, 0, self.background.frame.size.width, self.background.frame.size.height), blendMode: CGBlendMode.Normal, alpha: 1)
+        image.drawInRect(CGRectMake(0, 0, self.background.frame.size.width, self.background.frame.size.height), blendMode: CGBlendMode.Normal, alpha: opacity)
+        self.mainImage.image = UIGraphicsGetImageFromCurrentImageContext()
+        self.drawImage.image = nil
+        UIGraphicsEndImageContext()
+    }
+    func stringWasReceived(receivedString: NSString){
+        print("String was received inGame: \(receivedString)")
     }
     
     override func didReceiveMemoryWarning() {
@@ -50,12 +81,12 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        if !erasorButton.enabled{
+        if !penButtonIsEnabled{
             brushImage = UIImage(named: "square")
             brushImageView.image = brushImage
         }else{
             brushImage = UIImage(named: "brush")
-            brushImageView.image = brushImage?.maskWithColor(UIColor(red: red, green: green, blue: blue, alpha: 1.0))
+            //brushImageView.image = brushImage?.maskWithColor(UIColor(red: red, green: green, blue: blue, alpha: opacity))
         }
         
         brushImageViewWidth.constant = CGFloat(brushSize*1.2)
@@ -67,11 +98,19 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
         setBrushImageViewPosition()
     }
     
+    
+    
     private func setBrushImageViewPosition(){
         if let point = lastBrushImagePoint{
             //brushImageView.center = point
             brushLeading.constant = -20 + point.x - brushImageView.frame.size.width/2
-            brushTop.constant = -20 + point.y - brushImageView.frame.size.width/2 - 44
+            
+            if self.view.frame.width > self.view.frame.height{
+                brushTop.constant = point.y - brushImageView.frame.size.width/2
+            }else{
+                brushTop.constant = -20 + point.y - brushImageView.frame.size.width/2 //- 44
+            }
+            
         }
     }
     
@@ -84,22 +123,22 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
                 self.drawImage.image?.drawInRect(CGRect(x: 0, y: 0, width: self.background.frame.size.width, height: self.background.frame.size.height))
                 CGContextMoveToPoint(UIGraphicsGetCurrentContext(), last.x, last.y)
                 CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), currentPoint.x, currentPoint.y)
-                if !erasorButton.enabled{
+                if !penButtonIsEnabled{
                     CGContextSetLineCap(UIGraphicsGetCurrentContext(), CGLineCap.Square)
                 }else{
                     CGContextSetLineCap(UIGraphicsGetCurrentContext(), CGLineCap.Round)
                 }
                 
                 CGContextSetLineWidth(UIGraphicsGetCurrentContext(), CGFloat(brushSize))
-                if !erasorButton.enabled{
+                if !penButtonIsEnabled{
                     CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), 1, 1, 1, 1)
                 }else{
-                    CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), red, green, blue, 1)
+                    CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), red, green, blue, opacity)
                 }
                 CGContextSetBlendMode(UIGraphicsGetCurrentContext(), CGBlendMode.Normal)
                 CGContextStrokePath(UIGraphicsGetCurrentContext())
                 self.drawImage.image = UIGraphicsGetImageFromCurrentImageContext()
-                if !erasorButton.enabled{
+                if !penButtonIsEnabled{
                     self.drawImage.alpha = 1.0
                 }else{
                     self.drawImage.alpha = opacity
@@ -121,16 +160,16 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
                 self.drawImage.image?.drawInRect(CGRect(x: 0, y: 0, width: self.background.frame.size.width, height: self.background.frame.size.height))
                 CGContextMoveToPoint(UIGraphicsGetCurrentContext(), last.x, last.y)
                 CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), last.x, last.y)
-                if !erasorButton.enabled{
+                if !penButtonIsEnabled{
                     CGContextSetLineCap(UIGraphicsGetCurrentContext(), CGLineCap.Square)
                 }else{
                     CGContextSetLineCap(UIGraphicsGetCurrentContext(), CGLineCap.Round)
                 }
                 CGContextSetLineWidth(UIGraphicsGetCurrentContext(), CGFloat(brushSize))
-                if !erasorButton.enabled{
+                if !penButtonIsEnabled{
                     CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), 1, 1, 1, 1)
                 }else{
-                    CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), red, green, blue, 1)
+                    CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), red, green, blue, opacity)
                 }
                 CGContextSetBlendMode(UIGraphicsGetCurrentContext(), CGBlendMode.Normal)
                 CGContextStrokePath(UIGraphicsGetCurrentContext())
@@ -141,9 +180,11 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
         }
         UIGraphicsBeginImageContext(self.mainImage.frame.size)
         self.mainImage.image?.drawInRect(CGRectMake(0, 0, self.background.frame.size.width, self.background.frame.size.height), blendMode: CGBlendMode.Normal, alpha: 1)
-        if !erasorButton.enabled{
+        if !penButtonIsEnabled{
             self.drawImage.image?.drawInRect(CGRectMake(0, 0, self.background.frame.size.width, self.background.frame.size.height), blendMode: CGBlendMode.Normal, alpha: 1.0)
         }else{
+            CGContextSetAlpha(UIGraphicsGetCurrentContext(), opacity)
+            //CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), red, green, blue, opacity)
             self.drawImage.image?.drawInRect(CGRectMake(0, 0, self.background.frame.size.width, self.background.frame.size.height), blendMode: CGBlendMode.Normal, alpha: opacity)
         }
         self.mainImage.image = UIGraphicsGetImageFromCurrentImageContext()
@@ -152,17 +193,26 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
         brushImageView.image = nil
         
     }
+    @IBAction func didPressExit(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
     
     @IBAction func didPressPen(sender: AnyObject) {
-        penButton.enabled = false
-        erasorButton.enabled = true
+        penButtonIsEnabled = true
+        self.didPressColor()
+//        penButton.enabled = false
+//        erasorButton.enabled = true
     }
     
     @IBAction func didPressErasor(sender: AnyObject) {
-        penButton.enabled = true
-        erasorButton.enabled = false
+        penButtonIsEnabled = false
+//        penButton.enabled = true
+//        erasorButton.enabled = false
     }
-    @IBAction func didPressColor(sender: AnyObject) {
+    
+    @IBOutlet weak var toolbarStackView: UIStackView!
+    
+    func didPressColor() {
         // initialise color picker view controller
         let colorPickerVc = storyboard?.instantiateViewControllerWithIdentifier("sbColorPicker") as! ColorPickerViewController
         colorPickerVc.previousColor = UIColor(red: red, green: green, blue: blue, alpha: opacity)
@@ -181,10 +231,10 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
         if let popoverController = colorPickerVc.popoverPresentationController {
             
             // set source view
-            popoverController.sourceView = self.view
+            popoverController.sourceView = self.toolbarStackView
             
             // show popover form button
-            popoverController.sourceRect = self.toolbar.frame
+            popoverController.sourceRect = self.penButton.frame
             
             // show popover arrow at feasible direction
             popoverController.permittedArrowDirections = UIPopoverArrowDirection.Any
@@ -213,10 +263,26 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
             self.opacity = rgb.alpha
             self.brushSize = Float(brushSize)
             // set preview background to selected color
-            self.colorButton.tintColor = selectedUIColor
+            let penImage = UIImage(named: "pencil")
+            self.penButton.setImage(penImage!.maskWithColor(selectedUIColor), forState: .Normal)
         }
         
         
+    }
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return appDelegate.mcManager.peers.count
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("connectionCell", forIndexPath: indexPath) as! ConnectionCollectionViewCell
+        let peer = appDelegate.mcManager.peers[indexPath.row]
+        var image = UIImage(named: "profile")
+        if let i = peer.image{
+            image = i
+        }
+        cell.setupConnectionCell(indexPath.row, profileImage: image, profileName: peer.displayName, isHost: self.isHost, state: peer.state, isInGame: true)
+        return cell
     }
     
     // MARK: Popover delegate functions

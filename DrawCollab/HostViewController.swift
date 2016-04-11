@@ -26,16 +26,14 @@ class HostViewController: UIViewController, SearchForMultiPeerHostDelegate, UICo
         navigationController?.setNavigationBarHidden(false, animated: true)
         
         self.setupHost()
-        var imageString: String? = nil
-        let imageData = UIImageJPEGRepresentation(image, 1)
-        imageString = imageData?.base64EncodedStringWithOptions(.EncodingEndLineWithCarriageReturn)
-        appDelegate.mcManager.setupPeerAndSessionWithDisplayNameAndImage(name, imageStringEncoded: imageString)
-        appDelegate.mcManager.searchForPeers()
+        let imageData = UIImageJPEGRepresentation(image, 0.5)
+        appDelegate.mcManager.setupPeerAndSessionWithDisplayNameAndImage(name, imageData: imageData)
         searchForPeersActivityIndicator.startAnimating()
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(animated: Bool) {
         appDelegate.mcManager.delegate = self
+        appDelegate.mcManager.searchForPeers()
     }
     
     func setupWithHostNamePicture(name: String, image: UIImage){
@@ -46,6 +44,24 @@ class HostViewController: UIViewController, SearchForMultiPeerHostDelegate, UICo
     private func setupHost(){
         hostNameLabel.text = name
         self.hostProfilePicture.image = image
+    }
+    
+    @IBAction func didPressStartGame(sender: AnyObject) {
+        appDelegate.mcManager.sendStartGameRequest()
+        
+        let drawController = UIStoryboard(name: "Draw", bundle: nil).instantiateViewControllerWithIdentifier("Draw") as! DrawViewController
+        drawController.isHost = true
+        self.presentViewController(drawController, animated: true, completion: nil)
+        //self.navigationController?.pushViewController(drawController, animated: true)
+        
+    }
+    func stringWasReceived(receivedString: NSString) {
+        
+    }
+    
+    func imageWasReceived(image: UIImage, peer: MCPeerID){
+        let roundedImage = UIImage.roundedRectImageFromImage(image, imageSize: image.size, cornerRadius: image.size.width/2)
+        appDelegate.mcManager.changePeerImage(roundedImage, peer: peer)
     }
     
     func peersChanged() {
@@ -73,7 +89,7 @@ class HostViewController: UIViewController, SearchForMultiPeerHostDelegate, UICo
         if let i = peer.image{
             image = i
         }
-        cell.setupConnectionCell(indexPath.row, profileImage: image, profileName: peer.displayName, isHost: true, state: peer.state)
+        cell.setupConnectionCell(indexPath.row, profileImage: image, profileName: peer.displayName, isHost: true, state: peer.state, isInGame: false)
         return cell
     }
 

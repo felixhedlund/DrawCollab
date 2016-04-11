@@ -215,48 +215,58 @@
                                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         </collectionViewFlowLayout>
                                                         <cells>
-                                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="connectionCell" id="I1G-qy-s9I" customClass="ConnectionCollectionViewCell" customModule="DrawCollab" customModuleProvider="target">
+                                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="connectionCell" id="FIR-xH-vTI" customClass="ConnectionCollectionViewCell" customModule="DrawCollab" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                                     <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gJH-yC-hGU">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vpV-aK-rPk">
                                                                             <rect key="frame" x="39" y="3" width="42" height="21"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
-                                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G0k-0Z-ZVp">
+                                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OWn-0K-eCX">
                                                                             <rect key="frame" x="17" y="26" width="86" height="85.5"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="width" secondItem="G0k-0Z-ZVp" secondAttribute="height" multiplier="1:1" id="qmx-rv-a2V"/>
+                                                                                <constraint firstAttribute="width" secondItem="OWn-0K-eCX" secondAttribute="height" multiplier="1:1" id="a22-LP-b8d"/>
                                                                             </constraints>
                                                                             <state key="normal" image="profile"/>
                                                                             <connections>
-                                                                                <action selector="didPressProfile:" destination="I1G-qy-s9I" eventType="touchUpInside" id="l9N-5r-5zU"/>
+                                                                                <action selector="didPressProfile:" destination="FIR-xH-vTI" eventType="touchUpInside" id="4bF-b4-RjJ"/>
                                                                             </connections>
                                                                         </button>
+                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TimeGlass" translatesAutoresizingMaskIntoConstraints="NO" id="ChT-Wg-5Ts">
+                                                                            <rect key="frame" x="77" y="26" width="26" height="26"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" secondItem="ChT-Wg-5Ts" secondAttribute="height" multiplier="1:1" id="fVq-LE-QYh"/>
+                                                                            </constraints>
+                                                                        </imageView>
                                                                     </subviews>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 </view>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="bottomMargin" secondItem="G0k-0Z-ZVp" secondAttribute="bottom" id="BX5-hs-mpj"/>
-                                                                    <constraint firstItem="gJH-yC-hGU" firstAttribute="centerX" secondItem="I1G-qy-s9I" secondAttribute="centerX" id="VaK-sP-dME"/>
-                                                                    <constraint firstItem="gJH-yC-hGU" firstAttribute="bottom" secondItem="G0k-0Z-ZVp" secondAttribute="top" constant="-2" id="nb0-8V-VRO"/>
-                                                                    <constraint firstItem="G0k-0Z-ZVp" firstAttribute="width" secondItem="I1G-qy-s9I" secondAttribute="width" multiplier="1:1.4" id="qjV-E7-YsR"/>
-                                                                    <constraint firstItem="gJH-yC-hGU" firstAttribute="top" secondItem="I1G-qy-s9I" secondAttribute="topMargin" id="s8m-vP-9cG"/>
-                                                                    <constraint firstItem="G0k-0Z-ZVp" firstAttribute="centerX" secondItem="I1G-qy-s9I" secondAttribute="centerX" id="yOQ-QR-sb7"/>
+                                                                    <constraint firstItem="vpV-aK-rPk" firstAttribute="centerX" secondItem="FIR-xH-vTI" secondAttribute="centerX" id="5b6-xy-tLf"/>
+                                                                    <constraint firstItem="OWn-0K-eCX" firstAttribute="centerX" secondItem="FIR-xH-vTI" secondAttribute="centerX" id="HBU-mp-oYk"/>
+                                                                    <constraint firstItem="ChT-Wg-5Ts" firstAttribute="trailing" secondItem="OWn-0K-eCX" secondAttribute="trailing" id="NR2-pF-rzK"/>
+                                                                    <constraint firstItem="OWn-0K-eCX" firstAttribute="width" secondItem="FIR-xH-vTI" secondAttribute="width" multiplier="1:1.4" id="Vfh-CY-6gD"/>
+                                                                    <constraint firstAttribute="bottomMargin" secondItem="OWn-0K-eCX" secondAttribute="bottom" id="Xkl-jJ-NeW"/>
+                                                                    <constraint firstItem="vpV-aK-rPk" firstAttribute="top" secondItem="FIR-xH-vTI" secondAttribute="topMargin" id="iN7-yZ-8Q5"/>
+                                                                    <constraint firstItem="ChT-Wg-5Ts" firstAttribute="width" secondItem="OWn-0K-eCX" secondAttribute="width" multiplier="0.3:1" id="rXd-oQ-67U"/>
+                                                                    <constraint firstItem="vpV-aK-rPk" firstAttribute="bottom" secondItem="OWn-0K-eCX" secondAttribute="top" constant="-2" id="rc5-tf-vWs"/>
+                                                                    <constraint firstItem="ChT-Wg-5Ts" firstAttribute="top" secondItem="OWn-0K-eCX" secondAttribute="top" id="sIz-cy-NQE"/>
                                                                 </constraints>
                                                                 <variation key="default">
                                                                     <mask key="constraints">
-                                                                        <exclude reference="s8m-vP-9cG"/>
+                                                                        <exclude reference="iN7-yZ-8Q5"/>
                                                                     </mask>
                                                                 </variation>
                                                                 <connections>
-                                                                    <outlet property="profileButton" destination="G0k-0Z-ZVp" id="sV5-3T-RE9"/>
-                                                                    <outlet property="profileName" destination="gJH-yC-hGU" id="fO5-5g-EeP"/>
+                                                                    <outlet property="profileButton" destination="OWn-0K-eCX" id="SgY-QB-isu"/>
+                                                                    <outlet property="profileName" destination="vpV-aK-rPk" id="db1-Gg-Bic"/>
+                                                                    <outlet property="statusImage" destination="ChT-Wg-5Ts" id="gvo-2Y-nNv"/>
                                                                 </connections>
                                                             </collectionViewCell>
                                                         </cells>
@@ -326,6 +336,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="TimeGlass" width="80" height="80"/>
         <image name="profile" width="432" height="431"/>
     </resources>
 </document>

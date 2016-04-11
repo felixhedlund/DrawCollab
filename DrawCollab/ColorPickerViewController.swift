@@ -68,8 +68,9 @@ class ColorPickerViewController: UIViewController, UICollectionViewDataSource, U
     func loadFromPreviousColor(){
         colorChosen = previousColor
         if let components = previousColor.rgb(){
-            opacityValue.text = "\(components.alpha)"
-            opacity = Float(components.alpha)
+            let alpha = round(components.alpha*10)/10
+            opacityValue.text = "\(alpha)"
+            opacity = Float(alpha)
             opacitySlider.setValue(Float(components.alpha * 10), animated: true)
             brushImage.image = brushImage.image?.maskWithColor(UIColor(red: components.red, green: components.green, blue: components.blue, alpha: 1.0))
             brushImage.alpha = CGFloat(opacity)

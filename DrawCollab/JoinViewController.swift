@@ -8,7 +8,7 @@
 
 import UIKit
 import MultipeerConnectivity
-class JoinViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class JoinViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, SearchForMultiPeerHostDelegate {
 
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
@@ -31,18 +31,23 @@ class JoinViewController: UIViewController, UICollectionViewDelegate, UICollecti
         waitingForHostLabel.hidden = false
         
         appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        var imageString: String? = nil
-        let imageData = UIImageJPEGRepresentation(image, 1)
-        imageString = imageData?.base64EncodedStringWithOptions(.EncodingEndLineWithCarriageReturn)
-        appDelegate.mcManager.setupPeerAndSessionWithDisplayNameAndImage(name, imageStringEncoded: imageString)
-        
-        appDelegate.mcManager.advertiseSelf(true)
+        let imageData = UIImageJPEGRepresentation(image, 0.5)
+        appDelegate.mcManager.setupPeerAndSessionWithDisplayNameAndImage(name, imageData: imageData)
         searchingForHostsActivityIndicator.startAnimating()
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(animated: Bool) {
-        
+        appDelegate.mcManager.delegate = self
+        appDelegate.mcManager.advertiseSelf(true)
+    }
+    
+    func stringWasReceived(receivedString: NSString) {
+        if receivedString == "StartGame"{
+            let drawController = UIStoryboard(name: "Draw", bundle: nil).instantiateViewControllerWithIdentifier("Draw") as! DrawViewController
+            drawController.isHost = false
+            self.presentViewController(drawController, animated: true, completion: nil)
+        }
     }
     
     func setupWithProfileNamePicture(name: String, image: UIImage){
@@ -50,23 +55,47 @@ class JoinViewController: UIViewController, UICollectionViewDelegate, UICollecti
         self.image = image
     }
     
+    func imageWasReceived(image: UIImage, peer: MCPeerID){
+        let roundedImage = UIImage.roundedRectImageFromImage(image, imageSize: image.size, cornerRadius: image.size.width/2)
+        appDelegate.mcManager.changePeerImage(roundedImage, peer: peer)
+    }
     
-    
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
-        //return appDelegate.mcManager.peers.count
+    func peersChanged() {
+        dispatch_async(dispatch_get_main_queue(),{
+            self.collectionView.reloadData()
+            var foundConnectedHost = false
+            for peer in self.appDelegate.mcManager.peers{
+                if peer.state == MCSessionState.Connected{
+                    foundConnectedHost = true
+                    break
+                }
+            }
+            if foundConnectedHost == true{
+                self.waitingForHostLabel.hidden = false
+                self.infoLabel.hidden = true
+                self.searchingForHostsActivityIndicator.stopAnimating()
+            }else{
+                self.infoLabel.hidden = false
+                self.waitingForHostLabel.hidden = true
+                self.searchingForHostsActivityIndicator.startAnimating()
+            }
+        })
     }
     
     
-    //TODO
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return appDelegate.mcManager.peers.count
+    }
+    
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("connectionCell", forIndexPath: indexPath) as! ConnectionCollectionViewCell
-//        let peer = appDelegate.mcManager.peers[indexPath.row]
-//        var image = UIImage(named: "profile")
-//        if let i = peer.image{
-//            image = i
-//        }
-        //cell.setupConnectionCell(image, profileName: peer.displayName, isHost: true)
+        let peer = appDelegate.mcManager.peers[indexPath.row]
+        var image = UIImage(named: "profile")
+        if let i = peer.image{
+            image = i
+        }
+        cell.setupConnectionCell(indexPath.row, profileImage: image, profileName: peer.displayName, isHost: false, state: peer.state, isInGame: false)
         return cell
     }
 

@@ -200,6 +200,9 @@
                                                                 <exclude reference="cTe-aA-bbz"/>
                                                             </mask>
                                                         </variation>
+                                                        <connections>
+                                                            <action selector="didPressStartGame:" destination="I7L-as-B2Y" eventType="touchUpInside" id="T55-Kp-5K3"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <variation key="heightClass=compact" axis="vertical"/>
@@ -250,7 +253,7 @@
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tWd-aI-6ML">
-                                                                            <rect key="frame" x="17" y="26" width="86" height="85.5"/>
+                                                                            <rect key="frame" x="17" y="26" width="86" height="86"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" secondItem="tWd-aI-6ML" secondAttribute="height" multiplier="1:1" id="OCR-56-Rmu"/>
                                                                             </constraints>
@@ -342,7 +345,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="add" width="367" height="400"/>
+        <image name="add" width="80" height="80"/>
         <image name="canvas-start" width="431" height="431"/>
         <image name="profile" width="432" height="431"/>
     </resources>

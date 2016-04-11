@@ -20,7 +20,7 @@
 		F76F69D91CB7EF690081CBE4 /* Modals.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F76F69D81CB7EF690081CBE4 /* Modals.storyboard */; };
 		F76F69DC1CB7F0470081CBE4 /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76F69DB1CB7F0470081CBE4 /* JoinViewController.swift */; };
 		F7BBF9071CB3A8C100C0254B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BBF9061CB3A8C100C0254B /* AppDelegate.swift */; };
-		F7BBF9091CB3A8C100C0254B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BBF9081CB3A8C100C0254B /* ViewController.swift */; };
+		F7BBF9091CB3A8C100C0254B /* DrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BBF9081CB3A8C100C0254B /* DrawViewController.swift */; };
 		F7BBF90C1CB3A8C100C0254B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7BBF90A1CB3A8C100C0254B /* Main.storyboard */; };
 		F7BBF90E1CB3A8C100C0254B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7BBF90D1CB3A8C100C0254B /* Assets.xcassets */; };
 		F7BBF9111CB3A8C100C0254B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7BBF90F1CB3A8C100C0254B /* LaunchScreen.storyboard */; };
@@ -65,7 +65,7 @@
 		F76F69DB1CB7F0470081CBE4 /* JoinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinViewController.swift; sourceTree = "<group>"; };
 		F7BBF9031CB3A8C100C0254B /* DrawCollab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawCollab.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7BBF9061CB3A8C100C0254B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F7BBF9081CB3A8C100C0254B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F7BBF9081CB3A8C100C0254B /* DrawViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawViewController.swift; sourceTree = "<group>"; };
 		F7BBF90B1CB3A8C100C0254B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F7BBF90D1CB3A8C100C0254B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F7BBF9101CB3A8C100C0254B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -203,7 +203,7 @@
 		F76F69D31CB7A4A60081CBE4 /* Draw */ = {
 			isa = PBXGroup;
 			children = (
-				F7BBF9081CB3A8C100C0254B /* ViewController.swift */,
+				F7BBF9081CB3A8C100C0254B /* DrawViewController.swift */,
 			);
 			name = Draw;
 			sourceTree = "<group>";
@@ -459,7 +459,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F7BBF9091CB3A8C100C0254B /* ViewController.swift in Sources */,
+				F7BBF9091CB3A8C100C0254B /* DrawViewController.swift in Sources */,
 				F75AE1251CB54EFC00836BE4 /* WelcomeViewController.swift in Sources */,
 				F76F69DC1CB7F0470081CBE4 /* JoinViewController.swift in Sources */,
 				F7BBF9391CB3AE7700C0254B /* Extensions.swift in Sources */,
