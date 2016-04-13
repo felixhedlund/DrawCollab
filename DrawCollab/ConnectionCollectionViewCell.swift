@@ -40,7 +40,17 @@ class ConnectionCollectionViewCell: UICollectionViewCell {
                 statusImage.image = UIImage(named: "add")
             }
         }
+        statusImage.hidden = false
     }
+    
+    func setupCurrentProfileCell(row: Int, profileColor: UIColor, profileName: String){
+        self.row = row
+        self.profileName.text = profileName
+        profileButton.backgroundColor = profileColor
+        statusImage.hidden = true
+    }
+    
+    
     @IBAction func didPressProfile(sender: AnyObject) {
 //        if !isInGame{
 //            if state == MCSessionState.NotConnected{

@@ -285,14 +285,24 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return appDelegate.mcManager.peers.count
+        return appDelegate.mcManager.peers.count + 1
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("connectionCell", forIndexPath: indexPath) as! ConnectionCollectionViewCell
-        let peer = appDelegate.mcManager.peers[indexPath.row]
-        let color = peer.color
-        cell.setupConnectionCell(indexPath.row, profileColor: color, profileName: peer.displayName, state: peer.state, isInGame: true, delegate: self)
+        if indexPath.row == 0{
+            var name = ""
+            let userDefaults = NSUserDefaults.standardUserDefaults()
+            if let n = userDefaults.stringForKey("HostName"){
+                name = n
+            }
+            cell.setupCurrentProfileCell(indexPath.row, profileColor: UIColor(red: appDelegate.mcManager.redColor, green: appDelegate.mcManager.greenColor, blue: appDelegate.mcManager.blueColor, alpha: 1), profileName: name)
+        }else{
+            let peer = appDelegate.mcManager.peers[indexPath.row - 1]
+            let color = peer.color
+            cell.setupConnectionCell(indexPath.row, profileColor: color, profileName: peer.displayName, state: peer.state, isInGame: true, delegate: self)
+        }
+        
         return cell
     }
     
