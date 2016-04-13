@@ -8,7 +8,7 @@
 
 import UIKit
 import MultipeerConnectivity
-class DrawViewController: UIViewController, UIPopoverPresentationControllerDelegate, ColorPickerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, SearchForMultiPeerHostDelegate {
+class DrawViewController: UIViewController, UIPopoverPresentationControllerDelegate, ColorPickerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, SearchForMultiPeerHostDelegate, ErasorPickerDelegate {
     @IBOutlet weak var penButton: UIButton!
     @IBOutlet weak var erasorButton: UIButton!
     //@IBOutlet weak var colorButton: UIBarButtonItem!
@@ -38,8 +38,8 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
     var green: CGFloat!
     var blue: CGFloat!
     var opacity: CGFloat = 1.0
-    var brushSize: Float = 10.0
-    
+    var brushSize: Float = 20.0
+    var erasorSize: Float = 30
     var brushImage = UIImage(named: "brush")
     
     var penButtonIsEnabled = true
@@ -113,12 +113,14 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
         if !penButtonIsEnabled{
             brushImage = UIImage(named: "square")
             brushImageView.image = brushImage
+            brushImageViewWidth.constant = CGFloat(erasorSize*1.2)
         }else{
             brushImage = UIImage(named: "brush")
+            brushImageViewWidth.constant = CGFloat(brushSize*1.2)
             //brushImageView.image = brushImage?.maskWithColor(UIColor(red: red, green: green, blue: blue, alpha: opacity))
         }
         
-        brushImageViewWidth.constant = CGFloat(brushSize*1.2)
+        
         brushImageView.alpha = CGFloat(opacity)
         mouseSwiped = false
         let touch = touches.first
@@ -142,11 +144,13 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
                 CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), currentPoint.x, currentPoint.y)
                 if !penButtonIsEnabled{
                     CGContextSetLineCap(UIGraphicsGetCurrentContext(), CGLineCap.Square)
+                    CGContextSetLineWidth(UIGraphicsGetCurrentContext(), CGFloat(erasorSize))
                 }else{
                     CGContextSetLineCap(UIGraphicsGetCurrentContext(), CGLineCap.Round)
+                    CGContextSetLineWidth(UIGraphicsGetCurrentContext(), CGFloat(brushSize))
                 }
                 
-                CGContextSetLineWidth(UIGraphicsGetCurrentContext(), CGFloat(brushSize))
+                
                 if !penButtonIsEnabled{
                     CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), 1, 1, 1, 1)
                 }else{
@@ -179,10 +183,12 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
                 CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), last.x, last.y)
                 if !penButtonIsEnabled{
                     CGContextSetLineCap(UIGraphicsGetCurrentContext(), CGLineCap.Square)
+                    CGContextSetLineWidth(UIGraphicsGetCurrentContext(), CGFloat(erasorSize))
                 }else{
                     CGContextSetLineCap(UIGraphicsGetCurrentContext(), CGLineCap.Round)
+                    CGContextSetLineWidth(UIGraphicsGetCurrentContext(), CGFloat(brushSize))
                 }
-                CGContextSetLineWidth(UIGraphicsGetCurrentContext(), CGFloat(brushSize))
+                
                 if !penButtonIsEnabled{
                     CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), 1, 1, 1, 1)
                 }else{
@@ -231,15 +237,33 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
         erasorMarker.backgroundColor = UIColor(white: 1, alpha: 0.50)
         penMarker.backgroundColor = UIColor(white: 1, alpha: 0.10)
         penButtonIsEnabled = false
-//        penButton.enabled = true
-//        erasorButton.enabled = false
+        
+        
+        let erasorPicker = UIStoryboard(name: "Modals", bundle: nil).instantiateViewControllerWithIdentifier("erasor") as! ErasorPickerViewController
+        erasorPicker.previousSize = erasorSize
+        erasorPicker.delegate = self
+        erasorPicker.modalPresentationStyle = .Popover
+        erasorPicker.preferredContentSize = CGSize(width: 265, height: 70)
+        if let popoverController = erasorPicker.popoverPresentationController{
+            popoverController.sourceView = self.erasorMarker
+            popoverController.sourceRect = erasorButton.frame
+            popoverController.permittedArrowDirections = .Any
+            popoverController.delegate = self
+        }
+        
+        presentViewController(erasorPicker, animated: true, completion: nil)
+    }
+    
+    func erasorSizeWasPicked(erasorSize: Float) {
+        self.erasorSize = erasorSize
     }
     
     @IBOutlet weak var toolbarStackView: UIStackView!
     
     func didPressColor() {
         // initialise color picker view controller
-        let colorPickerVc = storyboard?.instantiateViewControllerWithIdentifier("sbColorPicker") as! ColorPickerViewController
+        let colorPickerVc = UIStoryboard(name: "Modals", bundle: nil).instantiateViewControllerWithIdentifier("sbColorPicker") as! ColorPickerViewController
+            //storyboard?.instantiateViewControllerWithIdentifier("sbColorPicker") as! ColorPickerViewController
         colorPickerVc.previousColor = UIColor(red: red, green: green, blue: blue, alpha: opacity)
         colorPickerVc.previousBrushSize = brushSize
         // set modal presentation style
@@ -256,7 +280,7 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
         if let popoverController = colorPickerVc.popoverPresentationController {
             
             // set source view
-            popoverController.sourceView = self.toolbarStackView
+            popoverController.sourceView = self.penMarker
             
             // show popover form button
             popoverController.sourceRect = self.penButton.frame

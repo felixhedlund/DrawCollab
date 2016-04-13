@@ -13,6 +13,7 @@
 		F7002B811CBE276200A1F6EC /* SearchPeople.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7002B7E1CBE276200A1F6EC /* SearchPeople.storyboard */; };
 		F7002B861CBE277600A1F6EC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7002B821CBE277600A1F6EC /* LaunchScreen.storyboard */; };
 		F7002B871CBE277600A1F6EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7002B841CBE277600A1F6EC /* Main.storyboard */; };
+		F7002B891CBE6BD400A1F6EC /* ErasorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7002B881CBE6BD400A1F6EC /* ErasorPickerViewController.swift */; };
 		F701CE7F1CB690EA007890A2 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = F701CE7E1CB690EA007890A2 /* Podfile */; };
 		F723A9B91CBD1BCD0066D3D4 /* PartyTimeDraw.swift in Sources */ = {isa = PBXBuildFile; fileRef = F723A9B81CBD1BCD0066D3D4 /* PartyTimeDraw.swift */; };
 		F757D33A1CB6A36300B63B8D /* SearchPeople.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F757D3391CB6A36300B63B8D /* SearchPeople.storyboard */; };
@@ -59,6 +60,7 @@
 		F7002B7E1CBE276200A1F6EC /* SearchPeople.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SearchPeople.storyboard; sourceTree = "<group>"; };
 		F7002B831CBE277600A1F6EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F7002B851CBE277600A1F6EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F7002B881CBE6BD400A1F6EC /* ErasorPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErasorPickerViewController.swift; sourceTree = "<group>"; };
 		F701CE7E1CB690EA007890A2 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		F723A9B81CBD1BCD0066D3D4 /* PartyTimeDraw.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyTimeDraw.swift; sourceTree = "<group>"; };
 		F757D3391CB6A36300B63B8D /* SearchPeople.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SearchPeople.storyboard; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				F7BBF9341CB3A98D00C0254B /* ColorPickerViewController.swift */,
+				F7002B881CBE6BD400A1F6EC /* ErasorPickerViewController.swift */,
 			);
 			name = Modals;
 			sourceTree = "<group>";
@@ -468,6 +471,7 @@
 				F7BBF9391CB3AE7700C0254B /* Extensions.swift in Sources */,
 				F7BBF9071CB3A8C100C0254B /* AppDelegate.swift in Sources */,
 				F76F69D51CB7A9A30081CBE4 /* ConnectionCollectionViewCell.swift in Sources */,
+				F7002B891CBE6BD400A1F6EC /* ErasorPickerViewController.swift in Sources */,
 				F7BBF9351CB3A98D00C0254B /* ColorPickerViewController.swift in Sources */,
 				F76F69D71CB7AB230081CBE4 /* SearchPeopleViewController.swift in Sources */,
 			);
