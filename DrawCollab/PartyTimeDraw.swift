@@ -238,7 +238,10 @@ class PartyTimeDraw: NSObject, PLPartyTimeDelegate{
     func partyTime(partyTime: PLPartyTime!, peer: MCPeerID!, changedState state: MCSessionState, currentPeers: [AnyObject]!) {
         let p = Peer(id: peer, displayName: peer.displayName, state: state)
         if !peers.contains(p){
-            self.peers.append(p)
+            if state != MCSessionState.NotConnected{
+                self.peers.append(p)
+            }
+            
         }else{
             var index = 0
             for element in peers{

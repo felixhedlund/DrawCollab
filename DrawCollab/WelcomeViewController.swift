@@ -21,13 +21,13 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
         appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
         self.navigationController?.setNeedsStatusBarAppearanceUpdate()
-        nicknameTextField.text = UIDevice.currentDevice().name
-        
-        
+
         let userDefaults = NSUserDefaults.standardUserDefaults()
         generateRandomProfileColor()
         if let name = userDefaults.stringForKey("HostName"){
             nicknameTextField.text = name
+        }else{
+            nicknameTextField.text = UIDevice.currentDevice().name
         }
     }
     

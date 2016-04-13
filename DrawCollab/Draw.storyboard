@@ -149,32 +149,103 @@
                                         </variation>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gVi-qD-Rd5">
-                                        <rect key="frame" x="0.0" y="521" width="375" height="106"/>
+                                        <rect key="frame" x="0.0" y="521" width="375" height="86"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="Xnn-ty-Vxz">
-                                        <rect key="frame" x="0.0" y="627" width="375" height="40"/>
+                                        <rect key="frame" x="0.0" y="607" width="375" height="60"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W3p-iN-anp">
-                                                <rect key="frame" x="0.0" y="0.0" width="30" height="40"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="30" height="60"/>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AfL-Fm-y2c">
-                                                <rect key="frame" x="82" y="0.0" width="40" height="40"/>
-                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <state key="normal" image="pencil"/>
-                                                <connections>
-                                                    <action selector="didPressPen:" destination="P99-bK-T9u" eventType="touchUpInside" id="WSS-ms-F9W"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c4o-aS-5XP">
-                                                <rect key="frame" x="173" y="0.0" width="40" height="40"/>
-                                                <state key="normal" image="erasor"/>
-                                                <connections>
-                                                    <action selector="didPressErasor:" destination="P99-bK-T9u" eventType="touchUpInside" id="QGG-Oo-OrZ"/>
-                                                </connections>
-                                            </button>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6kd-GB-lue">
+                                                <rect key="frame" x="70" y="0.0" width="60" height="60"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VqA-92-FgL">
+                                                        <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                                        <color key="backgroundColor" white="1" alpha="0.75" colorSpace="calibratedWhite"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="30"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AfL-Fm-y2c">
+                                                        <rect key="frame" x="5" y="5" width="50" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="AfL-Fm-y2c" secondAttribute="height" multiplier="1:1" id="Ptv-hR-MAg"/>
+                                                        </constraints>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <state key="normal" image="pencil"/>
+                                                        <connections>
+                                                            <action selector="didPressPen:" destination="P99-bK-T9u" eventType="touchUpInside" id="WSS-ms-F9W"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstItem="VqA-92-FgL" firstAttribute="height" secondItem="6kd-GB-lue" secondAttribute="height" id="1wy-Vm-OOM"/>
+                                                    <constraint firstItem="VqA-92-FgL" firstAttribute="centerX" secondItem="6kd-GB-lue" secondAttribute="centerX" id="If5-tX-33L"/>
+                                                    <constraint firstItem="AfL-Fm-y2c" firstAttribute="height" secondItem="6kd-GB-lue" secondAttribute="height" id="J3w-QZ-cM1"/>
+                                                    <constraint firstItem="VqA-92-FgL" firstAttribute="width" secondItem="6kd-GB-lue" secondAttribute="width" id="Tux-8n-hfD"/>
+                                                    <constraint firstItem="AfL-Fm-y2c" firstAttribute="centerX" secondItem="6kd-GB-lue" secondAttribute="centerX" id="cS6-Ap-c2D"/>
+                                                    <constraint firstItem="AfL-Fm-y2c" firstAttribute="centerY" secondItem="6kd-GB-lue" secondAttribute="centerY" id="eEj-QL-y2L"/>
+                                                    <constraint firstItem="AfL-Fm-y2c" firstAttribute="width" secondItem="6kd-GB-lue" secondAttribute="width" multiplier="1:1.2" id="m2V-mW-AZ7"/>
+                                                    <constraint firstItem="VqA-92-FgL" firstAttribute="centerY" secondItem="6kd-GB-lue" secondAttribute="centerY" id="p3t-D9-iPl"/>
+                                                    <constraint firstAttribute="width" constant="60" id="wHj-WP-7yt"/>
+                                                    <constraint firstAttribute="width" secondItem="6kd-GB-lue" secondAttribute="height" multiplier="1:1" id="z5U-UY-S7n"/>
+                                                </constraints>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="J3w-QZ-cM1"/>
+                                                    </mask>
+                                                </variation>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JIv-MW-gVP">
+                                                <rect key="frame" x="170" y="0.0" width="60" height="60"/>
+                                                <subviews>
+                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wQd-oW-kdw">
+                                                        <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                                        <color key="backgroundColor" white="1" alpha="0.25" colorSpace="calibratedWhite"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="30"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c4o-aS-5XP">
+                                                        <rect key="frame" x="5" y="5" width="50" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="c4o-aS-5XP" secondAttribute="height" multiplier="1:1" id="gTj-Ko-r0b"/>
+                                                        </constraints>
+                                                        <state key="normal" image="erasor"/>
+                                                        <connections>
+                                                            <action selector="didPressErasor:" destination="P99-bK-T9u" eventType="touchUpInside" id="QGG-Oo-OrZ"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstItem="wQd-oW-kdw" firstAttribute="centerY" secondItem="JIv-MW-gVP" secondAttribute="centerY" id="6ae-IH-HBe"/>
+                                                    <constraint firstItem="c4o-aS-5XP" firstAttribute="height" secondItem="JIv-MW-gVP" secondAttribute="height" id="6az-Fb-GtT"/>
+                                                    <constraint firstItem="c4o-aS-5XP" firstAttribute="width" secondItem="JIv-MW-gVP" secondAttribute="width" multiplier="1:1.2" id="LBM-d8-vyI"/>
+                                                    <constraint firstItem="c4o-aS-5XP" firstAttribute="centerY" secondItem="JIv-MW-gVP" secondAttribute="centerY" id="NW9-QY-NTH"/>
+                                                    <constraint firstItem="wQd-oW-kdw" firstAttribute="centerX" secondItem="JIv-MW-gVP" secondAttribute="centerX" id="TC9-B9-2xy"/>
+                                                    <constraint firstItem="c4o-aS-5XP" firstAttribute="centerX" secondItem="JIv-MW-gVP" secondAttribute="centerX" id="WWz-fJ-49T"/>
+                                                    <constraint firstItem="wQd-oW-kdw" firstAttribute="width" secondItem="JIv-MW-gVP" secondAttribute="width" id="bYq-DO-WP2"/>
+                                                    <constraint firstAttribute="width" constant="60" id="hD2-oK-CuS"/>
+                                                    <constraint firstAttribute="width" secondItem="JIv-MW-gVP" secondAttribute="height" multiplier="1:1" id="tYa-nc-Rf0"/>
+                                                    <constraint firstItem="wQd-oW-kdw" firstAttribute="height" secondItem="JIv-MW-gVP" secondAttribute="height" id="ur5-IY-Udl"/>
+                                                </constraints>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="6az-Fb-GtT"/>
+                                                    </mask>
+                                                </variation>
+                                            </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iRY-7F-YzA">
-                                                <rect key="frame" x="264" y="0.0" width="30" height="40"/>
+                                                <rect key="frame" x="270" y="0.0" width="36" height="60"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                 <state key="normal" title="Exit">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -183,9 +254,12 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M4i-Ge-X8z">
-                                                <rect key="frame" x="345" y="0.0" width="30" height="40"/>
+                                                <rect key="frame" x="345" y="0.0" width="30" height="60"/>
                                             </button>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstItem="JIv-MW-gVP" firstAttribute="width" secondItem="JIv-MW-gVP" secondAttribute="height" multiplier="1:1" id="NFx-3J-4kZ"/>
+                                        </constraints>
                                         <variation key="heightClass=compact" axis="vertical"/>
                                     </stackView>
                                 </subviews>
@@ -218,9 +292,11 @@
                         <outlet property="collectionView" destination="3GI-I3-Unr" id="Dt5-1O-eSR"/>
                         <outlet property="drawImage" destination="mVP-ch-aWn" id="scl-vQ-30Q"/>
                         <outlet property="erasorButton" destination="c4o-aS-5XP" id="Z2o-fW-CLD"/>
+                        <outlet property="erasorMarker" destination="wQd-oW-kdw" id="qDu-iM-ifv"/>
                         <outlet property="exitButton" destination="iRY-7F-YzA" id="P8O-iI-V9r"/>
                         <outlet property="mainImage" destination="yOb-tM-qZ9" id="htI-Jb-Poq"/>
                         <outlet property="penButton" destination="AfL-Fm-y2c" id="F3Y-Fq-PdH"/>
+                        <outlet property="penMarker" destination="VqA-92-FgL" id="75P-kL-IaK"/>
                         <outlet property="toolbarStackView" destination="Xnn-ty-Vxz" id="Fcd-xU-7rB"/>
                     </connections>
                 </viewController>
@@ -353,8 +429,8 @@
     <resources>
         <image name="add" width="80" height="80"/>
         <image name="brush" width="500" height="500"/>
-        <image name="erasor" width="40" height="40"/>
-        <image name="pencil" width="40" height="40"/>
+        <image name="erasor" width="100" height="100"/>
+        <image name="pencil" width="100" height="100"/>
         <image name="profile" width="452" height="454"/>
     </resources>
 </document>

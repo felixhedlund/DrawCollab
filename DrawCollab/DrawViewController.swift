@@ -24,6 +24,11 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
     @IBOutlet weak var exitButton: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var penMarker: UIView!
+    @IBOutlet weak var erasorMarker: UIView!
+    
+    
+    
     var appDelegate: AppDelegate!
     var lastPoint: CGPoint?
     var lastBrushImagePoint: CGPoint?
@@ -213,12 +218,16 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
     
     @IBAction func didPressPen(sender: AnyObject) {
         penButtonIsEnabled = true
+        penMarker.hidden = false
+        erasorMarker.hidden = true
         self.didPressColor()
 //        penButton.enabled = false
 //        erasorButton.enabled = true
     }
     
     @IBAction func didPressErasor(sender: AnyObject) {
+        penMarker.hidden = true
+        erasorMarker.hidden = false
         penButtonIsEnabled = false
 //        penButton.enabled = true
 //        erasorButton.enabled = false
