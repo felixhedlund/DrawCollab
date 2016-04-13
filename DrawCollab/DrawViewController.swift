@@ -95,6 +95,20 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
         // Dispose of any resources that can be recreated.
     }
     
+    private func setBrushImageViewPosition(){
+        if let point = lastBrushImagePoint{
+            //brushImageView.center = point
+            brushLeading.constant = -20 + point.x - brushImageView.frame.size.width/2
+            
+            if self.view.frame.width > self.view.frame.height{
+                brushTop.constant = point.y - brushImageView.frame.size.width/2
+            }else{
+                brushTop.constant = -20 + point.y - brushImageView.frame.size.width/2 //- 44
+            }
+            
+        }
+    }
+    
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if !penButtonIsEnabled{
             brushImage = UIImage(named: "square")
@@ -115,19 +129,7 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
     
     
     
-    private func setBrushImageViewPosition(){
-        if let point = lastBrushImagePoint{
-            //brushImageView.center = point
-            brushLeading.constant = -20 + point.x - brushImageView.frame.size.width/2
-            
-            if self.view.frame.width > self.view.frame.height{
-                brushTop.constant = point.y - brushImageView.frame.size.width/2
-            }else{
-                brushTop.constant = -20 + point.y - brushImageView.frame.size.width/2 //- 44
-            }
-            
-        }
-    }
+    
     
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         mouseSwiped = true
@@ -218,16 +220,16 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
     
     @IBAction func didPressPen(sender: AnyObject) {
         penButtonIsEnabled = true
-        penMarker.hidden = false
-        erasorMarker.hidden = true
+        penMarker.backgroundColor = UIColor(white: 1, alpha: 0.50)
+        erasorMarker.backgroundColor = UIColor(white: 1, alpha: 0.10)
         self.didPressColor()
 //        penButton.enabled = false
 //        erasorButton.enabled = true
     }
     
     @IBAction func didPressErasor(sender: AnyObject) {
-        penMarker.hidden = true
-        erasorMarker.hidden = false
+        erasorMarker.backgroundColor = UIColor(white: 1, alpha: 0.50)
+        penMarker.backgroundColor = UIColor(white: 1, alpha: 0.10)
         penButtonIsEnabled = false
 //        penButton.enabled = true
 //        erasorButton.enabled = false
