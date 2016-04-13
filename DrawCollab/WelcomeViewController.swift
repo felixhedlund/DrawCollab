@@ -8,39 +8,40 @@
 
 import UIKit
 
-class WelcomeViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class WelcomeViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var imageButton: UIButton!
     @IBOutlet weak var nicknameTextField: UITextField!
     
     @IBOutlet var tapGesture: UITapGestureRecognizer!
-    var imagePicker: UIImagePickerController?
     var appDelegate: AppDelegate!
+    var randomColor: UIColor!
     override func viewDidLoad() {
         super.viewDidLoad()
         appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
         self.navigationController?.setNeedsStatusBarAppearanceUpdate()
         nicknameTextField.text = UIDevice.currentDevice().name
-        self.imagePicker = UIImagePickerController()
-        self.imagePicker?.delegate = self
-        self.imagePicker?.allowsEditing = true
         
         
         let userDefaults = NSUserDefaults.standardUserDefaults()
-        if let imageData = userDefaults.objectForKey("ProfilePicture") as? NSData{
-            if let image = UIImage(data: imageData){
-                let roundedImage = UIImage.roundedRectImageFromImage(image, imageSize: image.size, cornerRadius: image.size.width/2)
-                appDelegate.mcManager.discoveryImage = roundedImage
-                imageButton.setImage(roundedImage, forState: .Normal)
-            }
-        }
-        
+        generateRandomProfileColor()
         if let name = userDefaults.stringForKey("HostName"){
             nicknameTextField.text = name
         }
-//        imageButton.layer.cornerRadius = 50
-        // Do any additional setup after loading the view.
+    }
+    
+    func generateRandomProfileColor(){
+        let redRandom = CGFloat(arc4random_uniform(256))/255
+        let greenRandom = CGFloat(arc4random_uniform(256))/255
+        let blueRandom = CGFloat(arc4random_uniform(256))/255
+        
+        appDelegate.mcManager.redColor = redRandom
+        appDelegate.mcManager.greenColor = greenRandom
+        appDelegate.mcManager.blueColor = blueRandom
+        
+        randomColor = UIColor(red: redRandom, green: greenRandom, blue: blueRandom, alpha: 1)
+        self.imageButton.backgroundColor = randomColor
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -58,59 +59,10 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate, UIImagePicke
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        self.imagePicker?.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-        let roundedImage = UIImage.roundedRectImageFromImage(image, imageSize: image.size, cornerRadius: image.size.width/2)
-        self.imageButton.setImage(roundedImage, forState: .Normal)
-        self.imagePicker?.dismissViewControllerAnimated(true, completion: nil)
-        appDelegate.mcManager.discoveryImage = roundedImage
-        
-        let userDefaults = NSUserDefaults.standardUserDefaults()
-        let data = UIImageJPEGRepresentation(roundedImage, 1)
-        userDefaults.setObject(data, forKey: "ProfilePicture")
-        userDefaults.synchronize()
 
-    }
     
     @IBAction func didPressImageButton(sender: AnyObject) {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
-        let action = UIAlertAction(title: "Gallery", style: UIAlertActionStyle.Default) { (action) -> Void in
-            self.presentGallery()
-        }
-        let action2 = UIAlertAction(title: "Camera", style: UIAlertActionStyle.Default) { (action) -> Void in
-            self.presentCamera()
-        }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) -> Void in
-            alert.dismissViewControllerAnimated(true, completion: { () -> Void in
-                
-            })
-        }
-        alert.addAction(action)
-        alert.addAction(action2)
-        alert.addAction(cancelAction)
-        self.presentViewController(alert, animated: true, completion: nil)
-    }
-    
-    private func presentGallery() {
-        
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) {
-            self.imagePicker?.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-            self.presentViewController(imagePicker!, animated: true, completion: nil)
-        }
-        
-    }
-    
-    private func presentCamera() {
-        
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
-            self.imagePicker?.sourceType = UIImagePickerControllerSourceType.Camera
-            self.presentViewController(imagePicker!, animated: true, completion: nil)
-        } else {
-        }
-        
+        self.generateRandomProfileColor()
     }
     
 
@@ -118,7 +70,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate, UIImagePicke
         if let name = nicknameTextField.text{
             if name.characters.count > 0{
                 let hostController = UIStoryboard(name: "SearchPeople", bundle: nil).instantiateViewControllerWithIdentifier("SearchPeople") as! SearchPeopleViewController
-                hostController.setupWithHostNamePicture(name, image: self.imageButton.currentImage!)
+                hostController.setupWithHostNameColor(name, color: randomColor)
                 self.navigationController?.pushViewController(hostController, animated: true)
             }
         }

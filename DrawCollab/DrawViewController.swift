@@ -42,9 +42,9 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
         super.viewDidLoad()
         appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         //appDelegate.mcManager.removeAllNonConnectedPeers()
-        red = 20/255
-        green = 100/255
-        blue = 150/255
+        red = appDelegate.mcManager.redColor
+        green = appDelegate.mcManager.greenColor
+        blue = appDelegate.mcManager.blueColor
         let penImage = UIImage(named: "pencil")
         self.penButton.setImage(penImage!.maskWithColor(UIColor(red: red, green: green, blue: blue, alpha: opacity)), forState: .Normal)
         self.didPressPen(penButton)
@@ -291,11 +291,8 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("connectionCell", forIndexPath: indexPath) as! ConnectionCollectionViewCell
         let peer = appDelegate.mcManager.peers[indexPath.row]
-        var image = UIImage(named: "profile")
-        if let i = peer.image{
-            image = i
-        }
-        cell.setupConnectionCell(indexPath.row, profileImage: image, profileName: peer.displayName, state: peer.state, isInGame: true, delegate: self)
+        let color = peer.color
+        cell.setupConnectionCell(indexPath.row, profileColor: color, profileName: peer.displayName, state: peer.state, isInGame: true, delegate: self)
         return cell
     }
     

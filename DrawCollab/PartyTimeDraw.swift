@@ -32,24 +32,22 @@ func < (lhs: Peer, rhs: Peer) -> Bool {
 class Peer: Comparable{
     var id: MCPeerID!
     var displayName: String!
-    var image: UIImage?
+    var color: UIColor!
     var state: MCSessionState!
     var deviceID: String!
-    init(id: MCPeerID, displayName: String, image: UIImage?, state: MCSessionState){
+    init(id: MCPeerID, displayName: String, state: MCSessionState){
         self.state = state
         self.id = id
         self.displayName = displayName
-        if let i = image{
-            self.image = i
-        }
+        self.color = UIColor.whiteColor()
     }
     
     func updateState(state: MCSessionState){
         self.state = state
     }
     
-    func updateImage(image: UIImage){
-        self.image = image//UIImage.roundedRectImageFromImage(image, imageSize: image.size, cornerRadius: image.size.height/2)
+    func updateColor(color: UIColor){
+        self.color = color
     }
 }
 
@@ -61,16 +59,11 @@ class PartyTimeDraw: NSObject, PLPartyTimeDelegate{
     var arrConnectedDevices: NSMutableArray!
     
     var tempImage: UIImage!
-    var discoveryImage: UIImage? {
-        get {
-            return tempImage
-        }
-        set{
-
-            tempImage = self.resizeImage(newValue!, newWidth: 100)
-            //tempImage = UIImage.roundedRectImageFromImage(tempImage, imageSize: tempImage.size, cornerRadius: tempImage.size.height/2)
-        }
-    }
+    
+    var redColor: CGFloat!
+    var greenColor: CGFloat!
+    var blueColor: CGFloat!
+    
     var delegate: SearchForMultiPeerHostDelegate?
     var peers: [Peer]!
     var timeStarted: NSDate!
@@ -117,7 +110,8 @@ class PartyTimeDraw: NSObject, PLPartyTimeDelegate{
         
     }
     
-    let kPROFILE_IMAGE = "kPROFILE_IMAGE"
+    //let kPROFILE_IMAGE = "kPROFILE_IMAGE"
+    let kPROFILE_COLOR = "kPROFILE_COLOR"
     let kSTART_GAME = "kSTART_GAME"
     let kDRAW_IMAGE = "kDRAW_IMAGE"
     
@@ -125,15 +119,37 @@ class PartyTimeDraw: NSObject, PLPartyTimeDelegate{
         if let dic = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? NSDictionary{
             if let _ = dic.objectForKey(kSTART_GAME){
                 self.delegate?.startGameWasReceived()
-            }else if let imageData = dic.objectForKey(kPROFILE_IMAGE) as? NSData{
-                var i: UIImage? = UIImage(data: imageData)
+            }else if let _ = dic.objectForKey(kPROFILE_COLOR){
+                var c = UIColor.whiteColor()
+                let colorString = dic[kPROFILE_COLOR] as! String
+                let colorArray = colorString.characters.split{$0 == "%"}.map(String.init)
+                
+                var redColor:CGFloat = 1.0
+                var greenColor:CGFloat = 1.0
+                var blueColor:CGFloat = 1.0
+                
+                let numberFormatter = NSNumberFormatter()
+                numberFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+                numberFormatter.numberStyle = NSNumberFormatterStyle.DecimalStyle
+                
+                if let n = numberFormatter.numberFromString(colorArray[0]){
+                    redColor = CGFloat(n)
+                }
+                if let n = numberFormatter.numberFromString(colorArray[1]){
+                    greenColor = CGFloat(n)
+                }
+                if let n = numberFormatter.numberFromString(colorArray[2]){
+                    blueColor = CGFloat(n)
+                }
+                
+                c = UIColor(red: redColor, green: greenColor, blue: blueColor, alpha: 1)
+                
                 for peer in self.peers{
                     if peer.id == peerID{
-                        peer.updateImage(i!)
+                        peer.updateColor(c)
                         break
                     }
                 }
-                i = nil
                 self.delegate?.peersChanged()
             }else if let imageData = dic.objectForKey(kDRAW_IMAGE) as? NSData{
                 let image = UIImage(data: imageData)
@@ -145,6 +161,19 @@ class PartyTimeDraw: NSObject, PLPartyTimeDelegate{
     
     func partyTime(partyTime: PLPartyTime!, failedToJoinParty error: NSError!) {
         
+    }
+    
+    func sendProfileColor(peer: MCPeerID){
+        if let p = partyTime{
+            let colorString: String = "\(redColor)%\(greenColor)%\(blueColor )"
+            let dic = [kPROFILE_COLOR: colorString]
+            let data = NSKeyedArchiver.archivedDataWithRootObject(dic)
+            do {
+                try p.sendData(data, toPeers: [peer], withMode: .Reliable)
+            } catch {
+                print("Could not send image")
+            }
+        }
     }
     
     func sendStartGameRequest(){
@@ -184,11 +213,7 @@ class PartyTimeDraw: NSObject, PLPartyTimeDelegate{
     func sendImage(image: UIImage, key: String, peer: MCPeerID?){
             if let p = partyTime{
                 var imageData: NSData!
-                if key == kPROFILE_IMAGE{
-                    imageData = UIImagePNGRepresentation(image)
-                }else{
-                    imageData = UIImagePNGRepresentation(image)
-                }
+                imageData = UIImagePNGRepresentation(image)
                 
                 let dic = [key: imageData!]
                 let data = NSKeyedArchiver.archivedDataWithRootObject(dic)
@@ -211,7 +236,7 @@ class PartyTimeDraw: NSObject, PLPartyTimeDelegate{
     }
     
     func partyTime(partyTime: PLPartyTime!, peer: MCPeerID!, changedState state: MCSessionState, currentPeers: [AnyObject]!) {
-        let p = Peer(id: peer, displayName: peer.displayName, image: nil, state: state)
+        let p = Peer(id: peer, displayName: peer.displayName, state: state)
         if !peers.contains(p){
             self.peers.append(p)
         }else{
@@ -230,9 +255,7 @@ class PartyTimeDraw: NSObject, PLPartyTimeDelegate{
         }
         
         if state == MCSessionState.Connected{
-            if let image = discoveryImage{
-                self.sendImage(image, key: kPROFILE_IMAGE, peer: peer)
-            }
+            self.sendProfileColor(peer)
         }
         delegate?.peersChanged()
         

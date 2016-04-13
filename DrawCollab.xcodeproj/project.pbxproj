@@ -8,16 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		51CECC519107221B9C282F63 /* Pods_DrawCollab.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE6FBB2BD6F4A4079BA583F8 /* Pods_DrawCollab.framework */; };
+		F7002B7F1CBE276200A1F6EC /* Draw.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7002B7C1CBE276200A1F6EC /* Draw.storyboard */; };
+		F7002B801CBE276200A1F6EC /* Modals.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7002B7D1CBE276200A1F6EC /* Modals.storyboard */; };
+		F7002B811CBE276200A1F6EC /* SearchPeople.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7002B7E1CBE276200A1F6EC /* SearchPeople.storyboard */; };
+		F7002B861CBE277600A1F6EC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7002B821CBE277600A1F6EC /* LaunchScreen.storyboard */; };
+		F7002B871CBE277600A1F6EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7002B841CBE277600A1F6EC /* Main.storyboard */; };
 		F701CE7F1CB690EA007890A2 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = F701CE7E1CB690EA007890A2 /* Podfile */; };
 		F723A9B91CBD1BCD0066D3D4 /* PartyTimeDraw.swift in Sources */ = {isa = PBXBuildFile; fileRef = F723A9B81CBD1BCD0066D3D4 /* PartyTimeDraw.swift */; };
 		F757D33A1CB6A36300B63B8D /* SearchPeople.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F757D3391CB6A36300B63B8D /* SearchPeople.storyboard */; };
 		F757D33E1CB6A39300B63B8D /* Draw.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F757D33D1CB6A39300B63B8D /* Draw.storyboard */; };
-		F75AE11C1CB4FE5000836BE4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75AE11B1CB4FE5000836BE4 /* MainViewController.swift */; };
 		F75AE1251CB54EFC00836BE4 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75AE1241CB54EFC00836BE4 /* WelcomeViewController.swift */; };
 		F76F69D51CB7A9A30081CBE4 /* ConnectionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76F69D41CB7A9A30081CBE4 /* ConnectionCollectionViewCell.swift */; };
 		F76F69D71CB7AB230081CBE4 /* SearchPeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76F69D61CB7AB230081CBE4 /* SearchPeopleViewController.swift */; };
 		F76F69D91CB7EF690081CBE4 /* Modals.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F76F69D81CB7EF690081CBE4 /* Modals.storyboard */; };
-		F76F69DC1CB7F0470081CBE4 /* JoinViewControllerOLD.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76F69DB1CB7F0470081CBE4 /* JoinViewControllerOLD.swift */; };
 		F7BBF9071CB3A8C100C0254B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BBF9061CB3A8C100C0254B /* AppDelegate.swift */; };
 		F7BBF9091CB3A8C100C0254B /* DrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BBF9081CB3A8C100C0254B /* DrawViewController.swift */; };
 		F7BBF90C1CB3A8C100C0254B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7BBF90A1CB3A8C100C0254B /* Main.storyboard */; };
@@ -51,16 +54,19 @@
 		6E99303ECA7D6157234164C3 /* Pods-DrawCollab.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrawCollab.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DrawCollab/Pods-DrawCollab.debug.xcconfig"; sourceTree = "<group>"; };
 		8D4C6B73B24FBC0891B0F996 /* Pods-DrawCollab.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrawCollab.release.xcconfig"; path = "Pods/Target Support Files/Pods-DrawCollab/Pods-DrawCollab.release.xcconfig"; sourceTree = "<group>"; };
 		EE6FBB2BD6F4A4079BA583F8 /* Pods_DrawCollab.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DrawCollab.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F7002B7C1CBE276200A1F6EC /* Draw.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Draw.storyboard; sourceTree = "<group>"; };
+		F7002B7D1CBE276200A1F6EC /* Modals.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Modals.storyboard; sourceTree = "<group>"; };
+		F7002B7E1CBE276200A1F6EC /* SearchPeople.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SearchPeople.storyboard; sourceTree = "<group>"; };
+		F7002B831CBE277600A1F6EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F7002B851CBE277600A1F6EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F701CE7E1CB690EA007890A2 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		F723A9B81CBD1BCD0066D3D4 /* PartyTimeDraw.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyTimeDraw.swift; sourceTree = "<group>"; };
 		F757D3391CB6A36300B63B8D /* SearchPeople.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SearchPeople.storyboard; sourceTree = "<group>"; };
 		F757D33D1CB6A39300B63B8D /* Draw.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Draw.storyboard; sourceTree = "<group>"; };
-		F75AE11B1CB4FE5000836BE4 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		F75AE1241CB54EFC00836BE4 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		F76F69D41CB7A9A30081CBE4 /* ConnectionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionCollectionViewCell.swift; sourceTree = "<group>"; };
 		F76F69D61CB7AB230081CBE4 /* SearchPeopleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPeopleViewController.swift; sourceTree = "<group>"; };
 		F76F69D81CB7EF690081CBE4 /* Modals.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Modals.storyboard; sourceTree = "<group>"; };
-		F76F69DB1CB7F0470081CBE4 /* JoinViewControllerOLD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinViewControllerOLD.swift; sourceTree = "<group>"; };
 		F7BBF9031CB3A8C100C0254B /* DrawCollab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawCollab.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7BBF9061CB3A8C100C0254B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F7BBF9081CB3A8C100C0254B /* DrawViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawViewController.swift; sourceTree = "<group>"; };
@@ -164,8 +170,7 @@
 			children = (
 				F75AE11E1CB50E7B00836BE4 /* Multipeer Connectivity */,
 				F76F69D21CB7A4910081CBE4 /* Welcome */,
-				F76F69D11CB7A48A0081CBE4 /* Host */,
-				F76F69DA1CB7F0360081CBE4 /* Join */,
+				F76F69D11CB7A48A0081CBE4 /* Search Peers */,
 				F76F69D31CB7A4A60081CBE4 /* Draw */,
 			);
 			name = Controllers;
@@ -179,14 +184,13 @@
 			name = "Multipeer Connectivity";
 			sourceTree = "<group>";
 		};
-		F76F69D11CB7A48A0081CBE4 /* Host */ = {
+		F76F69D11CB7A48A0081CBE4 /* Search Peers */ = {
 			isa = PBXGroup;
 			children = (
-				F75AE11B1CB4FE5000836BE4 /* MainViewController.swift */,
 				F76F69D41CB7A9A30081CBE4 /* ConnectionCollectionViewCell.swift */,
 				F76F69D61CB7AB230081CBE4 /* SearchPeopleViewController.swift */,
 			);
-			name = Host;
+			name = "Search Peers";
 			sourceTree = "<group>";
 		};
 		F76F69D21CB7A4910081CBE4 /* Welcome */ = {
@@ -203,14 +207,6 @@
 				F7BBF9081CB3A8C100C0254B /* DrawViewController.swift */,
 			);
 			name = Draw;
-			sourceTree = "<group>";
-		};
-		F76F69DA1CB7F0360081CBE4 /* Join */ = {
-			isa = PBXGroup;
-			children = (
-				F76F69DB1CB7F0470081CBE4 /* JoinViewControllerOLD.swift */,
-			);
-			name = Join;
 			sourceTree = "<group>";
 		};
 		F7BBF8FA1CB3A8C100C0254B = {
@@ -244,6 +240,11 @@
 				F75AE1191CB4FE2B00836BE4 /* Extensions */,
 				F75AE1161CB4FDFE00836BE4 /* Views */,
 				F7BBF90D1CB3A8C100C0254B /* Assets.xcassets */,
+				F7002B7C1CBE276200A1F6EC /* Draw.storyboard */,
+				F7002B7D1CBE276200A1F6EC /* Modals.storyboard */,
+				F7002B7E1CBE276200A1F6EC /* SearchPeople.storyboard */,
+				F7002B821CBE277600A1F6EC /* LaunchScreen.storyboard */,
+				F7002B841CBE277600A1F6EC /* Main.storyboard */,
 				F7BBF9121CB3A8C100C0254B /* Info.plist */,
 				F7BBF9361CB3A99500C0254B /* Colors.plist */,
 			);
@@ -376,12 +377,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7002B801CBE276200A1F6EC /* Modals.storyboard in Resources */,
 				F701CE7F1CB690EA007890A2 /* Podfile in Resources */,
 				F76F69D91CB7EF690081CBE4 /* Modals.storyboard in Resources */,
+				F7002B811CBE276200A1F6EC /* SearchPeople.storyboard in Resources */,
 				F7BBF9371CB3A99500C0254B /* Colors.plist in Resources */,
 				F7BBF9111CB3A8C100C0254B /* LaunchScreen.storyboard in Resources */,
 				F757D33E1CB6A39300B63B8D /* Draw.storyboard in Resources */,
+				F7002B871CBE277600A1F6EC /* Main.storyboard in Resources */,
+				F7002B7F1CBE276200A1F6EC /* Draw.storyboard in Resources */,
 				F7BBF90E1CB3A8C100C0254B /* Assets.xcassets in Resources */,
+				F7002B861CBE277600A1F6EC /* LaunchScreen.storyboard in Resources */,
 				F757D33A1CB6A36300B63B8D /* SearchPeople.storyboard in Resources */,
 				F7BBF90C1CB3A8C100C0254B /* Main.storyboard in Resources */,
 			);
@@ -459,13 +465,11 @@
 				F723A9B91CBD1BCD0066D3D4 /* PartyTimeDraw.swift in Sources */,
 				F7BBF9091CB3A8C100C0254B /* DrawViewController.swift in Sources */,
 				F75AE1251CB54EFC00836BE4 /* WelcomeViewController.swift in Sources */,
-				F76F69DC1CB7F0470081CBE4 /* JoinViewControllerOLD.swift in Sources */,
 				F7BBF9391CB3AE7700C0254B /* Extensions.swift in Sources */,
 				F7BBF9071CB3A8C100C0254B /* AppDelegate.swift in Sources */,
 				F76F69D51CB7A9A30081CBE4 /* ConnectionCollectionViewCell.swift in Sources */,
 				F7BBF9351CB3A98D00C0254B /* ColorPickerViewController.swift in Sources */,
 				F76F69D71CB7AB230081CBE4 /* SearchPeopleViewController.swift in Sources */,
-				F75AE11C1CB4FE5000836BE4 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -501,6 +505,22 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		F7002B821CBE277600A1F6EC /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F7002B831CBE277600A1F6EC /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		F7002B841CBE277600A1F6EC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F7002B851CBE277600A1F6EC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
 		F7BBF90A1CB3A8C100C0254B /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

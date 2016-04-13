@@ -66,6 +66,7 @@
                                                         </label>
                                                         <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ong-fK-cxJ">
                                                             <rect key="frame" x="17" y="26" width="86" height="86"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="Ong-fK-cxJ" secondAttribute="height" multiplier="1:1" id="LGW-KQ-HyV"/>
                                                             </constraints>
@@ -354,6 +355,6 @@
         <image name="brush" width="500" height="500"/>
         <image name="erasor" width="40" height="40"/>
         <image name="pencil" width="40" height="40"/>
-        <image name="profile" width="432" height="431"/>
+        <image name="profile" width="452" height="454"/>
     </resources>
 </document>

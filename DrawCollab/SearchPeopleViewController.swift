@@ -17,7 +17,12 @@ class SearchPeopleViewController: UIViewController, SearchForMultiPeerHostDelega
     @IBOutlet weak var searchForPeersActivityIndicator: UIActivityIndicatorView!
     
     var name: String!
-    var image: UIImage!
+    var profileColor: UIColor!
+    var redColor: CGFloat!
+    var greenColor: CGFloat!
+    var blueColor: CGFloat!
+    
+    
     var appDelegate: AppDelegate!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,14 +42,14 @@ class SearchPeopleViewController: UIViewController, SearchForMultiPeerHostDelega
         self.peersChanged()
     }
     
-    func setupWithHostNamePicture(name: String, image: UIImage){
+    func setupWithHostNameColor(name: String, color: UIColor){
         self.name = name
-        self.image = image
+        self.profileColor = color
     }
     
     private func setupHost(){
         hostNameLabel.text = name
-        self.hostProfilePicture.image = image
+        self.hostProfilePicture.backgroundColor = profileColor
     }
     
     @IBAction func didPressStartGame(sender: AnyObject) {
@@ -87,11 +92,8 @@ class SearchPeopleViewController: UIViewController, SearchForMultiPeerHostDelega
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("connectionCell", forIndexPath: indexPath) as! ConnectionCollectionViewCell
         let peer = appDelegate.mcManager.peers[indexPath.row]
-        var image = UIImage(named: "profile")
-        if let i = peer.image{
-            image = i
-        }
-        cell.setupConnectionCell(indexPath.row, profileImage: image, profileName: peer.displayName, state: peer.state, isInGame: false, delegate: self)
+        let color = peer.color
+        cell.setupConnectionCell(indexPath.row, profileColor: color, profileName: peer.displayName, state: peer.state, isInGame: false, delegate: self)
         return cell
     }
 

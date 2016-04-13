@@ -21,14 +21,12 @@ class ConnectionCollectionViewCell: UICollectionViewCell {
     var row: Int!
     var state: MCSessionState!
     var isInGame: Bool!
-    func setupConnectionCell(row: Int, profileImage: UIImage?, profileName: String, state: MCSessionState, isInGame: Bool, delegate: UIViewController){
+    func setupConnectionCell(row: Int, profileColor: UIColor, profileName: String, state: MCSessionState, isInGame: Bool, delegate: UIViewController){
         self.delegate = delegate
         self.state = state
         self.row = row
         self.isInGame = isInGame
-        if let image = profileImage{
-            self.profileButton.setImage(image, forState: .Normal)
-        }
+        profileButton.backgroundColor = profileColor
         self.profileName.text = profileName
         switch state{
         case MCSessionState.Connected:

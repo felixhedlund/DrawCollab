@@ -55,7 +55,7 @@
                                             </label>
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rvW-tA-81V">
                                                 <rect key="frame" x="0.0" y="48" width="150" height="150"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="150" id="3kd-7Q-1K8"/>
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="150" id="Q3d-nW-vo6"/>
@@ -80,10 +80,10 @@
                                             </view>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="900" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="5wA-Ds-uKV">
+                                    <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="900" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="5wA-Ds-uKV">
                                         <rect key="frame" x="122" y="260" width="166" height="106"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" verticalHuggingPriority="1" verticalCompressionResistancePriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="QYb-3Y-BpP">
+                                            <view contentMode="scaleToFill" verticalHuggingPriority="1" verticalCompressionResistancePriority="1" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QYb-3Y-BpP">
                                                 <rect key="frame" x="0.0" y="0.0" width="166" height="106"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Your nickname:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ICI-YC-vYl">
@@ -202,7 +202,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="profile" width="432" height="431"/>
+        <image name="profile" width="452" height="454"/>
         <image name="searchPeople" width="476" height="475"/>
     </resources>
 </document>
