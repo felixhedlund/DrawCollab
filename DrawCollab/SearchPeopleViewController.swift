@@ -8,7 +8,7 @@
 
 import UIKit
 import MultipeerConnectivity
-class HostViewController: UIViewController, SearchForMultiPeerHostDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
+class SearchPeopleViewController: UIViewController, SearchForMultiPeerHostDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     @IBOutlet weak var hostNameLabel: UILabel!
     @IBOutlet weak var hostProfilePicture: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -26,14 +26,15 @@ class HostViewController: UIViewController, SearchForMultiPeerHostDelegate, UICo
         navigationController?.setNavigationBarHidden(false, animated: true)
         
         self.setupHost()
-        let imageData = UIImageJPEGRepresentation(image, 0.3)
-        appDelegate.mcManager.setupPeerAndSessionWithDisplayNameAndImage(name, imageData: imageData)
+        appDelegate.mcManager.setupPeerAndSessionWithDisplayNameAndImage(name)
         searchForPeersActivityIndicator.startAnimating()
+        //appDelegate.mcManager
+        
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(animated: Bool) {
         appDelegate.mcManager.delegate = self
-        appDelegate.mcManager.searchForPeers()
+        self.peersChanged()
     }
     
     func setupWithHostNamePicture(name: String, image: UIImage){
@@ -50,27 +51,28 @@ class HostViewController: UIViewController, SearchForMultiPeerHostDelegate, UICo
         appDelegate.mcManager.sendStartGameRequest()
         
         let drawController = UIStoryboard(name: "Draw", bundle: nil).instantiateViewControllerWithIdentifier("Draw") as! DrawViewController
-        drawController.isHost = true
         self.presentViewController(drawController, animated: true, completion: nil)
         //self.navigationController?.pushViewController(drawController, animated: true)
         
     }
-    func stringWasReceived(receivedString: NSString) {
-        
+    
+    func startGameWasReceived() {
+        dispatch_async(dispatch_get_main_queue(),{
+            let drawController = UIStoryboard(name: "Draw", bundle: nil).instantiateViewControllerWithIdentifier("Draw") as! DrawViewController
+            self.presentViewController(drawController, animated: true, completion: nil)
+        })
     }
     
     func imageWasReceived(image: UIImage, peer: MCPeerID){
-        let roundedImage = UIImage.roundedRectImageFromImage(image, imageSize: image.size, cornerRadius: image.size.width/2)
-        appDelegate.mcManager.changePeerImage(roundedImage, peer: peer)
     }
     
     func peersChanged() {
         dispatch_async(dispatch_get_main_queue(),{
             
             if self.appDelegate.mcManager.peers.count > 0{
-                self.infoLabel.text = "Press a profile to add friend..."
+                self.infoLabel.text = "Press play to start drawing with friends..."
             }else{
-                self.infoLabel.text = "Searching for nearby profiles..."
+                self.infoLabel.text = "Searching for nearby friends..."
             }
             self.collectionView.reloadData()
             
@@ -89,7 +91,7 @@ class HostViewController: UIViewController, SearchForMultiPeerHostDelegate, UICo
         if let i = peer.image{
             image = i
         }
-        cell.setupConnectionCell(indexPath.row, profileImage: image, profileName: peer.displayName, isHost: true, state: peer.state, isInGame: false)
+        cell.setupConnectionCell(indexPath.row, profileImage: image, profileName: peer.displayName, state: peer.state, isInGame: false, delegate: self)
         return cell
     }
 

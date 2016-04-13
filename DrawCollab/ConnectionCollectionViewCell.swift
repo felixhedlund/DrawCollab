@@ -15,15 +15,16 @@ class ConnectionCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var statusImage: UIImageView!
     
+    var delegate: UIViewController!
+    
     var id: String!
-    var isHost: Bool!
     var row: Int!
     var state: MCSessionState!
     var isInGame: Bool!
-    func setupConnectionCell(row: Int, profileImage: UIImage?, profileName: String, isHost: Bool, state: MCSessionState, isInGame: Bool){
+    func setupConnectionCell(row: Int, profileImage: UIImage?, profileName: String, state: MCSessionState, isInGame: Bool, delegate: UIViewController){
+        self.delegate = delegate
         self.state = state
         self.row = row
-        self.isHost = isHost
         self.isInGame = isInGame
         if let image = profileImage{
             self.profileButton.setImage(image, forState: .Normal)
@@ -38,26 +39,32 @@ class ConnectionCollectionViewCell: UICollectionViewCell {
             if isInGame{
                 statusImage.image = UIImage(named: "disconnected")
             }else{
-                if isHost{
-                    statusImage.image = UIImage(named: "add")
-                }else{
-                    statusImage.image = UIImage(named: "disconnected")
-                }
+                statusImage.image = UIImage(named: "add")
             }
         }
     }
     @IBAction func didPressProfile(sender: AnyObject) {
-        if !isInGame{
-            if self.isHost == true{
-                (UIApplication.sharedApplication().delegate as! AppDelegate).mcManager.sendJoinRequest(row)
-            }else{
-                if state == MCSessionState.Connected || state == MCSessionState.Connecting{
-                    (UIApplication.sharedApplication().delegate as! AppDelegate).mcManager.disconnectFromHost()
-                }else{
-                    (UIApplication.sharedApplication().delegate as! AppDelegate).mcManager.removePeer((UIApplication.sharedApplication().delegate as! AppDelegate).mcManager.peers[row].id)
-                }
-                
-            }
-        }
+//        if !isInGame{
+//            if state == MCSessionState.NotConnected{
+//                (UIApplication.sharedApplication().delegate as! AppDelegate).mcManager.sendJoinRequest(row)
+//            }else{
+//                if state == MCSessionState.Connected || state == MCSessionState.Connecting{
+//                    let alert = UIAlertController(title: "Disconnect Peer", message: "Are you sure you want to remove this peer?", preferredStyle: .Alert)
+//                    let action = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel) { (action) -> Void in
+//                        alert.dismissViewControllerAnimated(true, completion: { () -> Void in
+//                        })
+//                    }
+//                    let action2 = UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default) { (action) -> Void in
+//                        (UIApplication.sharedApplication().delegate as! AppDelegate).mcManager.removePeer((UIApplication.sharedApplication().delegate as! AppDelegate).mcManager.peers[self.row].id)
+//                        alert.dismissViewControllerAnimated(true, completion: nil)
+//                    }
+//                    alert.addAction(action)
+//                    alert.addAction(action2)
+//                    self.delegate.presentViewController(alert, animated: true, completion: nil)
+//
+//                }
+//                
+//            }
+//        }
     }
 }

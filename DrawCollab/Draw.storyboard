@@ -64,7 +64,7 @@
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ong-fK-cxJ">
+                                                        <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ong-fK-cxJ">
                                                             <rect key="frame" x="17" y="26" width="86" height="86"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="Ong-fK-cxJ" secondAttribute="height" multiplier="1:1" id="LGW-KQ-HyV"/>
@@ -108,9 +108,9 @@
                                         </cells>
                                         <variation key="default">
                                             <mask key="constraints">
-                                                <exclude reference="uDb-8I-Ifo"/>
                                                 <exclude reference="6ta-XC-EsU"/>
                                                 <exclude reference="oKh-xH-aRy"/>
+                                                <exclude reference="uDb-8I-Ifo"/>
                                             </mask>
                                         </variation>
                                         <connections>

@@ -3,5 +3,5 @@ use_frameworks!
 
 target 'DrawCollab' do
 pod 'IQKeyboardManagerSwift'
-
+pod 'PartyTime'
 end

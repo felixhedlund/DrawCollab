@@ -1,10 +1,13 @@
 PODS:
   - IQKeyboardManagerSwift (4.0.1)
+  - PartyTime (1.0.2)
 
 DEPENDENCIES:
   - IQKeyboardManagerSwift
+  - PartyTime
 
 SPEC CHECKSUMS:
   IQKeyboardManagerSwift: e92246955e21dad73ad9dc89b80adb134d8bb395
+  PartyTime: d82316f8e44cfebd7ec630203f5611fd47e05083
 
 COCOAPODS: 0.39.0

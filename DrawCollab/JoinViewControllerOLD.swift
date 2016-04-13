@@ -8,7 +8,7 @@
 
 import UIKit
 import MultipeerConnectivity
-class JoinViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, SearchForMultiPeerHostDelegate {
+class JoinViewControllerOLD: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, SearchForMultiPeerHostDelegate {
 
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
@@ -31,23 +31,17 @@ class JoinViewController: UIViewController, UICollectionViewDelegate, UICollecti
         waitingForHostLabel.hidden = false
         
         appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let imageData = UIImageJPEGRepresentation(image, 0.3)
-        appDelegate.mcManager.setupPeerAndSessionWithDisplayNameAndImage(name, imageData: imageData)
+        appDelegate.mcManager.setupPeerAndSessionWithDisplayNameAndImage(name)
         searchingForHostsActivityIndicator.startAnimating()
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(animated: Bool) {
         appDelegate.mcManager.delegate = self
-        appDelegate.mcManager.advertiseSelf(true)
+//        appDelegate.mcManager.advertiseSelf(true)
     }
-    
-    func stringWasReceived(receivedString: NSString) {
-        if receivedString == "StartGame"{
-            let drawController = UIStoryboard(name: "Draw", bundle: nil).instantiateViewControllerWithIdentifier("Draw") as! DrawViewController
-            drawController.isHost = false
-            self.presentViewController(drawController, animated: true, completion: nil)
-        }
+    func startGameWasReceived() {
+        
     }
     
     func setupWithProfileNamePicture(name: String, image: UIImage){
@@ -56,8 +50,8 @@ class JoinViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func imageWasReceived(image: UIImage, peer: MCPeerID){
-        let roundedImage = UIImage.roundedRectImageFromImage(image, imageSize: image.size, cornerRadius: image.size.width/2)
-        appDelegate.mcManager.changePeerImage(roundedImage, peer: peer)
+        //let roundedImage = UIImage.roundedRectImageFromImage(image, imageSize: image.size, cornerRadius: image.size.width/2)
+        //appDelegate.mcManager.changePeerImage(roundedImage, peer: peer)
     }
     
     func peersChanged() {
@@ -95,7 +89,7 @@ class JoinViewController: UIViewController, UICollectionViewDelegate, UICollecti
         if let i = peer.image{
             image = i
         }
-        cell.setupConnectionCell(indexPath.row, profileImage: image, profileName: peer.displayName, isHost: false, state: peer.state, isInGame: false)
+        //cell.setupConnectionCell(indexPath.row, profileImage: image, profileName: peer.displayName, isHost: false, state: peer.state, isInGame: false)
         return cell
     }
 

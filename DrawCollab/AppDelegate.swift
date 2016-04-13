@@ -12,11 +12,11 @@ import IQKeyboardManagerSwift
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-    var mcManager: MCManager!
+    var mcManager: PartyTimeDraw!
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        mcManager = MCManager()
+        mcManager = PartyTimeDraw()
         IQKeyboardManager.sharedManager().enable = true
         return true
     }

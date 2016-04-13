@@ -25,8 +25,6 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
     @IBOutlet weak var collectionView: UICollectionView!
     
     var appDelegate: AppDelegate!
-    
-    var isHost = false
     var lastPoint: CGPoint?
     var lastBrushImagePoint: CGPoint?
     var mouseSwiped = false
@@ -43,7 +41,7 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        appDelegate.mcManager.removeAllNonConnectedPeers()
+        //appDelegate.mcManager.removeAllNonConnectedPeers()
         red = 20/255
         green = 100/255
         blue = 150/255
@@ -66,6 +64,10 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
         })
         
         
+        
+    }
+    
+    func startGameWasReceived() {
         
     }
     func imageWasReceived(image: UIImage, peer: MCPeerID){
@@ -197,7 +199,7 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
         self.mainImage.image = UIGraphicsGetImageFromCurrentImageContext()
         
         if let i = drawImage.image{
-            self.appDelegate.mcManager.sendDrawImageToPeers(i, peerToAvoid: nil)
+            self.appDelegate.mcManager.sendDrawImageToPeers(i)
         }
         
         self.drawImage.image = nil
@@ -293,7 +295,7 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
         if let i = peer.image{
             image = i
         }
-        cell.setupConnectionCell(indexPath.row, profileImage: image, profileName: peer.displayName, isHost: self.isHost, state: peer.state, isInGame: true)
+        cell.setupConnectionCell(indexPath.row, profileImage: image, profileName: peer.displayName, state: peer.state, isInGame: true, delegate: self)
         return cell
     }
     
