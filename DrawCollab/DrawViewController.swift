@@ -84,7 +84,11 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
     }
     
     override func viewWillDisappear(animated: Bool) {
-        self.appDelegate.mcManager.lastMainDrawImage = mainImage.image
+        //self.appDelegate.mcManager.lastMainDrawImage = mainImage.image
+    }
+    
+    func newMainImageWasReceived() {
+        self.mainImage.image = self.appDelegate.mcManager.lastMainDrawImage
     }
     
     func peersChanged(){
@@ -106,6 +110,7 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
             image.drawInRect(CGRectMake(0, 0, self.background.frame.size.width, self.background.frame.size.height), blendMode: CGBlendMode.Normal, alpha: CGFloat(peer.opacity))
             self.mainImage.image = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
+            self.appDelegate.mcManager.lastMainDrawImage = self.mainImage.image
         })
         
     }
@@ -233,6 +238,7 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
             self.drawImage.image?.drawInRect(CGRectMake(0, 0, self.background.frame.size.width, self.background.frame.size.height), blendMode: CGBlendMode.Normal, alpha: appDelegate.mcManager.opacity) //opacity
         }
         self.mainImage.image = UIGraphicsGetImageFromCurrentImageContext()
+        self.appDelegate.mcManager.lastMainDrawImage = self.mainImage.image
         
         if let i = drawImage.image{
             self.appDelegate.mcManager.sendDrawImageToPeers(i)

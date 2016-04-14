@@ -85,6 +85,10 @@ class SearchPeopleViewController: UIViewController, SearchForMultiPeerHostDelega
         
     }
     
+    func newMainImageWasReceived() {
+        //
+    }
+    
     func imageWasReceived(image: UIImage, peer: Peer){
         if let mainImage = self.appDelegate.mcManager.lastMainDrawImage{
             dispatch_async(dispatch_get_main_queue(),{

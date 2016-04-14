@@ -13,6 +13,7 @@ protocol SearchForMultiPeerHostDelegate{
     func peersChanged()
     func imageWasReceived(image: UIImage, peer: Peer)
     func startGameWasReceived()
+    func newMainImageWasReceived()
     //func stringWasReceived(receivedString: NSString)
 }
 
@@ -123,6 +124,7 @@ class PartyTimeDraw: NSObject, PLPartyTimeDelegate{
     let kPROFILE_COLOR = "kPROFILE_COLOR"
     let kSTART_GAME = "kSTART_GAME"
     let kDRAW_IMAGE = "kDRAW_IMAGE"
+    let kMAIN_IMAGE = "kMAIN_IMAGE"
     
     func partyTime(partyTime: PLPartyTime!, didReceiveData data: NSData!, fromPeer peerID: MCPeerID!) {
         if let dic = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? NSDictionary{
@@ -172,6 +174,12 @@ class PartyTimeDraw: NSObject, PLPartyTimeDelegate{
                     }
                 }
                 
+            }else if let imageData = dic.objectForKey(kMAIN_IMAGE) as? NSData{
+                let image = UIImage(data: imageData)
+                if self.lastMainDrawImage == nil{
+                    self.lastMainDrawImage = image
+                    self.delegate?.newMainImageWasReceived()
+                }
             }
         }
         
@@ -245,6 +253,20 @@ class PartyTimeDraw: NSObject, PLPartyTimeDelegate{
         }
     }
     
+    func sendMainImageToPeer(image: UIImage, peer: MCPeerID){
+        if let p = partyTime{
+            let imageData = UIImagePNGRepresentation(image)
+            let dic = [kMAIN_IMAGE: imageData!]
+            let data = NSKeyedArchiver.archivedDataWithRootObject(dic)
+            do {
+                try p.sendData(data, toPeers: [peer], withMode: .Reliable)
+                
+            } catch {
+                print("Could not send image")
+            }
+        }
+    }
+    
     func sendImage(image: UIImage, key: String, peer: MCPeerID?){
             if let p = partyTime{
                 var imageData: NSData!
@@ -294,6 +316,9 @@ class PartyTimeDraw: NSObject, PLPartyTimeDelegate{
         
         if state == MCSessionState.Connected{
             self.sendProfileColor([peer])
+            if let mainImage = self.lastMainDrawImage{
+                self.sendMainImageToPeer(mainImage, peer: peer)
+            }
         }
         delegate?.peersChanged()
         
