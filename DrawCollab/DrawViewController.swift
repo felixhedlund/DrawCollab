@@ -32,7 +32,14 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
     
     
     var appDelegate: AppDelegate!
+    
+    
+    
+    
     var lastPoint: CGPoint?
+    
+    
+    
     var lastBrushImagePoint: CGPoint?
     var mouseSwiped = false
     
@@ -259,6 +266,10 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
         penMarker.backgroundColor = UIColor(white: 1, alpha: 0.50)
         erasorMarker.backgroundColor = UIColor(white: 1, alpha: 0.10)
         self.didPressColor()
+        
+        if let connectedPeers = self.appDelegate.mcManager.partyTime?.connectedPeers as? [MCPeerID]{
+            appDelegate.mcManager.sendProfileColor(connectedPeers)
+        }
 //        penButton.enabled = false
 //        erasorButton.enabled = true
     }
@@ -288,6 +299,11 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
     }
     
     @IBAction func didPressErasor(sender: AnyObject) {
+        if let connectedPeers = self.appDelegate.mcManager.partyTime?.connectedPeers as? [MCPeerID]{
+            appDelegate.mcManager.sendErasor(connectedPeers)
+        }
+        
+        
         erasorMarker.backgroundColor = UIColor(white: 1, alpha: 0.50)
         penMarker.backgroundColor = UIColor(white: 1, alpha: 0.10)
         penButtonIsEnabled = false

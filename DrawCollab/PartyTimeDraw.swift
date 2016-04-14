@@ -202,6 +202,19 @@ class PartyTimeDraw: NSObject, PLPartyTimeDelegate{
         }
     }
     
+    func sendErasor(peers: [MCPeerID]){
+        if let p = partyTime{
+            let colorString: String = "\(redColor)%\(greenColor)%\(blueColor)%\(1.0)"
+            let dic = [kPROFILE_COLOR: colorString]
+            let data = NSKeyedArchiver.archivedDataWithRootObject(dic)
+            do {
+                try p.sendData(data, toPeers: peers, withMode: .Reliable)
+            } catch {
+                print("Could not send image")
+            }
+        }
+    }
+    
     func sendNewProfileColor(){
         if let p = partyTime{
             let colorString: String = "\(redColor)%\(greenColor)%\(blueColor)%"
