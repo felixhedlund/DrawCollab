@@ -35,10 +35,12 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
     
     
     
-    
+    //TO BE REMOVED
     var lastPoint: CGPoint?
     
-    
+    var path = UIBezierPath()
+    var pts: [CGPoint] = [CGPointMake(0, 0), CGPointMake(0, 0),CGPointMake(0, 0),CGPointMake(0, 0),CGPointMake(0, 0)]
+    var ctr = 0
     
     var lastBrushImagePoint: CGPoint?
     var mouseSwiped = false
@@ -53,11 +55,7 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        //appDelegate.mcManager.removeAllNonConnectedPeers()
-        
-        //self.collectionView.registerNib(UINib(nibName: "ConnectionCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "connectionCell")
-//        self.collectionView.delegate = self
-//        self.collectionView.dataSource = self
+
         self.setNeedsStatusBarAppearanceUpdate()
         
         let penImage = UIImage(named: "pencil")
@@ -144,6 +142,7 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
         }
     }
     
+    
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if !penButtonIsEnabled{
             brushImage = UIImage(named: "square")
@@ -158,8 +157,10 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
         
         brushImageView.alpha = CGFloat(appDelegate.mcManager.opacity)
         mouseSwiped = false
+    
         let touch = touches.first
         lastPoint = touch?.locationInView(self.background)
+        pts[0] = lastPoint!
         lastBrushImagePoint = touch?.locationInView(self.view)
         setBrushImageViewPosition()
     }
@@ -169,12 +170,71 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
     
     
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        if penButtonIsEnabled{
+            self.movePencil(touches, withEvent: event)
+        }else{
+            self.moveErasor(touches, withEvent: event)
+        }
+    }
+    
+    private func movePencil(touches: Set<UITouch>, withEvent event: UIEvent?){
+        mouseSwiped = true
+        if let touch = touches.first{
+            ctr += 1
+            pts[ctr] = touch.locationInView(self.background)
+            lastPoint = pts[ctr]
+            if ctr == 4{
+                //let currentPoint = touch.locationInView(self.background)
+                UIGraphicsBeginImageContext(self.background.frame.size)
+                self.drawImage.image?.drawInRect(CGRect(x: 0, y: 0, width: self.background.frame.size.width, height: self.background.frame.size.height))
+                
+                pts[3] = CGPointMake((pts[2].x + pts[4].x)/2.0, (pts[2].y + pts[4].y)/2.0)
+                
+                CGContextMoveToPoint(UIGraphicsGetCurrentContext(), pts[0].x, pts[0].y)
+                CGContextAddCurveToPoint(UIGraphicsGetCurrentContext(), pts[1].x, pts[1].y, pts[2].x, pts[2].y, pts[3].x, pts[3].y)
+                //CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), currentPoint.x, currentPoint.y)
+                if !penButtonIsEnabled{
+                    CGContextSetLineCap(UIGraphicsGetCurrentContext(), CGLineCap.Square)
+                    CGContextSetLineWidth(UIGraphicsGetCurrentContext(), CGFloat(erasorSize))
+                }else{
+                    CGContextSetLineCap(UIGraphicsGetCurrentContext(), CGLineCap.Round)
+                    CGContextSetLineWidth(UIGraphicsGetCurrentContext(), CGFloat(brushSize))
+                }
+                
+                
+                if !penButtonIsEnabled{
+                    CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), 1, 1, 1, 1)
+                }else{
+                    CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), appDelegate.mcManager.redColor, appDelegate.mcManager.greenColor, appDelegate.mcManager.blueColor, appDelegate.mcManager.opacity)
+                }
+                CGContextSetBlendMode(UIGraphicsGetCurrentContext(), CGBlendMode.Normal)
+                CGContextStrokePath(UIGraphicsGetCurrentContext())
+                self.drawImage.image = UIGraphicsGetImageFromCurrentImageContext()
+                if !penButtonIsEnabled{
+                    self.drawImage.alpha = 1.0
+                }else{
+                    self.drawImage.alpha = appDelegate.mcManager.opacity
+                }
+                UIGraphicsEndImageContext()
+                
+                pts[0] = pts[3]
+                pts[1] = pts[4]
+                ctr = 1
+                
+                lastBrushImagePoint = touch.locationInView(self.view)
+                setBrushImageViewPosition()
+            }
+        }
+    }
+    
+    private func moveErasor(touches: Set<UITouch>, withEvent event: UIEvent?){
         mouseSwiped = true
         if let touch = touches.first{
             if let last = lastPoint{
                 let currentPoint = touch.locationInView(self.background)
                 UIGraphicsBeginImageContext(self.background.frame.size)
                 self.drawImage.image?.drawInRect(CGRect(x: 0, y: 0, width: self.background.frame.size.width, height: self.background.frame.size.height))
+                
                 CGContextMoveToPoint(UIGraphicsGetCurrentContext(), last.x, last.y)
                 CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), currentPoint.x, currentPoint.y)
                 if !penButtonIsEnabled{
@@ -200,11 +260,10 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
                     self.drawImage.alpha = appDelegate.mcManager.opacity
                 }
                 UIGraphicsEndImageContext()
-                lastPoint = currentPoint
-                
                 
                 lastBrushImagePoint = touch.locationInView(self.view)
                 setBrushImageViewPosition()
+                lastPoint = currentPoint
             }
         }
     }
@@ -255,6 +314,9 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
         UIGraphicsEndImageContext()
         brushImageView.image = nil
         
+        self.path.removeAllPoints()
+        ctr = 0
+        
     }
     @IBAction func didPressExit(sender: AnyObject) {
         NSNotificationCenter.defaultCenter().removeObserver(self)
@@ -270,6 +332,7 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
         if let connectedPeers = self.appDelegate.mcManager.partyTime?.connectedPeers as? [MCPeerID]{
             appDelegate.mcManager.sendProfileColor(connectedPeers)
         }
+        path.lineWidth = CGFloat(brushSize)
 //        penButton.enabled = false
 //        erasorButton.enabled = true
     }
@@ -320,12 +383,13 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
             popoverController.permittedArrowDirections = .Any
             popoverController.delegate = self
         }
-        
+        path.lineWidth = CGFloat(erasorSize)
         presentViewController(erasorPicker, animated: true, completion: nil)
     }
     
     func erasorSizeWasPicked(erasorSize: Float) {
         self.erasorSize = erasorSize
+        path.lineWidth = CGFloat(erasorSize)
     }
     
     @IBOutlet weak var toolbarStackView: UIStackView!
@@ -387,7 +451,7 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
             if let connectedPeers = self.appDelegate.mcManager.partyTime?.connectedPeers as? [MCPeerID]{
                 appDelegate.mcManager.sendProfileColor(connectedPeers)
             }
-            
+            path.lineWidth = CGFloat(brushSize)
             self.collectionView.reloadData()
         }
         
