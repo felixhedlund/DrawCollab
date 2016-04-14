@@ -36,6 +36,7 @@ class Peer: Comparable{
     var state: MCSessionState!
     var deviceID: String!
     var opacity: Float!
+    
     init(id: MCPeerID, displayName: String, state: MCSessionState){
         self.state = state
         self.id = id
@@ -75,7 +76,7 @@ class PartyTimeDraw: NSObject, PLPartyTimeDelegate{
     var delegate: SearchForMultiPeerHostDelegate?
     var peers: [Peer]!
     var timeStarted: NSDate!
-    
+    var lastMainDrawImage: UIImage?
     
     var partyTime: PLPartyTime?
     override init(){

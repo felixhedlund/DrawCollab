@@ -8,7 +8,7 @@
 
 import UIKit
 import MultipeerConnectivity
-class DrawViewController: UIViewController, UIPopoverPresentationControllerDelegate, ColorPickerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, SearchForMultiPeerHostDelegate, ErasorPickerDelegate {
+class DrawViewController: UIViewController, UIPopoverPresentationControllerDelegate, ColorPickerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, SearchForMultiPeerHostDelegate, ErasorPickerDelegate, UICollectionViewDelegateFlowLayout {
     @IBOutlet weak var penButton: UIButton!
     @IBOutlet weak var erasorButton: UIButton!
     //@IBOutlet weak var colorButton: UIBarButtonItem!
@@ -42,6 +42,7 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
     var brushImage = UIImage(named: "brush")
     
     var penButtonIsEnabled = true
+
     override func viewDidLoad() {
         super.viewDidLoad()
         appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -50,19 +51,40 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
         //self.collectionView.registerNib(UINib(nibName: "ConnectionCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "connectionCell")
 //        self.collectionView.delegate = self
 //        self.collectionView.dataSource = self
-        
+        self.setNeedsStatusBarAppearanceUpdate()
         
         let penImage = UIImage(named: "pencil")
         self.penButton.setImage(penImage!.maskWithColor(UIColor(red: self.appDelegate.mcManager.redColor, green: appDelegate.mcManager.greenColor, blue: appDelegate.mcManager.blueColor, alpha: appDelegate.mcManager.opacity)), forState: .Normal)
         self.didPressPen(penButton)
         self.view.bringSubviewToFront(brushImageView)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.rotated), name: UIDeviceOrientationDidChangeNotification, object: nil)
+
+        if let image = self.appDelegate.mcManager.lastMainDrawImage{
+            self.mainImage.image = image
+        }
+        
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
     
-   
+    func rotated()
+    {
+        
+        dispatch_async(dispatch_get_main_queue(),{
+            self.collectionView.reloadData()
+        })
+        
+    }
 
     override func viewWillAppear(animated: Bool) {
+        self.view.layoutSubviews()
         appDelegate.mcManager.delegate = self
+
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        self.appDelegate.mcManager.lastMainDrawImage = mainImage.image
     }
     
     func peersChanged(){
@@ -83,7 +105,6 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
             self.mainImage.image?.drawInRect(CGRectMake(0, 0, self.background.frame.size.width, self.background.frame.size.height), blendMode: CGBlendMode.Normal, alpha: 1)
             image.drawInRect(CGRectMake(0, 0, self.background.frame.size.width, self.background.frame.size.height), blendMode: CGBlendMode.Normal, alpha: CGFloat(peer.opacity))
             self.mainImage.image = UIGraphicsGetImageFromCurrentImageContext()
-            self.drawImage.image = nil
             UIGraphicsEndImageContext()
         })
         
@@ -223,6 +244,7 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
         
     }
     @IBAction func didPressExit(sender: AnyObject) {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -350,6 +372,20 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
         
     }
     
+    
+
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        print(collectionView.frame.size.height)
+        var size: CGFloat = 0.0
+        
+        if self.view.frame.height < self.view.frame.width{
+            size = collectionView.frame.size.width * 0.8
+        }else{
+            size = collectionView.frame.size.height * 0.8
+        }
+       return CGSize(width: size, height: size)
+    }
+    
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return appDelegate.mcManager.peers.count + 1
     }
@@ -370,6 +406,10 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
         }
         
         return cell
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle{
+        return UIStatusBarStyle.LightContent
     }
     
     // MARK: Popover delegate functions

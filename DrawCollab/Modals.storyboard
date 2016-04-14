@@ -237,7 +237,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="30" minValue="10" maxValue="40" translatesAutoresizingMaskIntoConstraints="NO" id="Ngb-Nr-i58">
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="30" minValue="5" maxValue="40" translatesAutoresizingMaskIntoConstraints="NO" id="Ngb-Nr-i58">
                                 <rect key="frame" x="6" y="95" width="205" height="31"/>
                                 <connections>
                                     <action selector="brushSizeSliderValueChanged:" destination="fNk-7w-WCg" eventType="valueChanged" id="7oP-jq-oPK"/>

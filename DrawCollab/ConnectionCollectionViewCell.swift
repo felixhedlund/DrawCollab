@@ -22,7 +22,6 @@ class ConnectionCollectionViewCell: UICollectionViewCell {
     var row: Int!
     var state: MCSessionState!
     var isInGame: Bool!
-    var hasChangedToBlack = false
     var hasSetProfileImage = false
     func setupConnectionCell(row: Int, profileColor: UIColor, profileName: String, state: MCSessionState, isInGame: Bool, delegate: UIViewController){
         self.delegate = delegate
@@ -75,14 +74,10 @@ class ConnectionCollectionViewCell: UICollectionViewCell {
     private func checkBlack(color: UIColor){
         let colors = CGColorGetComponents(color.CGColor)
         
-        if colors[0] == 0.0 && colors[1] == 0.0 && colors[2] == 0.0 && !hasChangedToBlack{
+        if colors[0] == 0.0 && colors[1] == 0.0 && colors[2] == 0.0{
             profileImage.image = profileImage.image?.maskWithColor(UIColor.whiteColor())
-            hasChangedToBlack = true
         }else{
-            if hasChangedToBlack{
-                profileImage.image =  profileImage.image?.maskWithColor(UIColor.blackColor())
-                hasChangedToBlack = false
-            }
+            profileImage.image =  profileImage.image?.maskWithColor(UIColor.blackColor())
         }
     }
     

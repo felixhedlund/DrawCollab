@@ -21,7 +21,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gWp-TC-pel">
-                                <rect key="frame" x="16" y="20" width="30" height="30"/>
+                                <rect key="frame" x="16" y="0.0" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="gWp-TC-pel" secondAttribute="height" multiplier="1:1" id="FMW-vv-wbu"/>
                                     <constraint firstAttribute="width" secondItem="gWp-TC-pel" secondAttribute="height" multiplier="1:1" id="iTz-nN-FBV"/>
@@ -36,7 +36,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="0bm-js-MWE">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="black" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="3GI-I3-Unr">
+                                    <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="black" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="3GI-I3-Unr">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="146"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -51,21 +51,21 @@
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="connectionCell" id="sfK-zg-Edq" customClass="ConnectionCollectionViewCell" customModule="DrawCollab" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="connectionCell" id="sfK-zg-Edq" customClass="ConnectionCollectionViewCell" customModule="DrawCollab" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="13" width="120" height="120"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                     <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GTP-sy-DJh">
-                                                            <rect key="frame" x="39" y="4" width="42" height="21"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="GTP-sy-DJh">
+                                                            <rect key="frame" x="8" y="0.0" width="104" height="18"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ong-fK-cxJ">
-                                                            <rect key="frame" x="17" y="27" width="86" height="85"/>
+                                                        <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ong-fK-cxJ">
+                                                            <rect key="frame" x="17" y="18" width="86" height="86"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="Ong-fK-cxJ" secondAttribute="height" multiplier="1:1" id="LGW-KQ-HyV"/>
@@ -75,11 +75,11 @@
                                                                 <action selector="didPressProfile:" destination="sfK-zg-Edq" eventType="touchUpInside" id="SNf-AI-9Ae"/>
                                                             </connections>
                                                         </button>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="profileBlack" translatesAutoresizingMaskIntoConstraints="NO" id="x9h-FV-nC4">
-                                                            <rect key="frame" x="17" y="27" width="86" height="85"/>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileBlack" translatesAutoresizingMaskIntoConstraints="NO" id="x9h-FV-nC4">
+                                                            <rect key="frame" x="17" y="18" width="86" height="86"/>
                                                         </imageView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="add" translatesAutoresizingMaskIntoConstraints="NO" id="eed-gm-PSn">
-                                                            <rect key="frame" x="77" y="27" width="26" height="25"/>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add" translatesAutoresizingMaskIntoConstraints="NO" id="eed-gm-PSn">
+                                                            <rect key="frame" x="77" y="18" width="26" height="26"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="eed-gm-PSn" secondAttribute="height" multiplier="1:1" id="abE-ca-vZ7"/>
                                                             </constraints>
@@ -92,19 +92,26 @@
                                                     <constraint firstItem="x9h-FV-nC4" firstAttribute="height" secondItem="Ong-fK-cxJ" secondAttribute="height" id="5q9-id-BCZ"/>
                                                     <constraint firstItem="GTP-sy-DJh" firstAttribute="centerX" secondItem="sfK-zg-Edq" secondAttribute="centerX" id="8CA-1Y-omh"/>
                                                     <constraint firstItem="x9h-FV-nC4" firstAttribute="width" secondItem="Ong-fK-cxJ" secondAttribute="width" id="BYP-PP-Ftj"/>
+                                                    <constraint firstAttribute="trailingMargin" secondItem="GTP-sy-DJh" secondAttribute="trailing" id="D40-3s-Hlc"/>
                                                     <constraint firstItem="eed-gm-PSn" firstAttribute="width" secondItem="Ong-fK-cxJ" secondAttribute="width" multiplier="0.3:1" id="D7g-Ws-Sd0"/>
                                                     <constraint firstItem="Ong-fK-cxJ" firstAttribute="width" secondItem="sfK-zg-Edq" secondAttribute="width" multiplier="1:1.4" id="LYJ-OJ-jUt"/>
                                                     <constraint firstAttribute="bottomMargin" secondItem="Ong-fK-cxJ" secondAttribute="bottom" id="NiT-nq-gRu"/>
-                                                    <constraint firstItem="GTP-sy-DJh" firstAttribute="bottom" secondItem="Ong-fK-cxJ" secondAttribute="top" constant="-2" id="QSW-Pr-xle"/>
+                                                    <constraint firstItem="GTP-sy-DJh" firstAttribute="bottom" secondItem="Ong-fK-cxJ" secondAttribute="top" id="QSW-Pr-xle"/>
+                                                    <constraint firstItem="GTP-sy-DJh" firstAttribute="leading" secondItem="sfK-zg-Edq" secondAttribute="leadingMargin" id="UGh-ut-aTa"/>
                                                     <constraint firstItem="x9h-FV-nC4" firstAttribute="centerY" secondItem="Ong-fK-cxJ" secondAttribute="centerY" id="UID-SH-RYx"/>
                                                     <constraint firstItem="Ong-fK-cxJ" firstAttribute="centerX" secondItem="sfK-zg-Edq" secondAttribute="centerX" id="W1s-JS-nZL"/>
                                                     <constraint firstItem="x9h-FV-nC4" firstAttribute="centerX" secondItem="Ong-fK-cxJ" secondAttribute="centerX" id="WE4-uJ-bPW"/>
                                                     <constraint firstItem="GTP-sy-DJh" firstAttribute="top" secondItem="sfK-zg-Edq" secondAttribute="topMargin" id="eYy-v0-SLy"/>
                                                     <constraint firstItem="eed-gm-PSn" firstAttribute="trailing" secondItem="Ong-fK-cxJ" secondAttribute="trailing" id="jwn-lU-Ryv"/>
+                                                    <constraint firstAttribute="topMargin" secondItem="GTP-sy-DJh" secondAttribute="top" constant="8" id="tpn-ne-lBc"/>
+                                                    <constraint firstItem="Ong-fK-cxJ" firstAttribute="top" secondItem="GTP-sy-DJh" secondAttribute="bottom" id="u2S-Ra-EGA"/>
                                                 </constraints>
                                                 <variation key="default">
                                                     <mask key="constraints">
+                                                        <exclude reference="8CA-1Y-omh"/>
+                                                        <exclude reference="QSW-Pr-xle"/>
                                                         <exclude reference="eYy-v0-SLy"/>
+                                                        <exclude reference="NiT-nq-gRu"/>
                                                     </mask>
                                                 </variation>
                                                 <connections>
@@ -358,13 +365,27 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="0bm-js-MWE" firstAttribute="centerY" secondItem="k1l-pV-zDX" secondAttribute="centerY" id="FTI-EC-sb8"/>
+                            <constraint firstItem="0bm-js-MWE" firstAttribute="leading" secondItem="k1l-pV-zDX" secondAttribute="leadingMargin" constant="-16" id="FXl-td-nSj"/>
                             <constraint firstItem="gWp-TC-pel" firstAttribute="leading" secondItem="k1l-pV-zDX" secondAttribute="leadingMargin" id="JkT-4L-ApB"/>
                             <constraint firstItem="0bm-js-MWE" firstAttribute="centerX" secondItem="k1l-pV-zDX" secondAttribute="centerX" id="Nnp-LD-gAz"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="0bm-js-MWE" secondAttribute="trailing" constant="-16" id="Uo4-t3-v4V"/>
                             <constraint firstItem="0bm-js-MWE" firstAttribute="width" secondItem="k1l-pV-zDX" secondAttribute="width" id="ces-md-YA1"/>
                             <constraint firstItem="0bm-js-MWE" firstAttribute="height" secondItem="k1l-pV-zDX" secondAttribute="height" id="kkY-QA-vSK"/>
                             <constraint firstItem="gWp-TC-pel" firstAttribute="top" secondItem="0gy-E2-hbT" secondAttribute="bottom" id="kxC-0r-Too"/>
+                            <constraint firstItem="0bm-js-MWE" firstAttribute="top" secondItem="0gy-E2-hbT" secondAttribute="bottom" id="waW-xf-pzp"/>
+                            <constraint firstItem="6rW-aH-jOs" firstAttribute="top" secondItem="0bm-js-MWE" secondAttribute="bottom" id="y7h-tb-8pC"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="FTI-EC-sb8"/>
+                                <exclude reference="Nnp-LD-gAz"/>
+                                <exclude reference="ces-md-YA1"/>
+                                <exclude reference="kkY-QA-vSK"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>

@@ -43,6 +43,13 @@ class SearchPeopleViewController: UIViewController, SearchForMultiPeerHostDelega
         appDelegate.mcManager.delegate = self
         self.setupHost()
         self.peersChanged()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.rotated), name: UIDeviceOrientationDidChangeNotification, object: nil)
+    }
+    
+    func rotated(){
+        dispatch_async(dispatch_get_main_queue(),{
+            self.collectionView.reloadData()
+        })
     }
     
     func setupWithHostNameColor(name: String){
@@ -78,8 +85,16 @@ class SearchPeopleViewController: UIViewController, SearchForMultiPeerHostDelega
         
     }
     
-    func imageWasReceived(image: UIImage, peer: Peer) {
-        
+    func imageWasReceived(image: UIImage, peer: Peer){
+        if let mainImage = self.appDelegate.mcManager.lastMainDrawImage{
+            dispatch_async(dispatch_get_main_queue(),{
+                UIGraphicsBeginImageContext(mainImage.size)
+                mainImage.drawInRect(CGRectMake(0, 0, mainImage.size.width, mainImage.size.height), blendMode: CGBlendMode.Normal, alpha: 1)
+                image.drawInRect(CGRectMake(0, 0, mainImage.size.width, mainImage.size.height), blendMode: CGBlendMode.Normal, alpha: CGFloat(peer.opacity))
+                self.appDelegate.mcManager.lastMainDrawImage = UIGraphicsGetImageFromCurrentImageContext()
+                UIGraphicsEndImageContext()
+            })
+        }
     }
     
     func startGameWasReceived() {
@@ -121,6 +136,9 @@ class SearchPeopleViewController: UIViewController, SearchForMultiPeerHostDelega
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewDidDisappear(animated: Bool) {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
 
     /*
     // MARK: - Navigation
