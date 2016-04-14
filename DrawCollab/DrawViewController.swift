@@ -148,16 +148,17 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
             brushImage = UIImage(named: "square")
             brushImageView.image = brushImage
             brushImageViewWidth.constant = CGFloat(erasorSize*1.2)
+            drawImage.alpha = 1.0
         }else{
             brushImage = UIImage(named: "brush")
             brushImageViewWidth.constant = CGFloat(brushSize*1.2)
+            drawImage.alpha = appDelegate.mcManager.opacity
             //brushImageView.image = brushImage?.maskWithColor(UIColor(red: red, green: green, blue: blue, alpha: opacity))
         }
         
         
         brushImageView.alpha = CGFloat(appDelegate.mcManager.opacity)
         mouseSwiped = false
-    
         let touch = touches.first
         lastPoint = touch?.locationInView(self.background)
         pts[0] = lastPoint!
@@ -205,7 +206,7 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
                 if !penButtonIsEnabled{
                     CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), 1, 1, 1, 1)
                 }else{
-                    CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), appDelegate.mcManager.redColor, appDelegate.mcManager.greenColor, appDelegate.mcManager.blueColor, appDelegate.mcManager.opacity)
+                    CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), appDelegate.mcManager.redColor, appDelegate.mcManager.greenColor, appDelegate.mcManager.blueColor, 1)
                 }
                 CGContextSetBlendMode(UIGraphicsGetCurrentContext(), CGBlendMode.Normal)
                 CGContextStrokePath(UIGraphicsGetCurrentContext())
@@ -249,7 +250,7 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
                 if !penButtonIsEnabled{
                     CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), 1, 1, 1, 1)
                 }else{
-                    CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), appDelegate.mcManager.redColor, appDelegate.mcManager.greenColor, appDelegate.mcManager.blueColor, appDelegate.mcManager.opacity)
+                    CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), appDelegate.mcManager.redColor, appDelegate.mcManager.greenColor, appDelegate.mcManager.blueColor, 1)
                 }
                 CGContextSetBlendMode(UIGraphicsGetCurrentContext(), CGBlendMode.Normal)
                 CGContextStrokePath(UIGraphicsGetCurrentContext())
