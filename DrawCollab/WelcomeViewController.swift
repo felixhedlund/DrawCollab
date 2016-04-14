@@ -11,11 +11,17 @@ import UIKit
 class WelcomeViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var imageButton: UIButton!
+    @IBOutlet weak var profileImage: UIImageView!
+    
+    
     @IBOutlet weak var nicknameTextField: UITextField!
     
     @IBOutlet var tapGesture: UITapGestureRecognizer!
     var appDelegate: AppDelegate!
     var randomColor: UIColor!
+    
+    var hasSetButtonImage = false
+    var hasChangedToBlack = false
     override func viewDidLoad() {
         super.viewDidLoad()
         appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -40,8 +46,8 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
         appDelegate.mcManager.greenColor = greenRandom
         appDelegate.mcManager.blueColor = blueRandom
         
-        randomColor = UIColor(red: redRandom, green: greenRandom, blue: blueRandom, alpha: 1)
-        self.imageButton.backgroundColor = randomColor
+        randomColor = UIColor(red: appDelegate.mcManager.redColor, green: appDelegate.mcManager.greenColor, blue: appDelegate.mcManager.blueColor, alpha: 1)
+        changeProfileColor(randomColor)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -49,6 +55,31 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
         UINavigationBar.appearance().tintColor = UIColor(red: 0, green: 122/255, blue: 255/255, alpha: 1)
         appDelegate.mcManager.disconnectFromParty()
         
+        randomColor = UIColor(red: appDelegate.mcManager.redColor, green: appDelegate.mcManager.greenColor, blue: appDelegate.mcManager.blueColor, alpha: 1)
+        changeProfileColor(randomColor)
+        
+    }
+    
+    func changeProfileColor(color: UIColor){
+        if !hasSetButtonImage{
+            var image = UIImage(named: "whiteCircle")
+            image = image!.maskWithColor(color)
+            imageButton.setImage(image, forState: .Normal)
+            hasSetButtonImage = true
+        }else{
+            imageButton.setImage(imageButton.imageView!.image!.maskWithColor(color), forState: .Normal)
+        }
+        let colors = CGColorGetComponents(color.CGColor)
+        
+        if colors[0] == 0.0 && colors[1] == 0.0 && colors[2] == 0.0 && !hasChangedToBlack{
+            profileImage.image = profileImage.image?.maskWithColor(UIColor.whiteColor())
+            hasChangedToBlack = true
+        }else{
+            if hasChangedToBlack{
+                profileImage.image =  profileImage.image?.maskWithColor(UIColor.blackColor())
+                hasChangedToBlack = false
+            }
+        }
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -70,7 +101,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
         if let name = nicknameTextField.text{
             if name.characters.count > 0{
                 let hostController = UIStoryboard(name: "SearchPeople", bundle: nil).instantiateViewControllerWithIdentifier("SearchPeople") as! SearchPeopleViewController
-                hostController.setupWithHostNameColor(name, color: randomColor)
+                hostController.setupWithHostNameColor(name)
                 self.navigationController?.pushViewController(hostController, animated: true)
             }
         }

@@ -92,7 +92,113 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uki-aR-dfR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="522.5" y="657"/>
+            <point key="canvasLocation" x="632.5" y="431"/>
+        </scene>
+        <!--Pattern Picker View Controller-->
+        <scene sceneID="dAI-nK-xYA">
+            <objects>
+                <viewController storyboardIdentifier="pattern" id="7Lk-f4-LoQ" customClass="PatternPickerViewController" customModule="DrawCollab" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Xwd-dq-mQO"/>
+                        <viewControllerLayoutGuide type="bottom" id="Et6-RN-Cn3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pAl-fu-Gpc">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="70"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hom-8h-Miu">
+                                <rect key="frame" x="0.0" y="0.0" width="450" height="70"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="OZS-BR-DDI">
+                                    <rect key="frame" x="0.0" y="0.0" width="450" height="70"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="RV0-5B-Qso">
+                                            <rect key="frame" x="0.0" y="0.0" width="450" height="70"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lBD-VD-xsc">
+                                                    <rect key="frame" x="0.0" y="10" width="50" height="50"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="lBD-VD-xsc" secondAttribute="height" multiplier="1:1" id="h5j-Ns-IH4"/>
+                                                        <constraint firstAttribute="height" constant="50" id="xaS-DO-cbt"/>
+                                                    </constraints>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C92-be-8uq">
+                                                    <rect key="frame" x="134" y="10" width="50" height="50"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nyG-1P-Zxk">
+                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                            <state key="normal" image="Pattern1Small"/>
+                                                        </button>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstItem="nyG-1P-Zxk" firstAttribute="centerY" secondItem="C92-be-8uq" secondAttribute="centerY" id="Psn-VN-did"/>
+                                                        <constraint firstAttribute="height" constant="50" id="XV6-6e-pmE"/>
+                                                        <constraint firstItem="nyG-1P-Zxk" firstAttribute="centerX" secondItem="C92-be-8uq" secondAttribute="centerX" id="crg-2n-NYK"/>
+                                                        <constraint firstAttribute="width" secondItem="C92-be-8uq" secondAttribute="height" multiplier="1:1" id="iTz-cT-RXh"/>
+                                                        <constraint firstItem="nyG-1P-Zxk" firstAttribute="height" secondItem="C92-be-8uq" secondAttribute="height" id="k8m-xR-41P"/>
+                                                        <constraint firstItem="nyG-1P-Zxk" firstAttribute="width" secondItem="C92-be-8uq" secondAttribute="width" id="l6c-3r-VcU"/>
+                                                    </constraints>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kDV-bI-rWU">
+                                                    <rect key="frame" x="267" y="10" width="50" height="50"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kOP-ET-hD8">
+                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                            <state key="normal" image="Pattern1Small"/>
+                                                        </button>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstItem="kOP-ET-hD8" firstAttribute="centerX" secondItem="kDV-bI-rWU" secondAttribute="centerX" id="1NF-dI-2Ql"/>
+                                                        <constraint firstItem="kOP-ET-hD8" firstAttribute="width" secondItem="kDV-bI-rWU" secondAttribute="width" id="As8-qw-fm3"/>
+                                                        <constraint firstAttribute="width" secondItem="kDV-bI-rWU" secondAttribute="height" multiplier="1:1" id="GmL-tm-uKQ"/>
+                                                        <constraint firstAttribute="height" constant="50" id="hdR-FZ-xcu"/>
+                                                        <constraint firstItem="kOP-ET-hD8" firstAttribute="centerY" secondItem="kDV-bI-rWU" secondAttribute="centerY" id="nWn-dq-kos"/>
+                                                        <constraint firstItem="kOP-ET-hD8" firstAttribute="height" secondItem="kDV-bI-rWU" secondAttribute="height" id="qfH-7T-WqZ"/>
+                                                    </constraints>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="POD-L2-fHX">
+                                                    <rect key="frame" x="400" y="10" width="50" height="50"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="50" id="0Zn-aJ-ToR"/>
+                                                        <constraint firstAttribute="width" secondItem="POD-L2-fHX" secondAttribute="height" multiplier="1:1" id="hgc-7R-ya4"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="C92-be-8uq" firstAttribute="width" secondItem="C92-be-8uq" secondAttribute="height" multiplier="1:1" id="mBu-Ub-lVW"/>
+                                                <constraint firstItem="POD-L2-fHX" firstAttribute="width" secondItem="POD-L2-fHX" secondAttribute="height" multiplier="1:1" id="taH-Eg-nmS"/>
+                                                <constraint firstItem="kDV-bI-rWU" firstAttribute="width" secondItem="kDV-bI-rWU" secondAttribute="height" multiplier="1:1" id="ur2-AK-dOg"/>
+                                            </constraints>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="RV0-5B-Qso" firstAttribute="height" secondItem="OZS-BR-DDI" secondAttribute="height" id="1eF-JI-XRA"/>
+                                        <constraint firstItem="RV0-5B-Qso" firstAttribute="width" secondItem="OZS-BR-DDI" secondAttribute="width" id="TmT-NG-wpN"/>
+                                        <constraint firstItem="RV0-5B-Qso" firstAttribute="centerY" secondItem="OZS-BR-DDI" secondAttribute="centerY" id="cO7-Ey-r1W"/>
+                                        <constraint firstItem="RV0-5B-Qso" firstAttribute="centerX" secondItem="OZS-BR-DDI" secondAttribute="centerX" id="cmM-mo-CwZ"/>
+                                    </constraints>
+                                </view>
+                                <blurEffect style="dark"/>
+                            </visualEffectView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="hom-8h-Miu" firstAttribute="height" secondItem="pAl-fu-Gpc" secondAttribute="height" id="Gnl-oF-4bZ"/>
+                            <constraint firstItem="hom-8h-Miu" firstAttribute="centerY" secondItem="pAl-fu-Gpc" secondAttribute="centerY" id="HCA-u2-Z59"/>
+                            <constraint firstItem="hom-8h-Miu" firstAttribute="width" secondItem="pAl-fu-Gpc" secondAttribute="width" id="pQy-Gl-On7"/>
+                            <constraint firstItem="hom-8h-Miu" firstAttribute="centerX" secondItem="pAl-fu-Gpc" secondAttribute="centerX" id="qhW-Jy-YnI"/>
+                        </constraints>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="450" height="70"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oip-gc-IJh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="491" y="778"/>
         </scene>
         <!--Color Picker View Controller-->
         <scene sceneID="Ux1-zH-vvh">
@@ -109,7 +215,7 @@
                             <visualEffectView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="deH-UW-pcq">
                                 <rect key="frame" x="-1" y="1" width="274" height="431"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="x5d-Hu-UtN">
-                                    <rect key="frame" x="0.0" y="0.0" width="273" height="431"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="274" height="431"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                                 <blurEffect style="dark"/>
@@ -229,6 +335,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Pattern1Small" width="100" height="100"/>
         <image name="brushSize" width="80" height="80"/>
     </resources>
 </document>

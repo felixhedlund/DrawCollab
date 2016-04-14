@@ -10,27 +10,29 @@ import UIKit
 import MultipeerConnectivity
 class SearchPeopleViewController: UIViewController, SearchForMultiPeerHostDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     @IBOutlet weak var hostNameLabel: UILabel!
-    @IBOutlet weak var hostProfilePicture: UIImageView!
+    @IBOutlet weak var profileCircle: UIImageView!
+    @IBOutlet weak var profileImage: UIImageView!
+
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var searchForPeersActivityIndicator: UIActivityIndicatorView!
     
     var name: String!
-    var profileColor: UIColor!
     var redColor: CGFloat!
     var greenColor: CGFloat!
     var blueColor: CGFloat!
     
     
     var appDelegate: AppDelegate!
+    var hasChangedToBlack = false
     override func viewDidLoad() {
         super.viewDidLoad()
         appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         navigationController?.setNavigationBarHidden(false, animated: true)
         
-        self.setupHost()
+        
         appDelegate.mcManager.setupPeerAndSessionWithDisplayNameAndImage(name)
         searchForPeersActivityIndicator.startAnimating()
         //appDelegate.mcManager
@@ -39,17 +41,32 @@ class SearchPeopleViewController: UIViewController, SearchForMultiPeerHostDelega
     }
     override func viewWillAppear(animated: Bool) {
         appDelegate.mcManager.delegate = self
+        self.setupHost()
         self.peersChanged()
     }
     
-    func setupWithHostNameColor(name: String, color: UIColor){
+    func setupWithHostNameColor(name: String){
         self.name = name
-        self.profileColor = color
     }
     
     private func setupHost(){
         hostNameLabel.text = name
-        self.hostProfilePicture.backgroundColor = profileColor
+        let color = UIColor(red: appDelegate.mcManager.redColor, green: appDelegate.mcManager.greenColor, blue: appDelegate.mcManager.blueColor, alpha: 1)
+        self.profileCircle.image = profileCircle.image?.maskWithColor(color)
+        checkBlack(color)
+    }
+    private func checkBlack(color: UIColor){
+        let colors = CGColorGetComponents(color.CGColor)
+        
+        if colors[0] == 0.0 && colors[1] == 0.0 && colors[2] == 0.0 && !hasChangedToBlack{
+            profileImage.image = profileImage.image?.maskWithColor(UIColor.whiteColor())
+            hasChangedToBlack = true
+        }else{
+            if hasChangedToBlack{
+                profileImage.image =  profileImage.image?.maskWithColor(UIColor.blackColor())
+                hasChangedToBlack = false
+            }
+        }
     }
     
     @IBAction func didPressStartGame(sender: AnyObject) {
@@ -61,6 +78,10 @@ class SearchPeopleViewController: UIViewController, SearchForMultiPeerHostDelega
         
     }
     
+    func imageWasReceived(image: UIImage, peer: Peer) {
+        
+    }
+    
     func startGameWasReceived() {
         dispatch_async(dispatch_get_main_queue(),{
             let drawController = UIStoryboard(name: "Draw", bundle: nil).instantiateViewControllerWithIdentifier("Draw") as! DrawViewController
@@ -68,8 +89,6 @@ class SearchPeopleViewController: UIViewController, SearchForMultiPeerHostDelega
         })
     }
     
-    func imageWasReceived(image: UIImage, peer: MCPeerID){
-    }
     
     func peersChanged() {
         dispatch_async(dispatch_get_main_queue(),{

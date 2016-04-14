@@ -58,25 +58,28 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GTP-sy-DJh">
-                                                            <rect key="frame" x="39" y="3" width="42" height="21"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GTP-sy-DJh">
+                                                            <rect key="frame" x="39" y="4" width="42" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ong-fK-cxJ">
-                                                            <rect key="frame" x="17" y="26" width="86" height="86"/>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ong-fK-cxJ">
+                                                            <rect key="frame" x="17" y="27" width="86" height="85"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="Ong-fK-cxJ" secondAttribute="height" multiplier="1:1" id="LGW-KQ-HyV"/>
                                                             </constraints>
-                                                            <state key="normal" image="profile"/>
+                                                            <state key="normal" image="whiteCircle"/>
                                                             <connections>
                                                                 <action selector="didPressProfile:" destination="sfK-zg-Edq" eventType="touchUpInside" id="SNf-AI-9Ae"/>
                                                             </connections>
                                                         </button>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add" translatesAutoresizingMaskIntoConstraints="NO" id="eed-gm-PSn">
-                                                            <rect key="frame" x="77" y="26" width="26" height="26"/>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="profileBlack" translatesAutoresizingMaskIntoConstraints="NO" id="x9h-FV-nC4">
+                                                            <rect key="frame" x="17" y="27" width="86" height="85"/>
+                                                        </imageView>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="add" translatesAutoresizingMaskIntoConstraints="NO" id="eed-gm-PSn">
+                                                            <rect key="frame" x="77" y="27" width="26" height="25"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="eed-gm-PSn" secondAttribute="height" multiplier="1:1" id="abE-ca-vZ7"/>
                                                             </constraints>
@@ -86,12 +89,16 @@
                                                 </view>
                                                 <constraints>
                                                     <constraint firstItem="eed-gm-PSn" firstAttribute="top" secondItem="Ong-fK-cxJ" secondAttribute="top" id="4Qu-fd-5mY"/>
+                                                    <constraint firstItem="x9h-FV-nC4" firstAttribute="height" secondItem="Ong-fK-cxJ" secondAttribute="height" id="5q9-id-BCZ"/>
                                                     <constraint firstItem="GTP-sy-DJh" firstAttribute="centerX" secondItem="sfK-zg-Edq" secondAttribute="centerX" id="8CA-1Y-omh"/>
+                                                    <constraint firstItem="x9h-FV-nC4" firstAttribute="width" secondItem="Ong-fK-cxJ" secondAttribute="width" id="BYP-PP-Ftj"/>
                                                     <constraint firstItem="eed-gm-PSn" firstAttribute="width" secondItem="Ong-fK-cxJ" secondAttribute="width" multiplier="0.3:1" id="D7g-Ws-Sd0"/>
                                                     <constraint firstItem="Ong-fK-cxJ" firstAttribute="width" secondItem="sfK-zg-Edq" secondAttribute="width" multiplier="1:1.4" id="LYJ-OJ-jUt"/>
                                                     <constraint firstAttribute="bottomMargin" secondItem="Ong-fK-cxJ" secondAttribute="bottom" id="NiT-nq-gRu"/>
                                                     <constraint firstItem="GTP-sy-DJh" firstAttribute="bottom" secondItem="Ong-fK-cxJ" secondAttribute="top" constant="-2" id="QSW-Pr-xle"/>
+                                                    <constraint firstItem="x9h-FV-nC4" firstAttribute="centerY" secondItem="Ong-fK-cxJ" secondAttribute="centerY" id="UID-SH-RYx"/>
                                                     <constraint firstItem="Ong-fK-cxJ" firstAttribute="centerX" secondItem="sfK-zg-Edq" secondAttribute="centerX" id="W1s-JS-nZL"/>
+                                                    <constraint firstItem="x9h-FV-nC4" firstAttribute="centerX" secondItem="Ong-fK-cxJ" secondAttribute="centerX" id="WE4-uJ-bPW"/>
                                                     <constraint firstItem="GTP-sy-DJh" firstAttribute="top" secondItem="sfK-zg-Edq" secondAttribute="topMargin" id="eYy-v0-SLy"/>
                                                     <constraint firstItem="eed-gm-PSn" firstAttribute="trailing" secondItem="Ong-fK-cxJ" secondAttribute="trailing" id="jwn-lU-Ryv"/>
                                                 </constraints>
@@ -102,6 +109,7 @@
                                                 </variation>
                                                 <connections>
                                                     <outlet property="profileButton" destination="Ong-fK-cxJ" id="4qv-t9-zdZ"/>
+                                                    <outlet property="profileImage" destination="x9h-FV-nC4" id="DmW-rn-zVq"/>
                                                     <outlet property="profileName" destination="GTP-sy-DJh" id="iZM-s9-yTw"/>
                                                     <outlet property="statusImage" destination="eed-gm-PSn" id="yQC-04-wwY"/>
                                                 </connections>
@@ -115,8 +123,8 @@
                                             </mask>
                                         </variation>
                                         <connections>
-                                            <outlet property="dataSource" destination="P99-bK-T9u" id="qb3-XM-YGE"/>
-                                            <outlet property="delegate" destination="P99-bK-T9u" id="cYI-h1-eTP"/>
+                                            <outlet property="dataSource" destination="P99-bK-T9u" id="7hi-yh-l37"/>
+                                            <outlet property="delegate" destination="P99-bK-T9u" id="Wnf-U2-CD6"/>
                                         </connections>
                                     </collectionView>
                                     <view contentMode="scaleToFill" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" translatesAutoresizingMaskIntoConstraints="NO" id="PYZ-IZ-MDx" userLabel="Background">
@@ -174,6 +182,9 @@
                                                         </constraints>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <state key="normal" image="pattern"/>
+                                                        <connections>
+                                                            <action selector="didPressPattern:" destination="P99-bK-T9u" eventType="touchUpInside" id="qcS-Fm-Igb"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -368,6 +379,8 @@
                         <outlet property="erasorMarker" destination="wQd-oW-kdw" id="qDu-iM-ifv"/>
                         <outlet property="exitButton" destination="iRY-7F-YzA" id="P8O-iI-V9r"/>
                         <outlet property="mainImage" destination="yOb-tM-qZ9" id="htI-Jb-Poq"/>
+                        <outlet property="patternButton" destination="PL0-14-lmD" id="0t0-kU-1Xr"/>
+                        <outlet property="patternMarker" destination="G8K-H7-HsG" id="aNT-Hz-7rB"/>
                         <outlet property="penButton" destination="AfL-Fm-y2c" id="F3Y-Fq-PdH"/>
                         <outlet property="penMarker" destination="VqA-92-FgL" id="75P-kL-IaK"/>
                         <outlet property="toolbarStackView" destination="Xnn-ty-Vxz" id="Fcd-xU-7rB"/>
@@ -384,6 +397,7 @@
         <image name="exit" width="100" height="100"/>
         <image name="pattern" width="100" height="100"/>
         <image name="pencil" width="100" height="100"/>
-        <image name="profile" width="452" height="454"/>
+        <image name="profileBlack" width="452" height="452"/>
+        <image name="whiteCircle" width="452" height="454"/>
     </resources>
 </document>

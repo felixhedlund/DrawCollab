@@ -53,27 +53,48 @@
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rvW-tA-81V">
+                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HuU-Qa-Cjt">
                                                 <rect key="frame" x="0.0" y="48" width="150" height="150"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <subviews>
+                                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rvW-tA-81V">
+                                                        <rect key="frame" x="-1" y="0.0" width="151" height="150"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="150" id="3kd-7Q-1K8"/>
+                                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="150" id="Q3d-nW-vo6"/>
+                                                            <constraint firstAttribute="width" secondItem="rvW-tA-81V" secondAttribute="height" multiplier="1:1" id="cwA-0K-2zG"/>
+                                                        </constraints>
+                                                        <state key="normal" image="whiteCircle"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <variation key="default">
+                                                            <mask key="constraints">
+                                                                <exclude reference="3kd-7Q-1K8"/>
+                                                                <exclude reference="Q3d-nW-vo6"/>
+                                                            </mask>
+                                                        </variation>
+                                                        <connections>
+                                                            <action selector="didPressImageButton:" destination="Si8-fN-L1n" eventType="touchUpInside" id="EQe-KB-XGe"/>
+                                                        </connections>
+                                                    </button>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileBlack" translatesAutoresizingMaskIntoConstraints="NO" id="Tuf-Ai-X6M">
+                                                        <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                                    </imageView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="150" id="3kd-7Q-1K8"/>
-                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="150" id="Q3d-nW-vo6"/>
-                                                    <constraint firstAttribute="width" secondItem="rvW-tA-81V" secondAttribute="height" multiplier="1:1" id="cwA-0K-2zG"/>
+                                                    <constraint firstItem="rvW-tA-81V" firstAttribute="width" secondItem="HuU-Qa-Cjt" secondAttribute="width" id="4IQ-lm-A5T"/>
+                                                    <constraint firstAttribute="width" secondItem="HuU-Qa-Cjt" secondAttribute="height" multiplier="1:1" id="8V6-6R-TWQ"/>
+                                                    <constraint firstItem="Tuf-Ai-X6M" firstAttribute="centerX" secondItem="HuU-Qa-Cjt" secondAttribute="centerX" id="ERi-yW-i5c"/>
+                                                    <constraint firstItem="Tuf-Ai-X6M" firstAttribute="height" secondItem="HuU-Qa-Cjt" secondAttribute="height" id="T23-wM-AFm"/>
+                                                    <constraint firstItem="rvW-tA-81V" firstAttribute="centerX" secondItem="HuU-Qa-Cjt" secondAttribute="centerX" id="a10-8N-Zww"/>
+                                                    <constraint firstItem="Tuf-Ai-X6M" firstAttribute="width" secondItem="HuU-Qa-Cjt" secondAttribute="width" id="bFd-os-s5M"/>
+                                                    <constraint firstItem="rvW-tA-81V" firstAttribute="centerY" secondItem="HuU-Qa-Cjt" secondAttribute="centerY" id="e92-F6-Fgl"/>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="150" id="kpi-Ri-hw8"/>
+                                                    <constraint firstItem="Tuf-Ai-X6M" firstAttribute="centerY" secondItem="HuU-Qa-Cjt" secondAttribute="centerY" id="wGH-ZA-hl9"/>
                                                 </constraints>
-                                                <state key="normal" image="profile"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="" value="YES"/>
-                                                </userDefinedRuntimeAttributes>
-                                                <variation key="default">
-                                                    <mask key="constraints">
-                                                        <exclude reference="3kd-7Q-1K8"/>
-                                                    </mask>
-                                                </variation>
-                                                <connections>
-                                                    <action selector="didPressImageButton:" destination="Si8-fN-L1n" eventType="touchUpInside" id="EQe-KB-XGe"/>
-                                                </connections>
-                                            </button>
+                                            </view>
                                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8tV-AH-w1l">
                                                 <rect key="frame" x="50" y="206" width="50" height="50"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -154,14 +175,12 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="447" id="2Xb-bN-vK0"/>
                                     <constraint firstAttribute="height" constant="536" id="IKg-oZ-lrR"/>
-                                    <constraint firstItem="tDq-FP-8An" firstAttribute="width" secondItem="rvW-tA-81V" secondAttribute="width" id="RSQ-CF-vEU"/>
-                                    <constraint firstItem="tDq-FP-8An" firstAttribute="width" secondItem="rvW-tA-81V" secondAttribute="width" id="hfm-ED-zCF"/>
+                                    <constraint firstItem="tDq-FP-8An" firstAttribute="width" secondItem="rvW-tA-81V" secondAttribute="width" id="feG-3Z-8ZG"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="2Xb-bN-vK0"/>
                                         <exclude reference="IKg-oZ-lrR"/>
-                                        <exclude reference="RSQ-CF-vEU"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=compact" axis="horizontal"/>
@@ -187,6 +206,7 @@
                     <connections>
                         <outlet property="imageButton" destination="rvW-tA-81V" id="DrG-la-YGF"/>
                         <outlet property="nicknameTextField" destination="O6l-Fb-6DD" id="228-jO-JVv"/>
+                        <outlet property="profileImage" destination="Tuf-Ai-X6M" id="ybO-EV-wPZ"/>
                         <outlet property="tapGesture" destination="GUL-QF-B48" id="ShK-Bn-wF8"/>
                     </connections>
                 </viewController>
@@ -202,7 +222,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="profile" width="452" height="454"/>
+        <image name="profileBlack" width="452" height="452"/>
         <image name="searchPeople" width="476" height="475"/>
+        <image name="whiteCircle" width="452" height="454"/>
     </resources>
 </document>

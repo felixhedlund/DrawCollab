@@ -12,6 +12,7 @@ import MultipeerConnectivity
 class ConnectionCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var profileButton: UIButton!
+    @IBOutlet weak var profileImage: UIImageView!
     
     @IBOutlet weak var statusImage: UIImageView!
     
@@ -21,12 +22,18 @@ class ConnectionCollectionViewCell: UICollectionViewCell {
     var row: Int!
     var state: MCSessionState!
     var isInGame: Bool!
+    var hasChangedToBlack = false
+    var hasSetProfileImage = false
     func setupConnectionCell(row: Int, profileColor: UIColor, profileName: String, state: MCSessionState, isInGame: Bool, delegate: UIViewController){
         self.delegate = delegate
         self.state = state
         self.row = row
         self.isInGame = isInGame
-        profileButton.backgroundColor = profileColor
+        if hasSetProfileImage{
+            profileButton.imageView?.image = profileButton.imageView?.image?.maskWithColor(profileColor)
+        }else{
+            setProfileCircleWithColor(profileColor)
+        }
         self.profileName.text = profileName
         switch state{
         case MCSessionState.Connected:
@@ -41,13 +48,42 @@ class ConnectionCollectionViewCell: UICollectionViewCell {
             }
         }
         statusImage.hidden = false
+        checkBlack(profileColor)
+        
     }
     
     func setupCurrentProfileCell(row: Int, profileColor: UIColor, profileName: String){
+        
+        
         self.row = row
         self.profileName.text = profileName
-        profileButton.backgroundColor = profileColor
+        if hasSetProfileImage{
+            profileButton.setImage(profileButton.imageView!.image!.maskWithColor(profileColor), forState: .Normal)
+        }else{
+            setProfileCircleWithColor(profileColor)
+        }
         statusImage.hidden = true
+        checkBlack(profileColor)
+    }
+    private func setProfileCircleWithColor(color: UIColor){
+        var image = UIImage(named: "whiteCircle")
+        image = image!.maskWithColor(color)
+        profileButton.setImage(image, forState: .Normal)
+        hasSetProfileImage = true
+    }
+    
+    private func checkBlack(color: UIColor){
+        let colors = CGColorGetComponents(color.CGColor)
+        
+        if colors[0] == 0.0 && colors[1] == 0.0 && colors[2] == 0.0 && !hasChangedToBlack{
+            profileImage.image = profileImage.image?.maskWithColor(UIColor.whiteColor())
+            hasChangedToBlack = true
+        }else{
+            if hasChangedToBlack{
+                profileImage.image =  profileImage.image?.maskWithColor(UIColor.blackColor())
+                hasChangedToBlack = false
+            }
+        }
     }
     
     

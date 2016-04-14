@@ -11,7 +11,7 @@ import PartyTime
 
 protocol SearchForMultiPeerHostDelegate{
     func peersChanged()
-    func imageWasReceived(image: UIImage, peer: MCPeerID)
+    func imageWasReceived(image: UIImage, peer: Peer)
     func startGameWasReceived()
     //func stringWasReceived(receivedString: NSString)
 }
@@ -35,19 +35,26 @@ class Peer: Comparable{
     var color: UIColor!
     var state: MCSessionState!
     var deviceID: String!
+    var opacity: Float!
     init(id: MCPeerID, displayName: String, state: MCSessionState){
         self.state = state
         self.id = id
         self.displayName = displayName
         self.color = UIColor.whiteColor()
+        opacity = 1.0
     }
     
     func updateState(state: MCSessionState){
         self.state = state
     }
     
-    func updateColor(color: UIColor){
+    func updateColor(color: UIColor, opacity: CGFloat){
         self.color = color
+        self.opacity = Float(opacity)
+    }
+    
+    func updateOpacity(opacity: Float){
+        self.opacity = opacity
     }
 }
 
@@ -63,6 +70,7 @@ class PartyTimeDraw: NSObject, PLPartyTimeDelegate{
     var redColor: CGFloat!
     var greenColor: CGFloat!
     var blueColor: CGFloat!
+    var opacity: CGFloat = 1.0
     
     var delegate: SearchForMultiPeerHostDelegate?
     var peers: [Peer]!
@@ -127,7 +135,7 @@ class PartyTimeDraw: NSObject, PLPartyTimeDelegate{
                 var redColor:CGFloat = 1.0
                 var greenColor:CGFloat = 1.0
                 var blueColor:CGFloat = 1.0
-                
+                var opacity:CGFloat = 1.0
                 let numberFormatter = NSNumberFormatter()
                 numberFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
                 numberFormatter.numberStyle = NSNumberFormatterStyle.DecimalStyle
@@ -141,19 +149,28 @@ class PartyTimeDraw: NSObject, PLPartyTimeDelegate{
                 if let n = numberFormatter.numberFromString(colorArray[2]){
                     blueColor = CGFloat(n)
                 }
+                if let n = numberFormatter.numberFromString(colorArray[3]){
+                    opacity = CGFloat(n)
+                }
                 
                 c = UIColor(red: redColor, green: greenColor, blue: blueColor, alpha: 1)
                 
                 for peer in self.peers{
                     if peer.id == peerID{
-                        peer.updateColor(c)
+                        peer.updateColor(c, opacity: opacity)
                         break
                     }
                 }
                 self.delegate?.peersChanged()
             }else if let imageData = dic.objectForKey(kDRAW_IMAGE) as? NSData{
                 let image = UIImage(data: imageData)
-                self.delegate?.imageWasReceived(image!, peer: peerID)
+                for peer in self.peers{
+                    if peer.id == peerID{
+                        self.delegate?.imageWasReceived(image!, peer: peer)
+                        break
+                    }
+                }
+                
             }
         }
         
@@ -163,13 +180,30 @@ class PartyTimeDraw: NSObject, PLPartyTimeDelegate{
         
     }
     
-    func sendProfileColor(peer: MCPeerID){
+    func sendProfileColor(peers: [MCPeerID]){
         if let p = partyTime{
-            let colorString: String = "\(redColor)%\(greenColor)%\(blueColor )"
+            let colorString: String = "\(redColor)%\(greenColor)%\(blueColor)%\(opacity)"
             let dic = [kPROFILE_COLOR: colorString]
             let data = NSKeyedArchiver.archivedDataWithRootObject(dic)
             do {
-                try p.sendData(data, toPeers: [peer], withMode: .Reliable)
+                try p.sendData(data, toPeers: peers, withMode: .Reliable)
+            } catch {
+                print("Could not send image")
+            }
+        }
+    }
+    
+    func sendNewProfileColor(){
+        if let p = partyTime{
+            let colorString: String = "\(redColor)%\(greenColor)%\(blueColor)%"
+            let dic = [kPROFILE_COLOR: colorString]
+            let data = NSKeyedArchiver.archivedDataWithRootObject(dic)
+            do {
+                var sendArray = [MCPeerID]()
+                for peer in self.peers{
+                    sendArray.append(peer.id)
+                }
+                try p.sendData(data, toPeers: sendArray, withMode: .Reliable)
             } catch {
                 print("Could not send image")
             }
@@ -258,7 +292,7 @@ class PartyTimeDraw: NSObject, PLPartyTimeDelegate{
         }
         
         if state == MCSessionState.Connected{
-            self.sendProfileColor(peer)
+            self.sendProfileColor([peer])
         }
         delegate?.peersChanged()
         
