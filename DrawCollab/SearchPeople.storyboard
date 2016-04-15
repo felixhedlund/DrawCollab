@@ -100,7 +100,7 @@
                                                         </connections>
                                                     </button>
                                                 </subviews>
-                                                <variation key="heightClass=compact" axis="vertical"/>
+                                                <variation key="widthClass=regular" axis="vertical"/>
                                             </stackView>
                                         </subviews>
                                     </stackView>
@@ -219,8 +219,9 @@
                                         <exclude reference="cP0-Pp-mYE"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=compact" axis="horizontal" distribution="fillProportionally"/>
+                                <variation key="heightClass=compact" distribution="fillProportionally"/>
                                 <variation key="widthClass=compact" spacing="16"/>
+                                <variation key="widthClass=regular" axis="horizontal"/>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>

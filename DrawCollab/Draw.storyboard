@@ -11,7 +11,7 @@
         <!--Draw View Controller-->
         <scene sceneID="MQQ-xC-JjY">
             <objects>
-                <viewController storyboardIdentifier="Draw" id="P99-bK-T9u" customClass="DrawViewController" customModule="DrawCollab" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="P99-bK-T9u" customClass="DrawViewController" customModule="DrawCollab" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0gy-E2-hbT"/>
                         <viewControllerLayoutGuide type="bottom" id="6rW-aH-jOs"/>
@@ -143,7 +143,7 @@
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mVP-ch-aWn">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
                                             </imageView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zE5-9f-PUY">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zE5-9f-PUY">
                                                 <rect key="frame" x="-1" y="0.0" width="376" height="375"/>
                                             </imageView>
                                         </subviews>
@@ -365,7 +365,7 @@
                                             <constraint firstItem="iwW-un-5aQ" firstAttribute="width" secondItem="iwW-un-5aQ" secondAttribute="height" multiplier="1:1" id="h3Z-FH-ZGO"/>
                                             <constraint firstItem="VvY-i7-1b8" firstAttribute="width" secondItem="VvY-i7-1b8" secondAttribute="height" multiplier="1:1" id="n6m-dQ-Hnr"/>
                                         </constraints>
-                                        <variation key="heightClass=compact" axis="vertical"/>
+                                        <variation key="widthClass=regular" axis="vertical"/>
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -373,7 +373,7 @@
                                     <constraint firstItem="PYZ-IZ-MDx" firstAttribute="centerY" secondItem="0bm-js-MWE" secondAttribute="centerY" id="DCr-gN-miw"/>
                                     <constraint firstItem="PYZ-IZ-MDx" firstAttribute="centerX" secondItem="0bm-js-MWE" secondAttribute="centerX" id="Vb8-xn-lWj"/>
                                 </constraints>
-                                <variation key="heightClass=compact" axis="horizontal"/>
+                                <variation key="widthClass=regular" axis="horizontal"/>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -399,6 +399,7 @@
                         </variation>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <navigationItem key="navigationItem" id="pLc-tL-88v"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
@@ -425,7 +426,23 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kao-e3-Hi1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="865" y="1309"/>
+            <point key="canvasLocation" x="971.5" y="1228.5"/>
+        </scene>
+        <!--Draw Navigation View Controller-->
+        <scene sceneID="10M-Hv-EQe">
+            <objects>
+                <navigationController storyboardIdentifier="Draw" navigationBarHidden="YES" id="TdW-On-uEZ" customClass="DrawNavigationViewController" customModule="DrawCollab" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2kG-IL-yu7">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="P99-bK-T9u" kind="relationship" relationship="rootViewController" id="G0a-xY-N9w"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SCR-2n-bNQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="377" y="1099"/>
         </scene>
     </scenes>
     <resources>

@@ -60,3 +60,41 @@ extension UIImage {
         return finalImage
     }
 }
+
+
+//class RDTraitCollectionOverrideViewController: UIViewController{
+//    var willTransitionToPortrait = false
+//    var traitCollectionCompactRegular: UITraitCollection!
+//    var traitCollectionAnyAny: UITraitCollection!
+//    
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//        self.setupReferenceSizeClasses()
+//    }
+//    
+//    func setupReferenceSizeClasses(){
+//        let traitCollection_hCompact = UITraitCollection(horizontalSizeClass: UIUserInterfaceSizeClass.Compact)
+//        let traitCollection_vRegular = UITraitCollection(verticalSizeClass: UIUserInterfaceSizeClass.Regular)
+//        traitCollectionCompactRegular = UITraitCollection(traitsFromCollections: [traitCollection_hCompact, traitCollection_vRegular])
+//        
+//        let traitCollection_hAny = UITraitCollection(horizontalSizeClass: UIUserInterfaceSizeClass.Unspecified)
+//        let traitCollection_vAny = UITraitCollection(verticalSizeClass: UIUserInterfaceSizeClass.Unspecified)
+//        traitCollectionAnyAny = UITraitCollection(traitsFromCollections: [traitCollection_hAny, traitCollection_vAny])
+//
+//    }
+//    
+//    override func viewWillAppear(animated: Bool) {
+//        super.viewWillAppear(animated)
+//        willTransitionToPortrait = self.view.frame.size.height > self.view.frame.size.width
+//    }
+//    
+//    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+//        willTransitionToPortrait = size.height > size.width
+//    }
+//    
+//    override func overrideTraitCollectionForChildViewController(childViewController: UIViewController) -> UITraitCollection? {
+//        let traitCollectionForOverride: UITraitCollection = willTransitionToPortrait ? traitCollectionCompactRegular : traitCollectionAnyAny
+//        return traitCollectionForOverride
+//    }
+//    
+//}

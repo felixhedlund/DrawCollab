@@ -355,7 +355,8 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
     }
     @IBAction func didPressExit(sender: AnyObject) {
         NSNotificationCenter.defaultCenter().removeObserver(self)
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+        //self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func didPressPen(sender: AnyObject) {

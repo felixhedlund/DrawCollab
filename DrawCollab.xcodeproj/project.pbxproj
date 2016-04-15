@@ -15,6 +15,8 @@
 		F7002B871CBE277600A1F6EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7002B841CBE277600A1F6EC /* Main.storyboard */; };
 		F7002B891CBE6BD400A1F6EC /* ErasorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7002B881CBE6BD400A1F6EC /* ErasorPickerViewController.swift */; };
 		F7002B8B1CBE79F900A1F6EC /* PatternPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7002B8A1CBE79F900A1F6EC /* PatternPickerViewController.swift */; };
+		F7012EBE1CC1182A00DE61CF /* DrawCollabNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7012EBD1CC1182A00DE61CF /* DrawCollabNavigationViewController.swift */; };
+		F7012EC01CC11B1A00DE61CF /* DrawNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7012EBF1CC11B1A00DE61CF /* DrawNavigationViewController.swift */; };
 		F701CE7F1CB690EA007890A2 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = F701CE7E1CB690EA007890A2 /* Podfile */; };
 		F723A9B91CBD1BCD0066D3D4 /* PartyTimeDraw.swift in Sources */ = {isa = PBXBuildFile; fileRef = F723A9B81CBD1BCD0066D3D4 /* PartyTimeDraw.swift */; };
 		F757D33A1CB6A36300B63B8D /* SearchPeople.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F757D3391CB6A36300B63B8D /* SearchPeople.storyboard */; };
@@ -64,6 +66,8 @@
 		F7002B851CBE277600A1F6EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F7002B881CBE6BD400A1F6EC /* ErasorPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErasorPickerViewController.swift; sourceTree = "<group>"; };
 		F7002B8A1CBE79F900A1F6EC /* PatternPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PatternPickerViewController.swift; sourceTree = "<group>"; };
+		F7012EBD1CC1182A00DE61CF /* DrawCollabNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawCollabNavigationViewController.swift; sourceTree = "<group>"; };
+		F7012EBF1CC11B1A00DE61CF /* DrawNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawNavigationViewController.swift; sourceTree = "<group>"; };
 		F701CE7E1CB690EA007890A2 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		F723A9B81CBD1BCD0066D3D4 /* PartyTimeDraw.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyTimeDraw.swift; sourceTree = "<group>"; };
 		F757D3391CB6A36300B63B8D /* SearchPeople.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SearchPeople.storyboard; sourceTree = "<group>"; };
@@ -154,6 +158,7 @@
 				F7002B881CBE6BD400A1F6EC /* ErasorPickerViewController.swift */,
 				F7002B8A1CBE79F900A1F6EC /* PatternPickerViewController.swift */,
 				F78718791CC0D10B00998FF1 /* PatternCollectionViewCell.swift */,
+				F7012EBF1CC11B1A00DE61CF /* DrawNavigationViewController.swift */,
 			);
 			name = Modals;
 			sourceTree = "<group>";
@@ -205,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				F75AE1241CB54EFC00836BE4 /* WelcomeViewController.swift */,
+				F7012EBD1CC1182A00DE61CF /* DrawCollabNavigationViewController.swift */,
 			);
 			name = Welcome;
 			sourceTree = "<group>";
@@ -480,7 +486,9 @@
 				F7BBF9071CB3A8C100C0254B /* AppDelegate.swift in Sources */,
 				F76F69D51CB7A9A30081CBE4 /* ConnectionCollectionViewCell.swift in Sources */,
 				F7002B891CBE6BD400A1F6EC /* ErasorPickerViewController.swift in Sources */,
+				F7012EBE1CC1182A00DE61CF /* DrawCollabNavigationViewController.swift in Sources */,
 				F7BBF9351CB3A98D00C0254B /* ColorPickerViewController.swift in Sources */,
+				F7012EC01CC11B1A00DE61CF /* DrawNavigationViewController.swift in Sources */,
 				F76F69D71CB7AB230081CBE4 /* SearchPeopleViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -647,6 +655,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "se.tactel.-.DrawCollab";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -662,6 +671,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "se.tactel.-.DrawCollab";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

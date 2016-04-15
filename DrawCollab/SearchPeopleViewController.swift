@@ -79,7 +79,7 @@ class SearchPeopleViewController: UIViewController, SearchForMultiPeerHostDelega
     @IBAction func didPressStartGame(sender: AnyObject) {
         appDelegate.mcManager.sendStartGameRequest()
         
-        let drawController = UIStoryboard(name: "Draw", bundle: nil).instantiateViewControllerWithIdentifier("Draw") as! DrawViewController
+        let drawController = UIStoryboard(name: "Draw", bundle: nil).instantiateViewControllerWithIdentifier("Draw") as! DrawNavigationViewController
         self.presentViewController(drawController, animated: true, completion: nil)
         //self.navigationController?.pushViewController(drawController, animated: true)
         
@@ -103,7 +103,7 @@ class SearchPeopleViewController: UIViewController, SearchForMultiPeerHostDelega
     
     func startGameWasReceived() {
         dispatch_async(dispatch_get_main_queue(),{
-            let drawController = UIStoryboard(name: "Draw", bundle: nil).instantiateViewControllerWithIdentifier("Draw") as! DrawViewController
+            let drawController = UIStoryboard(name: "Draw", bundle: nil).instantiateViewControllerWithIdentifier("Draw") as! DrawNavigationViewController
             self.presentViewController(drawController, animated: true, completion: nil)
         })
     }

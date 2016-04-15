@@ -137,6 +137,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
     private func hideKeyboard(){
         self.view.endEditing(true)
     }
+    
     /*
     // MARK: - Navigation
 
