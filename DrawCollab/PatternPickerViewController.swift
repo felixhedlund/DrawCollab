@@ -8,8 +8,15 @@
 
 import UIKit
 
-class PatternPickerViewController: UIViewController {
+protocol PatternPickerDelegate{
+    func didChangePattern()
+}
 
+class PatternPickerViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+
+    @IBOutlet weak var collectionView: UICollectionView!
+    var delegate: PatternPickerDelegate!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,7 +28,21 @@ class PatternPickerViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    
+    func didChangePattern(){
+        delegate.didChangePattern()
+        self.collectionView.reloadData()
+    }
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("pattern", forIndexPath: indexPath) as! PatternCollectionViewCell
+        cell.setupPatternCell(indexPath.row, parent: self)
+        return cell
+    }
     /*
     // MARK: - Navigation
 

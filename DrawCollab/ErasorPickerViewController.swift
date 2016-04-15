@@ -34,6 +34,9 @@ class ErasorPickerViewController: UIViewController {
         erasorWidth.constant = CGFloat(size)
         self.delegate.erasorSizeWasPicked(size)
     }
+    @IBAction func sliderDidChange(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
 
 
     override func didReceiveMemoryWarning() {

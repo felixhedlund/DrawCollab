@@ -8,7 +8,7 @@
 
 import UIKit
 import MultipeerConnectivity
-class DrawViewController: UIViewController, UIPopoverPresentationControllerDelegate, ColorPickerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, SearchForMultiPeerHostDelegate, ErasorPickerDelegate, UICollectionViewDelegateFlowLayout {
+class DrawViewController: UIViewController, UIPopoverPresentationControllerDelegate, ColorPickerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, SearchForMultiPeerHostDelegate, ErasorPickerDelegate, UICollectionViewDelegateFlowLayout, PatternPickerDelegate {
     @IBOutlet weak var penButton: UIButton!
     @IBOutlet weak var erasorButton: UIButton!
     //@IBOutlet weak var colorButton: UIBarButtonItem!
@@ -29,7 +29,9 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
     
     @IBOutlet weak var patternMarker: UIView!
     @IBOutlet weak var patternButton: UIButton!
+    @IBOutlet weak var patternButtonImage: UIImageView!
     
+    @IBOutlet weak var patternImage: UIImageView!
     
     var appDelegate: AppDelegate!
     
@@ -61,6 +63,9 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
         let penImage = UIImage(named: "pencil")
         self.penButton.setImage(penImage!.maskWithColor(UIColor(red: self.appDelegate.mcManager.redColor, green: appDelegate.mcManager.greenColor, blue: appDelegate.mcManager.blueColor, alpha: appDelegate.mcManager.opacity)), forState: .Normal)
         self.didPressPen(penButton)
+        
+        setPatternImage()
+        
         self.view.bringSubviewToFront(brushImageView)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.rotated), name: UIDeviceOrientationDidChangeNotification, object: nil)
@@ -92,11 +97,40 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
         //self.appDelegate.mcManager.lastMainDrawImage = mainImage.image
     }
     
+    func didChangePattern() {
+        self.setPatternImage()
+        if let connectedPeers = self.appDelegate.mcManager.partyTime?.connectedPeers as? [MCPeerID]{
+            appDelegate.mcManager.sendProfileColor(connectedPeers)
+        }
+    }
+    
+    func setPatternImage(){
+        if appDelegate.mcManager.patternNumber == 0{
+            patternImage.hidden = true
+            patternButtonImage.hidden = true
+        }else{
+            switch appDelegate.mcManager.patternNumber{
+            case 1:
+                patternImage.image = UIImage(named: patternImages[0])
+                patternButtonImage.image = UIImage(named: patternButtonImages[0])
+            case 2:
+                patternImage.image = UIImage(named: patternImages[1])
+                patternButtonImage.image = UIImage(named: patternButtonImages[1])
+            default:
+                patternImage.image = UIImage(named: patternImages[0])
+                patternButtonImage.image = UIImage(named: patternButtonImages[0])
+            }
+            patternImage.hidden = false
+            patternButtonImage.hidden = false
+        }
+    }
+    
     func newMainImageWasReceived() {
         self.mainImage.image = self.appDelegate.mcManager.lastMainDrawImage
     }
     
     func peersChanged(){
+        setPatternImage()
         dispatch_async(dispatch_get_main_queue(),{
             self.collectionView.reloadData()
         })
@@ -340,7 +374,7 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
     @IBAction func didPressPattern(sender: AnyObject) {
         let patternPicker = UIStoryboard(name: "Modals", bundle: nil).instantiateViewControllerWithIdentifier("pattern") as! PatternPickerViewController
         patternPicker.modalPresentationStyle = .Popover
-        
+        patternPicker.delegate = self
         var maxSize: CGFloat = 0.0
         let screenRect = UIScreen.mainScreen().bounds
         let screenWidth = screenRect.size.width
@@ -355,7 +389,7 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
         if let popoverController = patternPicker.popoverPresentationController{
             popoverController.sourceView = self.patternMarker
             popoverController.sourceRect = patternButton.frame
-            popoverController.permittedArrowDirections = .Any
+            popoverController.permittedArrowDirections = [.Down, .Right]
             popoverController.delegate = self
         }
         

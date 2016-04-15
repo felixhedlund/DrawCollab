@@ -143,16 +143,23 @@
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mVP-ch-aWn">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
                                             </imageView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zE5-9f-PUY">
+                                                <rect key="frame" x="-1" y="0.0" width="376" height="375"/>
+                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstItem="zE5-9f-PUY" firstAttribute="centerX" secondItem="PYZ-IZ-MDx" secondAttribute="centerX" id="1XM-pk-OvE"/>
+                                            <constraint firstItem="zE5-9f-PUY" firstAttribute="height" secondItem="PYZ-IZ-MDx" secondAttribute="height" id="Aab-Hp-ibc"/>
                                             <constraint firstItem="yOb-tM-qZ9" firstAttribute="width" secondItem="PYZ-IZ-MDx" secondAttribute="width" id="CJO-V3-Iho"/>
                                             <constraint firstItem="mVP-ch-aWn" firstAttribute="centerY" secondItem="PYZ-IZ-MDx" secondAttribute="centerY" id="I7e-19-w4A"/>
                                             <constraint firstItem="mVP-ch-aWn" firstAttribute="height" secondItem="PYZ-IZ-MDx" secondAttribute="height" id="KM6-Xp-VrB"/>
                                             <constraint firstAttribute="width" secondItem="PYZ-IZ-MDx" secondAttribute="height" multiplier="1:1" id="Nwk-s7-sXR"/>
+                                            <constraint firstItem="zE5-9f-PUY" firstAttribute="centerY" secondItem="PYZ-IZ-MDx" secondAttribute="centerY" id="Vsb-rG-Rel"/>
                                             <constraint firstItem="yOb-tM-qZ9" firstAttribute="centerY" secondItem="PYZ-IZ-MDx" secondAttribute="centerY" id="ZUp-8V-oEq"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="bxH-FQ-l82"/>
                                             <constraint firstItem="mVP-ch-aWn" firstAttribute="centerX" secondItem="PYZ-IZ-MDx" secondAttribute="centerX" id="dU1-nL-nEp"/>
+                                            <constraint firstItem="zE5-9f-PUY" firstAttribute="width" secondItem="PYZ-IZ-MDx" secondAttribute="width" id="lJK-PE-0wj"/>
                                             <constraint firstItem="yOb-tM-qZ9" firstAttribute="centerX" secondItem="PYZ-IZ-MDx" secondAttribute="centerX" id="nZd-pM-LgL"/>
                                             <constraint firstItem="mVP-ch-aWn" firstAttribute="width" secondItem="PYZ-IZ-MDx" secondAttribute="width" id="qiL-BQ-X6X"/>
                                             <constraint firstItem="yOb-tM-qZ9" firstAttribute="height" secondItem="PYZ-IZ-MDx" secondAttribute="height" id="wpT-QU-Bwv"/>
@@ -183,29 +190,36 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PL0-14-lmD">
-                                                        <rect key="frame" x="3" y="3" width="55" height="55"/>
+                                                        <rect key="frame" x="9" y="9" width="43" height="43"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="PL0-14-lmD" secondAttribute="height" multiplier="1:1" id="42b-gU-LJ6"/>
                                                         </constraints>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <state key="normal" image="pattern"/>
+                                                        <state key="normal" image="patternBackground"/>
                                                         <connections>
                                                             <action selector="didPressPattern:" destination="P99-bK-T9u" eventType="touchUpInside" id="qcS-Fm-Igb"/>
                                                         </connections>
                                                     </button>
+                                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NaB-Pg-z3q">
+                                                        <rect key="frame" x="9" y="9" width="43" height="43"/>
+                                                    </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstItem="PL0-14-lmD" firstAttribute="centerX" secondItem="VvY-i7-1b8" secondAttribute="centerX" id="4ba-hn-eJt"/>
+                                                    <constraint firstItem="NaB-Pg-z3q" firstAttribute="centerX" secondItem="PL0-14-lmD" secondAttribute="centerX" id="6lp-0j-NSA"/>
+                                                    <constraint firstItem="NaB-Pg-z3q" firstAttribute="width" secondItem="PL0-14-lmD" secondAttribute="width" id="FEK-pp-03K"/>
                                                     <constraint firstItem="G8K-H7-HsG" firstAttribute="centerY" secondItem="VvY-i7-1b8" secondAttribute="centerY" id="ND3-eh-cVG"/>
                                                     <constraint firstAttribute="width" secondItem="VvY-i7-1b8" secondAttribute="height" multiplier="1:1" id="Q83-Wd-wxA"/>
-                                                    <constraint firstItem="PL0-14-lmD" firstAttribute="width" secondItem="VvY-i7-1b8" secondAttribute="width" multiplier="1:1.1" id="VhA-IM-gyC"/>
+                                                    <constraint firstItem="PL0-14-lmD" firstAttribute="width" secondItem="VvY-i7-1b8" secondAttribute="width" multiplier="1:1.4" id="VhA-IM-gyC"/>
+                                                    <constraint firstItem="NaB-Pg-z3q" firstAttribute="height" secondItem="PL0-14-lmD" secondAttribute="height" id="ZCl-bg-T4w"/>
                                                     <constraint firstItem="G8K-H7-HsG" firstAttribute="height" secondItem="VvY-i7-1b8" secondAttribute="height" id="hqO-zY-3Mh"/>
                                                     <constraint firstItem="G8K-H7-HsG" firstAttribute="centerX" secondItem="VvY-i7-1b8" secondAttribute="centerX" id="iJg-lp-ijx"/>
                                                     <constraint firstItem="PL0-14-lmD" firstAttribute="centerY" secondItem="VvY-i7-1b8" secondAttribute="centerY" id="jAb-Z0-cVn"/>
                                                     <constraint firstItem="G8K-H7-HsG" firstAttribute="width" secondItem="VvY-i7-1b8" secondAttribute="width" id="lus-ma-juk"/>
                                                     <constraint firstItem="PL0-14-lmD" firstAttribute="width" secondItem="PL0-14-lmD" secondAttribute="height" multiplier="1:1" id="ml7-gl-Yuw"/>
                                                     <constraint firstAttribute="width" constant="60" id="oQj-yl-bxa"/>
+                                                    <constraint firstItem="NaB-Pg-z3q" firstAttribute="centerY" secondItem="PL0-14-lmD" secondAttribute="centerY" id="rg4-Vt-UlI"/>
                                                 </constraints>
                                                 <variation key="default">
                                                     <mask key="constraints">
@@ -401,6 +415,8 @@
                         <outlet property="exitButton" destination="iRY-7F-YzA" id="P8O-iI-V9r"/>
                         <outlet property="mainImage" destination="yOb-tM-qZ9" id="htI-Jb-Poq"/>
                         <outlet property="patternButton" destination="PL0-14-lmD" id="0t0-kU-1Xr"/>
+                        <outlet property="patternButtonImage" destination="NaB-Pg-z3q" id="2X8-fM-1c1"/>
+                        <outlet property="patternImage" destination="zE5-9f-PUY" id="a66-5r-IXs"/>
                         <outlet property="patternMarker" destination="G8K-H7-HsG" id="aNT-Hz-7rB"/>
                         <outlet property="penButton" destination="AfL-Fm-y2c" id="F3Y-Fq-PdH"/>
                         <outlet property="penMarker" destination="VqA-92-FgL" id="75P-kL-IaK"/>
@@ -416,7 +432,7 @@
         <image name="add" width="80" height="80"/>
         <image name="erasor" width="100" height="100"/>
         <image name="exit" width="100" height="100"/>
-        <image name="pattern" width="100" height="100"/>
+        <image name="patternBackground" width="60" height="60"/>
         <image name="pencil" width="100" height="100"/>
         <image name="profileBlack" width="452" height="452"/>
         <image name="whiteCircle" width="452" height="454"/>

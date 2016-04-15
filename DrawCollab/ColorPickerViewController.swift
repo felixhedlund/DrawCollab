@@ -162,7 +162,7 @@ class ColorPickerViewController: UIViewController, UICollectionViewDataSource, U
         // call delegate function i.e. return selected color
         
         self.colorPickerDelegate?.colorPickerDidColorSelected(selectedUIColor: clickedUIColor, brushSize: CGFloat(self.brushSize))
-        
+        self.closeColorPicker()
         // close color picker view
     }
     

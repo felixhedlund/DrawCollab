@@ -73,6 +73,8 @@ class PartyTimeDraw: NSObject, PLPartyTimeDelegate{
     var greenColor: CGFloat!
     var blueColor: CGFloat!
     var opacity: CGFloat = 1.0
+    var patternNumber: Int = 0
+    
     
     var delegate: SearchForMultiPeerHostDelegate?
     var peers: [Peer]!
@@ -156,6 +158,10 @@ class PartyTimeDraw: NSObject, PLPartyTimeDelegate{
                     opacity = CGFloat(n)
                 }
                 
+                if let n = numberFormatter.numberFromString(colorArray[4]){
+                    patternNumber = Int(n)
+                }
+                
                 c = UIColor(red: redColor, green: greenColor, blue: blueColor, alpha: 1)
                 
                 for peer in self.peers{
@@ -191,7 +197,7 @@ class PartyTimeDraw: NSObject, PLPartyTimeDelegate{
     
     func sendProfileColor(peers: [MCPeerID]){
         if let p = partyTime{
-            let colorString: String = "\(redColor)%\(greenColor)%\(blueColor)%\(opacity)"
+            let colorString: String = "\(redColor)%\(greenColor)%\(blueColor)%\(opacity)%\(patternNumber)"
             let dic = [kPROFILE_COLOR: colorString]
             let data = NSKeyedArchiver.archivedDataWithRootObject(dic)
             do {
@@ -204,7 +210,7 @@ class PartyTimeDraw: NSObject, PLPartyTimeDelegate{
     
     func sendErasor(peers: [MCPeerID]){
         if let p = partyTime{
-            let colorString: String = "\(redColor)%\(greenColor)%\(blueColor)%\(1.0)"
+            let colorString: String = "\(redColor)%\(greenColor)%\(blueColor)%\(1.0)%\(patternNumber)"
             let dic = [kPROFILE_COLOR: colorString]
             let data = NSKeyedArchiver.archivedDataWithRootObject(dic)
             do {
@@ -215,22 +221,22 @@ class PartyTimeDraw: NSObject, PLPartyTimeDelegate{
         }
     }
     
-    func sendNewProfileColor(){
-        if let p = partyTime{
-            let colorString: String = "\(redColor)%\(greenColor)%\(blueColor)%"
-            let dic = [kPROFILE_COLOR: colorString]
-            let data = NSKeyedArchiver.archivedDataWithRootObject(dic)
-            do {
-                var sendArray = [MCPeerID]()
-                for peer in self.peers{
-                    sendArray.append(peer.id)
-                }
-                try p.sendData(data, toPeers: sendArray, withMode: .Reliable)
-            } catch {
-                print("Could not send image")
-            }
-        }
-    }
+//    func sendNewProfileColor(){
+//        if let p = partyTime{
+//            let colorString: String = "\(redColor)%\(greenColor)%\(blueColor)%\(opacity)%\(patternNumber)"
+//            let dic = [kPROFILE_COLOR: colorString]
+//            let data = NSKeyedArchiver.archivedDataWithRootObject(dic)
+//            do {
+//                var sendArray = [MCPeerID]()
+//                for peer in self.peers{
+//                    sendArray.append(peer.id)
+//                }
+//                try p.sendData(data, toPeers: sendArray, withMode: .Reliable)
+//            } catch {
+//                print("Could not send image")
+//            }
+//        }
+//    }
     
     func sendStartGameRequest(){
         if let p = partyTime{

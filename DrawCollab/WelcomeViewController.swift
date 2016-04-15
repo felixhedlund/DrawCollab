@@ -58,6 +58,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
         UINavigationBar.appearance().tintColor = UIColor(red: 0, green: 122/255, blue: 255/255, alpha: 1)
         appDelegate.mcManager.disconnectFromParty()
         appDelegate.mcManager.lastMainDrawImage = nil
+        appDelegate.mcManager.patternNumber = 0
         randomColor = UIColor(red: appDelegate.mcManager.redColor, green: appDelegate.mcManager.greenColor, blue: appDelegate.mcManager.blueColor, alpha: 1)
         changeProfileColor(randomColor)
         
