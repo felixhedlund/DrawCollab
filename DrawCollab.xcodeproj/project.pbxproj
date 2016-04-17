@@ -26,6 +26,7 @@
 		F76F69D71CB7AB230081CBE4 /* SearchPeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76F69D61CB7AB230081CBE4 /* SearchPeopleViewController.swift */; };
 		F76F69D91CB7EF690081CBE4 /* Modals.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F76F69D81CB7EF690081CBE4 /* Modals.storyboard */; };
 		F787187A1CC0D10B00998FF1 /* PatternCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78718791CC0D10B00998FF1 /* PatternCollectionViewCell.swift */; };
+		F7A89C361CC3E61700EE7706 /* DrawCollabSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A89C351CC3E61700EE7706 /* DrawCollabSizes.swift */; };
 		F7BBF9071CB3A8C100C0254B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BBF9061CB3A8C100C0254B /* AppDelegate.swift */; };
 		F7BBF9091CB3A8C100C0254B /* DrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BBF9081CB3A8C100C0254B /* DrawViewController.swift */; };
 		F7BBF90C1CB3A8C100C0254B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7BBF90A1CB3A8C100C0254B /* Main.storyboard */; };
@@ -77,6 +78,7 @@
 		F76F69D61CB7AB230081CBE4 /* SearchPeopleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPeopleViewController.swift; sourceTree = "<group>"; };
 		F76F69D81CB7EF690081CBE4 /* Modals.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Modals.storyboard; sourceTree = "<group>"; };
 		F78718791CC0D10B00998FF1 /* PatternCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PatternCollectionViewCell.swift; sourceTree = "<group>"; };
+		F7A89C351CC3E61700EE7706 /* DrawCollabSizes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawCollabSizes.swift; sourceTree = "<group>"; };
 		F7BBF9031CB3A8C100C0254B /* DrawCollab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawCollab.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7BBF9061CB3A8C100C0254B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F7BBF9081CB3A8C100C0254B /* DrawViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawViewController.swift; sourceTree = "<group>"; };
@@ -224,6 +226,14 @@
 			name = Draw;
 			sourceTree = "<group>";
 		};
+		F7A89C321CC3D21F00EE7706 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				F7A89C351CC3E61700EE7706 /* DrawCollabSizes.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 		F7BBF8FA1CB3A8C100C0254B = {
 			isa = PBXGroup;
 			children = (
@@ -249,6 +259,7 @@
 		F7BBF9051CB3A8C100C0254B /* DrawCollab */ = {
 			isa = PBXGroup;
 			children = (
+				F7A89C321CC3D21F00EE7706 /* Helpers */,
 				F75AE1181CB4FE2000836BE4 /* AppDelegate */,
 				F75AE11A1CB4FE3A00836BE4 /* Controllers */,
 				F75AE1171CB4FE1000836BE4 /* Modals */,
@@ -355,7 +366,7 @@
 				TargetAttributes = {
 					F7BBF9021CB3A8C100C0254B = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = JHWLR967BF;
+						DevelopmentTeam = UESB3TN9ZS;
 					};
 					F7BBF9161CB3A8C100C0254B = {
 						CreatedOnToolsVersion = 7.3;
@@ -488,6 +499,7 @@
 				F7002B891CBE6BD400A1F6EC /* ErasorPickerViewController.swift in Sources */,
 				F7012EBE1CC1182A00DE61CF /* DrawCollabNavigationViewController.swift in Sources */,
 				F7BBF9351CB3A98D00C0254B /* ColorPickerViewController.swift in Sources */,
+				F7A89C361CC3E61700EE7706 /* DrawCollabSizes.swift in Sources */,
 				F7012EC01CC11B1A00DE61CF /* DrawNavigationViewController.swift in Sources */,
 				F76F69D71CB7AB230081CBE4 /* SearchPeopleViewController.swift in Sources */,
 			);

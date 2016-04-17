@@ -143,7 +143,7 @@
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mVP-ch-aWn">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
                                             </imageView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zE5-9f-PUY">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" translatesAutoresizingMaskIntoConstraints="NO" id="zE5-9f-PUY">
                                                 <rect key="frame" x="-1" y="0.0" width="376" height="375"/>
                                             </imageView>
                                         </subviews>
@@ -183,11 +183,6 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G8K-H7-HsG">
                                                         <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                                         <color key="backgroundColor" white="1" alpha="0.10000000000000001" colorSpace="calibratedWhite"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                <integer key="value" value="30"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PL0-14-lmD">
                                                         <rect key="frame" x="9" y="9" width="43" height="43"/>
@@ -233,11 +228,6 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VqA-92-FgL">
                                                         <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                                         <color key="backgroundColor" white="1" alpha="0.10000000000000001" colorSpace="calibratedWhite"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                <integer key="value" value="30"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AfL-Fm-y2c">
                                                         <rect key="frame" x="5" y="5" width="50" height="50"/>
@@ -266,6 +256,7 @@
                                                 </constraints>
                                                 <variation key="default">
                                                     <mask key="constraints">
+                                                        <exclude reference="wHj-WP-7yt"/>
                                                         <exclude reference="J3w-QZ-cM1"/>
                                                     </mask>
                                                 </variation>
@@ -276,11 +267,6 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wQd-oW-kdw">
                                                         <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                                         <color key="backgroundColor" white="1" alpha="0.10000000000000001" colorSpace="calibratedWhite"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                <integer key="value" value="30"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c4o-aS-5XP">
                                                         <rect key="frame" x="5" y="5" width="50" height="50"/>
@@ -308,6 +294,7 @@
                                                 </constraints>
                                                 <variation key="default">
                                                     <mask key="constraints">
+                                                        <exclude reference="hD2-oK-CuS"/>
                                                         <exclude reference="6az-Fb-GtT"/>
                                                     </mask>
                                                 </variation>
@@ -318,11 +305,6 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5gf-95-qgF">
                                                         <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                                         <color key="backgroundColor" white="1" alpha="0.10000000000000001" colorSpace="calibratedWhite"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                <integer key="value" value="30"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iRY-7F-YzA">
                                                         <rect key="frame" x="9" y="9" width="43" height="43"/>
@@ -352,6 +334,7 @@
                                                 </constraints>
                                                 <variation key="default">
                                                     <mask key="constraints">
+                                                        <exclude reference="FkD-Jq-lna"/>
                                                         <exclude reference="69h-8g-N7X"/>
                                                     </mask>
                                                 </variation>
@@ -360,10 +343,13 @@
                                         <constraints>
                                             <constraint firstItem="iwW-un-5aQ" firstAttribute="width" secondItem="iwW-un-5aQ" secondAttribute="height" multiplier="1:1" id="2hm-Xa-Qz3"/>
                                             <constraint firstItem="VvY-i7-1b8" firstAttribute="width" secondItem="VvY-i7-1b8" secondAttribute="height" multiplier="1:1" id="9ax-N5-NeV"/>
+                                            <constraint firstItem="iwW-un-5aQ" firstAttribute="width" secondItem="VvY-i7-1b8" secondAttribute="width" id="F71-mJ-iyj"/>
                                             <constraint firstItem="JIv-MW-gVP" firstAttribute="width" secondItem="JIv-MW-gVP" secondAttribute="height" multiplier="1:1" id="NFx-3J-4kZ"/>
+                                            <constraint firstItem="6kd-GB-lue" firstAttribute="width" secondItem="VvY-i7-1b8" secondAttribute="width" id="U4z-A3-UKh"/>
                                             <constraint firstItem="VvY-i7-1b8" firstAttribute="width" secondItem="VvY-i7-1b8" secondAttribute="height" multiplier="1:1" id="g06-T5-g3c"/>
                                             <constraint firstItem="iwW-un-5aQ" firstAttribute="width" secondItem="iwW-un-5aQ" secondAttribute="height" multiplier="1:1" id="h3Z-FH-ZGO"/>
                                             <constraint firstItem="VvY-i7-1b8" firstAttribute="width" secondItem="VvY-i7-1b8" secondAttribute="height" multiplier="1:1" id="n6m-dQ-Hnr"/>
+                                            <constraint firstItem="JIv-MW-gVP" firstAttribute="width" secondItem="VvY-i7-1b8" secondAttribute="width" id="nwS-Qy-lLU"/>
                                         </constraints>
                                         <variation key="widthClass=regular" axis="vertical"/>
                                     </stackView>
@@ -414,6 +400,7 @@
                         <outlet property="erasorButton" destination="c4o-aS-5XP" id="Z2o-fW-CLD"/>
                         <outlet property="erasorMarker" destination="wQd-oW-kdw" id="qDu-iM-ifv"/>
                         <outlet property="exitButton" destination="iRY-7F-YzA" id="P8O-iI-V9r"/>
+                        <outlet property="exitMarker" destination="5gf-95-qgF" id="p1f-5r-pdJ"/>
                         <outlet property="mainImage" destination="yOb-tM-qZ9" id="htI-Jb-Poq"/>
                         <outlet property="patternButton" destination="PL0-14-lmD" id="0t0-kU-1Xr"/>
                         <outlet property="patternButtonImage" destination="NaB-Pg-z3q" id="2X8-fM-1c1"/>
@@ -421,6 +408,7 @@
                         <outlet property="patternMarker" destination="G8K-H7-HsG" id="aNT-Hz-7rB"/>
                         <outlet property="penButton" destination="AfL-Fm-y2c" id="F3Y-Fq-PdH"/>
                         <outlet property="penMarker" destination="VqA-92-FgL" id="75P-kL-IaK"/>
+                        <outlet property="toolbarButtonWidthConstraint" destination="oQj-yl-bxa" id="Z3Z-EZ-NQ2"/>
                         <outlet property="toolbarStackView" destination="Xnn-ty-Vxz" id="Fcd-xU-7rB"/>
                     </connections>
                 </viewController>

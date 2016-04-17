@@ -32,6 +32,11 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
     @IBOutlet weak var patternButtonImage: UIImageView!
     
     @IBOutlet weak var patternImage: UIImageView!
+    @IBOutlet weak var toolbarButtonWidthConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var exitMarker: UIView!
+    
+    
     
     var appDelegate: AppDelegate!
     
@@ -62,7 +67,11 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
         
         let penImage = UIImage(named: "pencil")
         self.penButton.setImage(penImage!.maskWithColor(UIColor(red: self.appDelegate.mcManager.redColor, green: appDelegate.mcManager.greenColor, blue: appDelegate.mcManager.blueColor, alpha: appDelegate.mcManager.opacity)), forState: .Normal)
-        self.didPressPen(penButton)
+        //self.didPressPen(penButton)
+        penButtonIsEnabled = true
+        penMarker.backgroundColor = UIColor(white: 1, alpha: 0.50)
+        erasorMarker.backgroundColor = UIColor(white: 1, alpha: 0.10)
+        
         
         setPatternImage()
         
@@ -73,6 +82,12 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
         if let image = self.appDelegate.mcManager.lastMainDrawImage{
             self.mainImage.image = image
         }
+        
+        toolbarButtonWidthConstraint.constant = appDelegate.sizes.toolbarButtonSize
+        patternMarker.layer.cornerRadius = appDelegate.sizes.toolbarButtonSize/2
+        erasorMarker.layer.cornerRadius = appDelegate.sizes.toolbarButtonSize/2
+        penMarker.layer.cornerRadius = appDelegate.sizes.toolbarButtonSize/2
+        exitMarker.layer.cornerRadius = appDelegate.sizes.toolbarButtonSize/2
         
         
         // Do any additional setup after loading the view, typically from a nib.
@@ -99,7 +114,7 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
     
     func didChangePattern() {
         self.setPatternImage()
-        if let connectedPeers = self.appDelegate.mcManager.partyTime?.connectedPeers as? [MCPeerID]{
+        if let connectedPeers = self.appDelegate.mcManager.partyTimes[appDelegate.mcManager.currentPartyTime]?.connectedPeers as? [MCPeerID]{
             appDelegate.mcManager.sendProfileColor(connectedPeers)
         }
     }
@@ -365,7 +380,7 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
         erasorMarker.backgroundColor = UIColor(white: 1, alpha: 0.10)
         self.didPressColor()
         
-        if let connectedPeers = self.appDelegate.mcManager.partyTime?.connectedPeers as? [MCPeerID]{
+        if let connectedPeers = self.appDelegate.mcManager.partyTimes[appDelegate.mcManager.currentPartyTime]?.connectedPeers as? [MCPeerID]{
             appDelegate.mcManager.sendProfileColor(connectedPeers)
         }
         path.lineWidth = CGFloat(brushSize)
@@ -398,7 +413,7 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
     }
     
     @IBAction func didPressErasor(sender: AnyObject) {
-        if let connectedPeers = self.appDelegate.mcManager.partyTime?.connectedPeers as? [MCPeerID]{
+        if let connectedPeers = self.appDelegate.mcManager.partyTimes[appDelegate.mcManager.currentPartyTime]?.connectedPeers as? [MCPeerID]{
             appDelegate.mcManager.sendErasor(connectedPeers)
         }
         
@@ -484,7 +499,7 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
             // set preview background to selected color
             let penImage = UIImage(named: "pencil")
             self.penButton.setImage(penImage!.maskWithColor(selectedUIColor), forState: .Normal)
-            if let connectedPeers = self.appDelegate.mcManager.partyTime?.connectedPeers as? [MCPeerID]{
+            if let connectedPeers = self.appDelegate.mcManager.partyTimes[appDelegate.mcManager.currentPartyTime]?.connectedPeers as? [MCPeerID]{
                 appDelegate.mcManager.sendProfileColor(connectedPeers)
             }
             path.lineWidth = CGFloat(brushSize)

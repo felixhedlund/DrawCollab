@@ -13,10 +13,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     var mcManager: PartyTimeDraw!
-
+    var sizes: DrawCollabSizes!
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         mcManager = PartyTimeDraw()
+        sizes = DrawCollabSizes()
         IQKeyboardManager.sharedManager().enable = true
         return true
     }

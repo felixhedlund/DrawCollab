@@ -12,11 +12,15 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var imageButton: UIButton!
     @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var imageButtonWidthConstraint: NSLayoutConstraint!
     
     
     @IBOutlet weak var nicknameTextField: UITextField!
     
     @IBOutlet var tapGesture: UITapGestureRecognizer!
+    
+    
+    
     var appDelegate: AppDelegate!
     var randomColor: UIColor!
     
@@ -38,6 +42,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
             userDefaults.setObject(name, forKey: "HostName")
             userDefaults.synchronize()
         }
+        imageButtonWidthConstraint.constant = appDelegate.sizes.welcomeButtonsWidth
     }
     
     func generateRandomProfileColor(){

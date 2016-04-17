@@ -74,14 +74,15 @@ class PartyTimeDraw: NSObject, PLPartyTimeDelegate{
     var blueColor: CGFloat!
     var opacity: CGFloat = 1.0
     var patternNumber: Int = 0
-    
+    var serviceType = "1canvas1"
     
     var delegate: SearchForMultiPeerHostDelegate?
     var peers: [Peer]!
     var timeStarted: NSDate!
     var lastMainDrawImage: UIImage?
     
-    var partyTime: PLPartyTime?
+    var partyTimes = [PLPartyTime?]()
+    var currentPartyTime = 0
     override init(){
         
     }
@@ -101,24 +102,24 @@ class PartyTimeDraw: NSObject, PLPartyTimeDelegate{
     
     func setupPeerAndSessionWithDisplayNameAndImage(displayName: String){
         peers = [Peer]()
-        if let _ = partyTime{
-            
-        }else{
-            partyTime = PLPartyTime(serviceType: "drawCollab", displayName: displayName)
-        }
         
-        partyTime!.delegate = self
-        partyTime!.joinParty()
+        partyTimes.insert(PLPartyTime(serviceType: "1canvas1", displayName: displayName), atIndex: 0)
+        partyTimes.insert(PLPartyTime(serviceType: "2canvas2", displayName: displayName), atIndex: 1)
+        partyTimes.insert(PLPartyTime(serviceType: "3canvas3", displayName: displayName), atIndex: 2)
+        partyTimes.insert(PLPartyTime(serviceType: "4canvas4", displayName: displayName), atIndex: 3)
+        
+        partyTimes[currentPartyTime]!.delegate = self
+        partyTimes[currentPartyTime]!.joinParty()
     }
     
     func disconnectFromParty(){
         if peers != nil{
             peers.removeAll()
         }
-        if let p = partyTime{
-            p.leaveParty()
-        }
         
+        for p in partyTimes{
+            p?.leaveParty()
+        }
         
     }
     
@@ -196,7 +197,7 @@ class PartyTimeDraw: NSObject, PLPartyTimeDelegate{
     }
     
     func sendProfileColor(peers: [MCPeerID]){
-        if let p = partyTime{
+        if let p = partyTimes[currentPartyTime]{
             let colorString: String = "\(redColor)%\(greenColor)%\(blueColor)%\(opacity)%\(patternNumber)"
             let dic = [kPROFILE_COLOR: colorString]
             let data = NSKeyedArchiver.archivedDataWithRootObject(dic)
@@ -209,7 +210,7 @@ class PartyTimeDraw: NSObject, PLPartyTimeDelegate{
     }
     
     func sendErasor(peers: [MCPeerID]){
-        if let p = partyTime{
+        if let p = partyTimes[currentPartyTime]{
             let colorString: String = "\(redColor)%\(greenColor)%\(blueColor)%\(1.0)%\(patternNumber)"
             let dic = [kPROFILE_COLOR: colorString]
             let data = NSKeyedArchiver.archivedDataWithRootObject(dic)
@@ -239,7 +240,7 @@ class PartyTimeDraw: NSObject, PLPartyTimeDelegate{
 //    }
     
     func sendStartGameRequest(){
-        if let p = partyTime{
+        if let p = partyTimes[currentPartyTime]{
             let dic = [kSTART_GAME:"StartGame"]
             let data = NSKeyedArchiver.archivedDataWithRootObject(dic)
             do {
@@ -255,7 +256,7 @@ class PartyTimeDraw: NSObject, PLPartyTimeDelegate{
     }
     
     func sendDrawImageToPeers(image: UIImage){
-        if let p = partyTime{
+        if let p = partyTimes[currentPartyTime]{
             let imageData = UIImagePNGRepresentation(image)
             let dic = [kDRAW_IMAGE: imageData!]
             let data = NSKeyedArchiver.archivedDataWithRootObject(dic)
@@ -273,7 +274,7 @@ class PartyTimeDraw: NSObject, PLPartyTimeDelegate{
     }
     
     func sendMainImageToPeer(image: UIImage, peer: MCPeerID){
-        if let p = partyTime{
+        if let p = partyTimes[currentPartyTime]{
             let imageData = UIImagePNGRepresentation(image)
             let dic = [kMAIN_IMAGE: imageData!]
             let data = NSKeyedArchiver.archivedDataWithRootObject(dic)
@@ -287,7 +288,7 @@ class PartyTimeDraw: NSObject, PLPartyTimeDelegate{
     }
     
     func sendImage(image: UIImage, key: String, peer: MCPeerID?){
-            if let p = partyTime{
+            if let p = partyTimes[currentPartyTime]{
                 var imageData: NSData!
                 imageData = UIImagePNGRepresentation(image)
                 

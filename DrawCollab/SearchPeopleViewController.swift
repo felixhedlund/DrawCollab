@@ -18,6 +18,20 @@ class SearchPeopleViewController: UIViewController, SearchForMultiPeerHostDelega
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var searchForPeersActivityIndicator: UIActivityIndicatorView!
     
+    @IBOutlet weak var canvas1WidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var canvas2WidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var canvas3WidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var canvas4WidthConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var profileWidthConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var canvas1Marker: UIImageView!
+    @IBOutlet weak var canvas2Marker: UIImageView!
+    @IBOutlet weak var canvas3Marker: UIImageView!
+    @IBOutlet weak var canvas4Marker: UIImageView!
+    
+    
+    
     var name: String!
     var redColor: CGFloat!
     var greenColor: CGFloat!
@@ -35,9 +49,71 @@ class SearchPeopleViewController: UIViewController, SearchForMultiPeerHostDelega
         
         appDelegate.mcManager.setupPeerAndSessionWithDisplayNameAndImage(name)
         searchForPeersActivityIndicator.startAnimating()
-        //appDelegate.mcManager
+        self.setCanvasConstraints()
         
-        // Do any additional setup after loading the view.
+        canvas2Marker.hidden = true
+        canvas3Marker.hidden = true
+        canvas4Marker.hidden = true
+    }
+    
+    @IBAction func didPressCanvas1(sender: AnyObject) {
+        canvas2Marker.hidden = true
+        canvas3Marker.hidden = true
+        canvas4Marker.hidden = true
+        canvas1Marker.hidden = false
+        appDelegate.mcManager.disconnectFromParty()
+        appDelegate.mcManager.peers.removeAll()
+        self.collectionView.reloadData()
+        appDelegate.mcManager.currentPartyTime = 0
+        appDelegate.mcManager.serviceType = "1canvas1"
+        appDelegate.mcManager.setupPeerAndSessionWithDisplayNameAndImage(name)
+        
+    }
+    @IBAction func didPressCanvas2(sender: AnyObject) {
+        canvas1Marker.hidden = true
+        canvas3Marker.hidden = true
+        canvas4Marker.hidden = true
+        canvas2Marker.hidden = false
+        appDelegate.mcManager.disconnectFromParty()
+        appDelegate.mcManager.peers.removeAll()
+        self.collectionView.reloadData()
+        appDelegate.mcManager.currentPartyTime = 1
+        appDelegate.mcManager.serviceType = "2canvas2"
+        appDelegate.mcManager.setupPeerAndSessionWithDisplayNameAndImage(name)
+    }
+    @IBAction func didPressCanvas3(sender: AnyObject) {
+        canvas2Marker.hidden = true
+        canvas1Marker.hidden = true
+        canvas4Marker.hidden = true
+        canvas3Marker.hidden = false
+        appDelegate.mcManager.disconnectFromParty()
+        appDelegate.mcManager.peers.removeAll()
+        self.collectionView.reloadData()
+        appDelegate.mcManager.currentPartyTime = 2
+        appDelegate.mcManager.serviceType = "3canvas3"
+        appDelegate.mcManager.setupPeerAndSessionWithDisplayNameAndImage(name)
+    }
+    @IBAction func didPressCanvas4(sender: AnyObject) {
+        canvas2Marker.hidden = true
+        canvas3Marker.hidden = true
+        canvas1Marker.hidden = true
+        canvas4Marker.hidden = false
+        appDelegate.mcManager.disconnectFromParty()
+        appDelegate.mcManager.peers.removeAll()
+        self.collectionView.reloadData()
+        appDelegate.mcManager.currentPartyTime = 3
+        appDelegate.mcManager.serviceType = "4canvas4"
+        appDelegate.mcManager.setupPeerAndSessionWithDisplayNameAndImage(name)
+    }
+    
+    private func setCanvasConstraints(){
+        let size = appDelegate.sizes.canvasButtonWidth
+        canvas1WidthConstraint.constant = size
+        canvas2WidthConstraint.constant = size
+        canvas3WidthConstraint.constant = size
+        canvas4WidthConstraint.constant = size
+        profileWidthConstraint.constant = appDelegate.sizes.welcomeButtonsWidth
+        
     }
     override func viewWillAppear(animated: Bool) {
         appDelegate.mcManager.delegate = self
