@@ -41,7 +41,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="450" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="8Iu-8u-282">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="8Iu-8u-282">
                                 <rect key="frame" x="20" y="72" width="410" height="520"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="cCe-33-ihx">
@@ -101,48 +101,33 @@
                                         </constraints>
                                         <variation key="widthClass=regular" alignment="top"/>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="900" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="5wA-Ds-uKV">
-                                        <rect key="frame" x="122" y="198" width="166" height="168"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="900" misplaced="YES" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="5wA-Ds-uKV">
+                                        <rect key="frame" x="122" y="210" width="166" height="65"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="QYb-3Y-BpP">
-                                                <rect key="frame" x="0.0" y="0.0" width="166" height="168"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" misplaced="YES" text="Your nickname:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ICI-YC-vYl">
-                                                        <rect key="frame" x="0.0" y="47" width="166" height="21"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="800" misplaced="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your nickname..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O6l-Fb-6DD">
-                                                        <rect key="frame" x="0.0" y="72" width="166" height="30"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="30" id="Htp-6O-NaI"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
-                                                        <connections>
-                                                            <outlet property="delegate" destination="Si8-fN-L1n" id="IHN-yj-pun"/>
-                                                        </connections>
-                                                    </textField>
-                                                </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Your nickname:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ICI-YC-vYl">
+                                                <rect key="frame" x="0.0" y="0.0" width="166" height="27"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="1" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="800" contentHorizontalAlignment="right" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your nickname..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O6l-Fb-6DD">
+                                                <rect key="frame" x="0.0" y="35" width="166" height="30"/>
                                                 <constraints>
-                                                    <constraint firstItem="O6l-Fb-6DD" firstAttribute="centerX" secondItem="QYb-3Y-BpP" secondAttribute="centerX" id="4Ap-HB-QAT"/>
-                                                    <constraint firstItem="ICI-YC-vYl" firstAttribute="bottom" secondItem="O6l-Fb-6DD" secondAttribute="top" constant="-4" id="5Nh-w4-Xxt"/>
-                                                    <constraint firstItem="ICI-YC-vYl" firstAttribute="width" secondItem="QYb-3Y-BpP" secondAttribute="width" id="6Za-UG-zTR"/>
-                                                    <constraint firstItem="O6l-Fb-6DD" firstAttribute="centerY" secondItem="QYb-3Y-BpP" secondAttribute="centerY" id="AmZ-Ub-XEc"/>
-                                                    <constraint firstItem="ICI-YC-vYl" firstAttribute="centerX" secondItem="O6l-Fb-6DD" secondAttribute="centerX" id="oWc-OU-A2y"/>
-                                                    <constraint firstItem="O6l-Fb-6DD" firstAttribute="width" secondItem="QYb-3Y-BpP" secondAttribute="width" id="wlK-KP-n1B"/>
+                                                    <constraint firstAttribute="height" constant="30" id="Htp-6O-NaI"/>
                                                 </constraints>
-                                            </view>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="Si8-fN-L1n" id="IHN-yj-pun"/>
+                                                </connections>
+                                            </textField>
                                         </subviews>
-                                        <variation key="widthClass=regular" alignment="center"/>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="700" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="wch-Ro-K4c">
-                                        <rect key="frame" x="130" y="370" width="150" height="150"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="700" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" misplaced="YES" distribution="equalCentering" alignment="bottom" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="wch-Ro-K4c">
+                                        <rect key="frame" x="130" y="291" width="150" height="229"/>
                                         <subviews>
-                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="700" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tDq-FP-8An">
-                                                <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="700" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tDq-FP-8An">
+                                                <rect key="frame" x="0.0" y="79" width="150" height="150"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="150" id="3lu-ob-ZOd"/>
@@ -170,7 +155,7 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <variation key="widthClass=regular" alignment="bottom" axis="vertical"/>
+                                        <variation key="widthClass=regular" axis="vertical"/>
                                     </stackView>
                                 </subviews>
                                 <constraints>
@@ -184,7 +169,6 @@
                                         <exclude reference="IKg-oZ-lrR"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" spacing="16"/>
                                 <variation key="widthClass=regular" axis="horizontal"/>
                             </stackView>
                         </subviews>

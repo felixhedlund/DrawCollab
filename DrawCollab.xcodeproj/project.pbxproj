@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		51CECC519107221B9C282F63 /* Pods_DrawCollab.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE6FBB2BD6F4A4079BA583F8 /* Pods_DrawCollab.framework */; };
-		F7002B861CBE277600A1F6EC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7002B821CBE277600A1F6EC /* LaunchScreen.storyboard */; };
-		F7002B871CBE277600A1F6EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7002B841CBE277600A1F6EC /* Main.storyboard */; };
 		F7002B891CBE6BD400A1F6EC /* ErasorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7002B881CBE6BD400A1F6EC /* ErasorPickerViewController.swift */; };
 		F7002B8B1CBE79F900A1F6EC /* PatternPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7002B8A1CBE79F900A1F6EC /* PatternPickerViewController.swift */; };
 		F7012EBE1CC1182A00DE61CF /* DrawCollabNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7012EBD1CC1182A00DE61CF /* DrawCollabNavigationViewController.swift */; };
@@ -59,8 +57,6 @@
 		6E99303ECA7D6157234164C3 /* Pods-DrawCollab.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrawCollab.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DrawCollab/Pods-DrawCollab.debug.xcconfig"; sourceTree = "<group>"; };
 		8D4C6B73B24FBC0891B0F996 /* Pods-DrawCollab.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrawCollab.release.xcconfig"; path = "Pods/Target Support Files/Pods-DrawCollab/Pods-DrawCollab.release.xcconfig"; sourceTree = "<group>"; };
 		EE6FBB2BD6F4A4079BA583F8 /* Pods_DrawCollab.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DrawCollab.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F7002B831CBE277600A1F6EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		F7002B851CBE277600A1F6EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F7002B881CBE6BD400A1F6EC /* ErasorPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErasorPickerViewController.swift; sourceTree = "<group>"; };
 		F7002B8A1CBE79F900A1F6EC /* PatternPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PatternPickerViewController.swift; sourceTree = "<group>"; };
 		F7012EBD1CC1182A00DE61CF /* DrawCollabNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawCollabNavigationViewController.swift; sourceTree = "<group>"; };
@@ -68,20 +64,15 @@
 		F701CE7E1CB690EA007890A2 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		F723A9B81CBD1BCD0066D3D4 /* PartyTimeDraw.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyTimeDraw.swift; sourceTree = "<group>"; };
 		F727117B1CC3FBDB00F0FCE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = Base.lproj/Info.plist; sourceTree = "<group>"; };
-		F757D3391CB6A36300B63B8D /* SearchPeople.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SearchPeople.storyboard; sourceTree = "<group>"; };
-		F757D33D1CB6A39300B63B8D /* Draw.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Draw.storyboard; sourceTree = "<group>"; };
 		F75AE1241CB54EFC00836BE4 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		F76F69D41CB7A9A30081CBE4 /* ConnectionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionCollectionViewCell.swift; sourceTree = "<group>"; };
 		F76F69D61CB7AB230081CBE4 /* SearchPeopleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPeopleViewController.swift; sourceTree = "<group>"; };
-		F76F69D81CB7EF690081CBE4 /* Modals.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Modals.storyboard; sourceTree = "<group>"; };
 		F78718791CC0D10B00998FF1 /* PatternCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PatternCollectionViewCell.swift; sourceTree = "<group>"; };
 		F78E90871CC3FE25004A04AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F78E90891CC3FE28004A04AD /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F7A89C351CC3E61700EE7706 /* DrawCollabSizes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawCollabSizes.swift; sourceTree = "<group>"; };
 		F7A89C371CC3F43B00EE7706 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Main.strings; sourceTree = "<group>"; };
 		F7A89C381CC3F43B00EE7706 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		F7A89C391CC3F43B00EE7706 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		F7A89C3A1CC3F43C00EE7706 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Main.strings; sourceTree = "<group>"; };
 		F7A89C3C1CC3F47200EE7706 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Draw.storyboard; sourceTree = "<group>"; };
 		F7A89C3F1CC3F47600EE7706 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Draw.strings; sourceTree = "<group>"; };
 		F7A89C411CC3F48800EE7706 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Modals.storyboard; sourceTree = "<group>"; };
@@ -155,10 +146,10 @@
 			isa = PBXGroup;
 			children = (
 				F7BBF90A1CB3A8C100C0254B /* Main.storyboard */,
-				F757D3391CB6A36300B63B8D /* SearchPeople.storyboard */,
-				F757D33D1CB6A39300B63B8D /* Draw.storyboard */,
 				F7BBF90F1CB3A8C100C0254B /* LaunchScreen.storyboard */,
-				F76F69D81CB7EF690081CBE4 /* Modals.storyboard */,
+				F7A89C3D1CC3F47200EE7706 /* Draw.storyboard */,
+				F7A89C421CC3F48800EE7706 /* Modals.storyboard */,
+				F7A89C471CC3F4E900EE7706 /* SearchPeople.storyboard */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -278,11 +269,6 @@
 				F75AE1191CB4FE2B00836BE4 /* Extensions */,
 				F75AE1161CB4FDFE00836BE4 /* Views */,
 				F7BBF90D1CB3A8C100C0254B /* Assets.xcassets */,
-				F7A89C3D1CC3F47200EE7706 /* Draw.storyboard */,
-				F7A89C421CC3F48800EE7706 /* Modals.storyboard */,
-				F7A89C471CC3F4E900EE7706 /* SearchPeople.storyboard */,
-				F7002B821CBE277600A1F6EC /* LaunchScreen.storyboard */,
-				F7002B841CBE277600A1F6EC /* Main.storyboard */,
 				F727117C1CC3FBDB00F0FCE2 /* Info.plist */,
 				F7BBF9361CB3A99500C0254B /* Colors.plist */,
 			);
@@ -420,8 +406,6 @@
 				F78E90861CC3FE25004A04AD /* InfoPlist.strings in Resources */,
 				F7A89C3B1CC3F47200EE7706 /* Draw.storyboard in Resources */,
 				F7A89C401CC3F48800EE7706 /* Modals.storyboard in Resources */,
-				F7002B871CBE277600A1F6EC /* Main.storyboard in Resources */,
-				F7002B861CBE277600A1F6EC /* LaunchScreen.storyboard in Resources */,
 				F7A89C451CC3F4E900EE7706 /* SearchPeople.storyboard in Resources */,
 				F7A89C4C1CC3F5D900EE7706 /* Localizable.strings in Resources */,
 				F7BBF9371CB3A99500C0254B /* Colors.plist in Resources */,
@@ -549,24 +533,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		F7002B821CBE277600A1F6EC /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F7002B831CBE277600A1F6EC /* Base */,
-				F7A89C391CC3F43B00EE7706 /* sv */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		F7002B841CBE277600A1F6EC /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F7002B851CBE277600A1F6EC /* Base */,
-				F7A89C3A1CC3F43C00EE7706 /* sv */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		F727117C1CC3FBDB00F0FCE2 /* Info.plist */ = {
 			isa = PBXVariantGroup;
 			children = (

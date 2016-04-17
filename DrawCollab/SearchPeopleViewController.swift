@@ -205,6 +205,11 @@ class SearchPeopleViewController: UIViewController, SearchForMultiPeerHostDelega
         
     }
     
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+
+        return CGSize(width: appDelegate.sizes.canvasButtonWidth*1.5, height: appDelegate.sizes.canvasButtonWidth*1.5)
+    }
+    
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return appDelegate.mcManager.peers.count
     }
