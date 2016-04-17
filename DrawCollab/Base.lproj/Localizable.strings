@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  DrawCollab
+
+  Created by Felix Hedlund on 17/04/2016.
+  Copyright © 2016 Felix Hedlund. All rights reserved.
+*/
+
+"Press play to start drawing with friends..." = "Press play to start drawing with friends...";
+"Searching for nearby friends..." = "Searching for nearby friends...";

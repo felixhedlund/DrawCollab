@@ -48,6 +48,7 @@ class SearchPeopleViewController: UIViewController, SearchForMultiPeerHostDelega
         
         
         appDelegate.mcManager.setupPeerAndSessionWithDisplayNameAndImage(name)
+        appDelegate.mcManager.initializePartyTime()
         searchForPeersActivityIndicator.startAnimating()
         self.setCanvasConstraints()
         
@@ -66,7 +67,8 @@ class SearchPeopleViewController: UIViewController, SearchForMultiPeerHostDelega
         self.collectionView.reloadData()
         appDelegate.mcManager.currentPartyTime = 0
         appDelegate.mcManager.serviceType = "1canvas1"
-        appDelegate.mcManager.setupPeerAndSessionWithDisplayNameAndImage(name)
+        appDelegate.mcManager.initializePartyTime()
+        //appDelegate.mcManager.setupPeerAndSessionWithDisplayNameAndImage(name)
         
     }
     @IBAction func didPressCanvas2(sender: AnyObject) {
@@ -79,7 +81,8 @@ class SearchPeopleViewController: UIViewController, SearchForMultiPeerHostDelega
         self.collectionView.reloadData()
         appDelegate.mcManager.currentPartyTime = 1
         appDelegate.mcManager.serviceType = "2canvas2"
-        appDelegate.mcManager.setupPeerAndSessionWithDisplayNameAndImage(name)
+        appDelegate.mcManager.initializePartyTime()
+        //appDelegate.mcManager.setupPeerAndSessionWithDisplayNameAndImage(name)
     }
     @IBAction func didPressCanvas3(sender: AnyObject) {
         canvas2Marker.hidden = true
@@ -91,7 +94,8 @@ class SearchPeopleViewController: UIViewController, SearchForMultiPeerHostDelega
         self.collectionView.reloadData()
         appDelegate.mcManager.currentPartyTime = 2
         appDelegate.mcManager.serviceType = "3canvas3"
-        appDelegate.mcManager.setupPeerAndSessionWithDisplayNameAndImage(name)
+        appDelegate.mcManager.initializePartyTime()
+        //appDelegate.mcManager.setupPeerAndSessionWithDisplayNameAndImage(name)
     }
     @IBAction func didPressCanvas4(sender: AnyObject) {
         canvas2Marker.hidden = true
@@ -103,7 +107,8 @@ class SearchPeopleViewController: UIViewController, SearchForMultiPeerHostDelega
         self.collectionView.reloadData()
         appDelegate.mcManager.currentPartyTime = 3
         appDelegate.mcManager.serviceType = "4canvas4"
-        appDelegate.mcManager.setupPeerAndSessionWithDisplayNameAndImage(name)
+        appDelegate.mcManager.initializePartyTime()
+        //appDelegate.mcManager.setupPeerAndSessionWithDisplayNameAndImage(name)
     }
     
     private func setCanvasConstraints(){
@@ -189,9 +194,10 @@ class SearchPeopleViewController: UIViewController, SearchForMultiPeerHostDelega
         dispatch_async(dispatch_get_main_queue(),{
             
             if self.appDelegate.mcManager.peers.count > 0{
-                self.infoLabel.text = "Press play to start drawing with friends..."
+                
+                self.infoLabel.text = NSLocalizedString("Press play to start drawing with friends...", comment: "")
             }else{
-                self.infoLabel.text = "Searching for nearby friends..."
+                self.infoLabel.text = NSLocalizedString("Searching for nearby friends...", comment: "")
             }
             self.collectionView.reloadData()
             

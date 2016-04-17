@@ -1,0 +1,9 @@
+
+/* Class = "UILabel"; text = "Ditt smeknamn:"; ObjectID = "ICI-YC-vYl"; */
+"ICI-YC-vYl.text" = "Ditt smeknamn:";
+
+/* Class = "UITextField"; placeholder = "Välj ditt smeknamn..."; ObjectID = "O6l-Fb-6DD"; */
+"O6l-Fb-6DD.placeholder" = "Välj ditt smeknamn...";
+
+/* Class = "UILabel"; text = "Rita tillsammans!"; ObjectID = "VOi-iV-TMP"; */
+"VOi-iV-TMP.text" = "Vi Ritar!";

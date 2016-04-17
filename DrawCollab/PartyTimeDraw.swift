@@ -98,6 +98,11 @@ class PartyTimeDraw: NSObject, PLPartyTimeDelegate{
         
         return newImage
     }
+    
+    func initializePartyTime(){
+        partyTimes[currentPartyTime]!.delegate = self
+        partyTimes[currentPartyTime]!.joinParty()
+    }
 
     
     func setupPeerAndSessionWithDisplayNameAndImage(displayName: String){
@@ -108,17 +113,22 @@ class PartyTimeDraw: NSObject, PLPartyTimeDelegate{
         partyTimes.insert(PLPartyTime(serviceType: "3canvas3", displayName: displayName), atIndex: 2)
         partyTimes.insert(PLPartyTime(serviceType: "4canvas4", displayName: displayName), atIndex: 3)
         
-        partyTimes[currentPartyTime]!.delegate = self
-        partyTimes[currentPartyTime]!.joinParty()
+        
     }
     
+    
+    
     func disconnectFromParty(){
+        serviceType = "1canvas1"
+        currentPartyTime = 0
         if peers != nil{
             peers.removeAll()
         }
         
         for p in partyTimes{
-            p?.leaveParty()
+            if p?.connected == true{
+                p?.leaveParty()
+            }
         }
         
     }

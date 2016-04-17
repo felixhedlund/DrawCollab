@@ -1,0 +1,12 @@
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "IyI-cE-jxW"; */
+"IyI-cE-jxW.text" = "Label";
+
+/* Class = "UILabel"; text = "Profilnamn"; ObjectID = "KKG-Qs-Jjl"; */
+"KKG-Qs-Jjl.text" = "Profilnamn";
+
+/* Class = "UILabel"; text = "Letar efter vänner i närheten..."; ObjectID = "NFp-e0-Qsd"; */
+"NFp-e0-Qsd.text" = "Letar efter vänner i närheten...";
+
+/* Class = "UILabel"; text = "Välj samma målarduk som dina vänner.."; ObjectID = "hM7-eg-WWg"; */
+"hM7-eg-WWg.text" = "Välj samma målarduk som dina vänner..";
