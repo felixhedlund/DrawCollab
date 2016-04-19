@@ -34,6 +34,7 @@
 		F7BBF9351CB3A98D00C0254B /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BBF9341CB3A98D00C0254B /* ColorPickerViewController.swift */; };
 		F7BBF9371CB3A99500C0254B /* Colors.plist in Resources */ = {isa = PBXBuildFile; fileRef = F7BBF9361CB3A99500C0254B /* Colors.plist */; };
 		F7BBF9391CB3AE7700C0254B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BBF9381CB3AE7700C0254B /* Extensions.swift */; };
+		F7C3234E1CC6E448008C5055 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F7C3234D1CC6E448008C5055 /* Settings.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +97,7 @@
 		F7BBF9341CB3A98D00C0254B /* ColorPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
 		F7BBF9361CB3A99500C0254B /* Colors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Colors.plist; sourceTree = "<group>"; };
 		F7BBF9381CB3AE7700C0254B /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		F7C3234D1CC6E448008C5055 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -245,6 +247,7 @@
 				F7BBF9251CB3A8C200C0254B /* DrawCollabUITests */,
 				F7BBF9041CB3A8C100C0254B /* Products */,
 				F701CE7D1CB690DB007890A2 /* Pods */,
+				F7C3234B1CC6E239008C5055 /* Resources */,
 				97B6C9C7C19EC67B9DF69E7D /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -291,6 +294,15 @@
 				F7BBF9281CB3A8C200C0254B /* Info.plist */,
 			);
 			path = DrawCollabUITests;
+			sourceTree = "<group>";
+		};
+		F7C3234B1CC6E239008C5055 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F7C3234D1CC6E448008C5055 /* Settings.bundle */,
+			);
+			name = Resources;
+			path = DrawCollab;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -411,6 +423,7 @@
 				F7BBF9371CB3A99500C0254B /* Colors.plist in Resources */,
 				F7BBF9111CB3A8C100C0254B /* LaunchScreen.storyboard in Resources */,
 				F7BBF90E1CB3A8C100C0254B /* Assets.xcassets in Resources */,
+				F7C3234E1CC6E448008C5055 /* Settings.bundle in Resources */,
 				F7BBF90C1CB3A8C100C0254B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -699,7 +712,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = DrawCollab/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "se.tactel.-.DrawCollab";
+				PRODUCT_BUNDLE_IDENTIFIER = com.felixhedlund.DrawCollab;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -715,7 +728,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = DrawCollab/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "se.tactel.-.DrawCollab";
+				PRODUCT_BUNDLE_IDENTIFIER = com.felixhedlund.DrawCollab;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
