@@ -724,7 +724,7 @@
 				DEVELOPMENT_TEAM = NRNUQBB7ZW;
 				INFOPLIST_FILE = DrawCollab/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.felixhedlund.DrawCollab;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gingerapps.drawcollab;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 3.0;
@@ -743,7 +743,7 @@
 				DEVELOPMENT_TEAM = NRNUQBB7ZW;
 				INFOPLIST_FILE = DrawCollab/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.felixhedlund.DrawCollab;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gingerapps.drawcollab;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 3.0;
