@@ -39,20 +39,12 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
     
     
     var appDelegate: AppDelegate!
-    
-    
-    
-    //TO BE REMOVED
     var lastPoint: CGPoint?
-    
     var path = UIBezierPath()
     var pts: [CGPoint] = [CGPoint(x: 0, y: 0), CGPoint(x: 0, y: 0),CGPoint(x: 0, y: 0),CGPoint(x: 0, y: 0),CGPoint(x: 0, y: 0)]
     var ctr = 0
-    
     var lastBrushImagePoint: CGPoint?
     var mouseSwiped = false
-    
-
     var brushSize: Float = 20.0
     var erasorSize: Float = 30
     var brushImage = UIImage(named: "brush")
