@@ -42,8 +42,8 @@ class SearchPeopleViewController: UIViewController, SearchForMultiPeerHostDelega
     var hasChangedToBlack = false
     override func viewDidLoad() {
         super.viewDidLoad()
-        appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        appDelegate = UIApplication.shared.delegate as! AppDelegate
+        UINavigationBar.appearance().tintColor = UIColor.white
         navigationController?.setNavigationBarHidden(false, animated: true)
         
         
@@ -52,16 +52,16 @@ class SearchPeopleViewController: UIViewController, SearchForMultiPeerHostDelega
         searchForPeersActivityIndicator.startAnimating()
         self.setCanvasConstraints()
         
-        canvas2Marker.hidden = true
-        canvas3Marker.hidden = true
-        canvas4Marker.hidden = true
+        canvas2Marker.isHidden = true
+        canvas3Marker.isHidden = true
+        canvas4Marker.isHidden = true
     }
     
-    @IBAction func didPressCanvas1(sender: AnyObject) {
-        canvas2Marker.hidden = true
-        canvas3Marker.hidden = true
-        canvas4Marker.hidden = true
-        canvas1Marker.hidden = false
+    @IBAction func didPressCanvas1(_ sender: AnyObject) {
+        canvas2Marker.isHidden = true
+        canvas3Marker.isHidden = true
+        canvas4Marker.isHidden = true
+        canvas1Marker.isHidden = false
         appDelegate.mcManager.disconnectFromParty()
         appDelegate.mcManager.peers.removeAll()
         self.collectionView.reloadData()
@@ -71,11 +71,11 @@ class SearchPeopleViewController: UIViewController, SearchForMultiPeerHostDelega
         //appDelegate.mcManager.setupPeerAndSessionWithDisplayNameAndImage(name)
         
     }
-    @IBAction func didPressCanvas2(sender: AnyObject) {
-        canvas1Marker.hidden = true
-        canvas3Marker.hidden = true
-        canvas4Marker.hidden = true
-        canvas2Marker.hidden = false
+    @IBAction func didPressCanvas2(_ sender: AnyObject) {
+        canvas1Marker.isHidden = true
+        canvas3Marker.isHidden = true
+        canvas4Marker.isHidden = true
+        canvas2Marker.isHidden = false
         appDelegate.mcManager.disconnectFromParty()
         appDelegate.mcManager.peers.removeAll()
         self.collectionView.reloadData()
@@ -84,11 +84,11 @@ class SearchPeopleViewController: UIViewController, SearchForMultiPeerHostDelega
         appDelegate.mcManager.initializePartyTime()
         //appDelegate.mcManager.setupPeerAndSessionWithDisplayNameAndImage(name)
     }
-    @IBAction func didPressCanvas3(sender: AnyObject) {
-        canvas2Marker.hidden = true
-        canvas1Marker.hidden = true
-        canvas4Marker.hidden = true
-        canvas3Marker.hidden = false
+    @IBAction func didPressCanvas3(_ sender: AnyObject) {
+        canvas2Marker.isHidden = true
+        canvas1Marker.isHidden = true
+        canvas4Marker.isHidden = true
+        canvas3Marker.isHidden = false
         appDelegate.mcManager.disconnectFromParty()
         appDelegate.mcManager.peers.removeAll()
         self.collectionView.reloadData()
@@ -97,11 +97,11 @@ class SearchPeopleViewController: UIViewController, SearchForMultiPeerHostDelega
         appDelegate.mcManager.initializePartyTime()
         //appDelegate.mcManager.setupPeerAndSessionWithDisplayNameAndImage(name)
     }
-    @IBAction func didPressCanvas4(sender: AnyObject) {
-        canvas2Marker.hidden = true
-        canvas3Marker.hidden = true
-        canvas1Marker.hidden = true
-        canvas4Marker.hidden = false
+    @IBAction func didPressCanvas4(_ sender: AnyObject) {
+        canvas2Marker.isHidden = true
+        canvas3Marker.isHidden = true
+        canvas1Marker.isHidden = true
+        canvas4Marker.isHidden = false
         appDelegate.mcManager.disconnectFromParty()
         appDelegate.mcManager.peers.removeAll()
         self.collectionView.reloadData()
@@ -111,57 +111,57 @@ class SearchPeopleViewController: UIViewController, SearchForMultiPeerHostDelega
         //appDelegate.mcManager.setupPeerAndSessionWithDisplayNameAndImage(name)
     }
     
-    private func setCanvasConstraints(){
+    fileprivate func setCanvasConstraints(){
         let size = appDelegate.sizes.canvasButtonWidth
-        canvas1WidthConstraint.constant = size
-        canvas2WidthConstraint.constant = size
-        canvas3WidthConstraint.constant = size
-        canvas4WidthConstraint.constant = size
+        canvas1WidthConstraint.constant = size!
+        canvas2WidthConstraint.constant = size!
+        canvas3WidthConstraint.constant = size!
+        canvas4WidthConstraint.constant = size!
         profileWidthConstraint.constant = appDelegate.sizes.welcomeButtonsWidth
         
     }
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         appDelegate.mcManager.delegate = self
         self.setupHost()
         self.peersChanged()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.rotated), name: UIDeviceOrientationDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
     }
     
     func rotated(){
-        dispatch_async(dispatch_get_main_queue(),{
+        DispatchQueue.main.async(execute: {
             self.collectionView.reloadData()
         })
     }
     
-    func setupWithHostNameColor(name: String){
+    func setupWithHostNameColor(_ name: String){
         self.name = name
     }
     
-    private func setupHost(){
+    fileprivate func setupHost(){
         hostNameLabel.text = name
         let color = UIColor(red: appDelegate.mcManager.redColor, green: appDelegate.mcManager.greenColor, blue: appDelegate.mcManager.blueColor, alpha: 1)
         self.profileCircle.image = profileCircle.image?.maskWithColor(color)
         checkBlack(color)
     }
-    private func checkBlack(color: UIColor){
-        let colors = CGColorGetComponents(color.CGColor)
+    fileprivate func checkBlack(_ color: UIColor){
+        let colors = color.cgColor.components
         
-        if colors[0] == 0.0 && colors[1] == 0.0 && colors[2] == 0.0 && !hasChangedToBlack{
-            profileImage.image = profileImage.image?.maskWithColor(UIColor.whiteColor())
+        if colors?[0] == 0.0 && colors?[1] == 0.0 && colors?[2] == 0.0 && !hasChangedToBlack{
+            profileImage.image = profileImage.image?.maskWithColor(UIColor.white)
             hasChangedToBlack = true
         }else{
             if hasChangedToBlack{
-                profileImage.image =  profileImage.image?.maskWithColor(UIColor.blackColor())
+                profileImage.image =  profileImage.image?.maskWithColor(UIColor.black)
                 hasChangedToBlack = false
             }
         }
     }
     
-    @IBAction func didPressStartGame(sender: AnyObject) {
+    @IBAction func didPressStartGame(_ sender: AnyObject) {
         appDelegate.mcManager.sendStartGameRequest()
         
-        let drawController = UIStoryboard(name: "Draw", bundle: nil).instantiateViewControllerWithIdentifier("Draw") as! DrawNavigationViewController
-        self.presentViewController(drawController, animated: true, completion: nil)
+        let drawController = UIStoryboard(name: "Draw", bundle: nil).instantiateViewController(withIdentifier: "Draw") as! DrawNavigationViewController
+        self.present(drawController, animated: true, completion: nil)
         //self.navigationController?.pushViewController(drawController, animated: true)
         
     }
@@ -170,12 +170,12 @@ class SearchPeopleViewController: UIViewController, SearchForMultiPeerHostDelega
         //
     }
     
-    func imageWasReceived(image: UIImage, peer: Peer){
+    func imageWasReceived(_ image: UIImage, peer: Peer){
         if let mainImage = self.appDelegate.mcManager.lastMainDrawImage{
-            dispatch_async(dispatch_get_main_queue(),{
+            DispatchQueue.main.async(execute: {
                 UIGraphicsBeginImageContext(mainImage.size)
-                mainImage.drawInRect(CGRectMake(0, 0, mainImage.size.width, mainImage.size.height), blendMode: CGBlendMode.Normal, alpha: 1)
-                image.drawInRect(CGRectMake(0, 0, mainImage.size.width, mainImage.size.height), blendMode: CGBlendMode.Normal, alpha: CGFloat(peer.opacity))
+                mainImage.draw(in: CGRect(x: 0, y: 0, width: mainImage.size.width, height: mainImage.size.height), blendMode: CGBlendMode.normal, alpha: 1)
+                image.draw(in: CGRect(x: 0, y: 0, width: mainImage.size.width, height: mainImage.size.height), blendMode: CGBlendMode.normal, alpha: CGFloat(peer.opacity))
                 self.appDelegate.mcManager.lastMainDrawImage = UIGraphicsGetImageFromCurrentImageContext()
                 UIGraphicsEndImageContext()
             })
@@ -183,15 +183,15 @@ class SearchPeopleViewController: UIViewController, SearchForMultiPeerHostDelega
     }
     
     func startGameWasReceived() {
-        dispatch_async(dispatch_get_main_queue(),{
-            let drawController = UIStoryboard(name: "Draw", bundle: nil).instantiateViewControllerWithIdentifier("Draw") as! DrawNavigationViewController
-            self.presentViewController(drawController, animated: true, completion: nil)
+        DispatchQueue.main.async(execute: {
+            let drawController = UIStoryboard(name: "Draw", bundle: nil).instantiateViewController(withIdentifier: "Draw") as! DrawNavigationViewController
+            self.present(drawController, animated: true, completion: nil)
         })
     }
     
     
     func peersChanged() {
-        dispatch_async(dispatch_get_main_queue(),{
+        DispatchQueue.main.async(execute: {
             
             if self.appDelegate.mcManager.peers.count > 0{
                 
@@ -205,20 +205,20 @@ class SearchPeopleViewController: UIViewController, SearchForMultiPeerHostDelega
         
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
 
         return CGSize(width: appDelegate.sizes.canvasButtonWidth*1.5, height: appDelegate.sizes.canvasButtonWidth*1.5)
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return appDelegate.mcManager.peers.count
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("connectionCell", forIndexPath: indexPath) as! ConnectionCollectionViewCell
-        let peer = appDelegate.mcManager.peers[indexPath.row]
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "connectionCell", for: indexPath) as! ConnectionCollectionViewCell
+        let peer = appDelegate.mcManager.peers[(indexPath as NSIndexPath).row]
         let color = peer.color
-        cell.setupConnectionCell(indexPath.row, profileColor: color, profileName: peer.displayName, state: peer.state, isInGame: false, delegate: self)
+        cell.setupConnectionCell(indexPath.row, profileColor: color!, profileName: peer.displayName, state: peer.state, isInGame: false, delegate: self)
         return cell
     }
 
@@ -227,8 +227,8 @@ class SearchPeopleViewController: UIViewController, SearchForMultiPeerHostDelega
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewDidDisappear(animated: Bool) {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+    override func viewDidDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
     }
 
     /*

@@ -21,11 +21,11 @@ class DrawCollabNavigationViewController: UINavigationController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func overrideTraitCollectionForChildViewController(childViewController: UIViewController) -> UITraitCollection? {
+    override func overrideTraitCollection(forChildViewController childViewController: UIViewController) -> UITraitCollection? {
         if view.bounds.width < view.bounds.height {
-            return UITraitCollection(horizontalSizeClass: .Compact)
+            return UITraitCollection(horizontalSizeClass: .compact)
         } else {
-            return UITraitCollection(horizontalSizeClass: .Regular)
+            return UITraitCollection(horizontalSizeClass: .regular)
         }
     }
     

@@ -23,7 +23,7 @@ class ConnectionCollectionViewCell: UICollectionViewCell {
     var state: MCSessionState!
     var isInGame: Bool!
     var hasSetProfileImage = false
-    func setupConnectionCell(row: Int, profileColor: UIColor, profileName: String, state: MCSessionState, isInGame: Bool, delegate: UIViewController){
+    func setupConnectionCell(_ row: Int, profileColor: UIColor, profileName: String, state: MCSessionState, isInGame: Bool, delegate: UIViewController){
         self.delegate = delegate
         self.state = state
         self.row = row
@@ -35,54 +35,54 @@ class ConnectionCollectionViewCell: UICollectionViewCell {
         }
         self.profileName.text = profileName
         switch state{
-        case MCSessionState.Connected:
+        case MCSessionState.connected:
             statusImage.image = UIImage(named: "added")
-        case MCSessionState.Connecting:
+        case MCSessionState.connecting:
             statusImage.image = UIImage(named: "TimeGlass")
-        case MCSessionState.NotConnected:
+        case MCSessionState.notConnected:
             if isInGame{
                 statusImage.image = UIImage(named: "disconnected")
             }else{
                 statusImage.image = UIImage(named: "add")
             }
         }
-        statusImage.hidden = false
+        statusImage.isHidden = false
         checkBlack(profileColor)
         
     }
     
-    func setupCurrentProfileCell(row: Int, profileColor: UIColor, profileName: String){
+    func setupCurrentProfileCell(_ row: Int, profileColor: UIColor, profileName: String){
         
         
         self.row = row
         self.profileName.text = profileName
         if hasSetProfileImage{
-            profileButton.setImage(profileButton.imageView!.image!.maskWithColor(profileColor), forState: .Normal)
+            profileButton.setImage(profileButton.imageView!.image!.maskWithColor(profileColor), for: UIControlState())
         }else{
             setProfileCircleWithColor(profileColor)
         }
-        statusImage.hidden = true
+        statusImage.isHidden = true
         checkBlack(profileColor)
     }
-    private func setProfileCircleWithColor(color: UIColor){
+    fileprivate func setProfileCircleWithColor(_ color: UIColor){
         var image = UIImage(named: "whiteCircle")
         image = image!.maskWithColor(color)
-        profileButton.setImage(image, forState: .Normal)
+        profileButton.setImage(image, for: UIControlState())
         hasSetProfileImage = true
     }
     
-    private func checkBlack(color: UIColor){
-        let colors = CGColorGetComponents(color.CGColor)
+    fileprivate func checkBlack(_ color: UIColor){
+        let colors = color.cgColor.components
         
-        if colors[0] == 0.0 && colors[1] == 0.0 && colors[2] == 0.0{
-            profileImage.image = profileImage.image?.maskWithColor(UIColor.whiteColor())
+        if colors?[0] == 0.0 && colors?[1] == 0.0 && colors?[2] == 0.0{
+            profileImage.image = profileImage.image?.maskWithColor(UIColor.white)
         }else{
-            profileImage.image =  profileImage.image?.maskWithColor(UIColor.blackColor())
+            profileImage.image =  profileImage.image?.maskWithColor(UIColor.black)
         }
     }
     
     
-    @IBAction func didPressProfile(sender: AnyObject) {
+    @IBAction func didPressProfile(_ sender: AnyObject) {
 //        if !isInGame{
 //            if state == MCSessionState.NotConnected{
 //                (UIApplication.sharedApplication().delegate as! AppDelegate).mcManager.sendJoinRequest(row)

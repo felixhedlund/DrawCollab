@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ErasorPickerDelegate{
-    func erasorSizeWasPicked(erasorSize: Float)
+    func erasorSizeWasPicked(_ erasorSize: Float)
 }
 
 class ErasorPickerViewController: UIViewController {
@@ -22,20 +22,20 @@ class ErasorPickerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         erasorView.layer.borderWidth = 1
-        erasorView.layer.borderColor = UIColor.blackColor().CGColor
+        erasorView.layer.borderColor = UIColor.black.cgColor
         erasorWidth.constant = CGFloat(previousSize)
         slider.value = previousSize
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func brushSizeSliderValueChanged(sender: UISlider) {
+    @IBAction func brushSizeSliderValueChanged(_ sender: UISlider) {
         let size = sender.value
         previousSize = size
         erasorWidth.constant = CGFloat(size)
         self.delegate.erasorSizeWasPicked(size)
     }
-    @IBAction func sliderDidChange(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func sliderDidChange(_ sender: AnyObject) {
+        self.dismiss(animated: true, completion: nil)
     }
 
 

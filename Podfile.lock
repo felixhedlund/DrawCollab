@@ -1,13 +1,25 @@
 PODS:
-  - IQKeyboardManagerSwift (4.0.1)
+  - IQKeyboardManagerSwift (4.0.4)
   - PartyTime (1.0.2)
 
 DEPENDENCIES:
-  - IQKeyboardManagerSwift
+  - IQKeyboardManagerSwift (from `https://github.com/hackiftekhar/IQKeyboardManager.git`, branch `swift3`)
   - PartyTime
 
+EXTERNAL SOURCES:
+  IQKeyboardManagerSwift:
+    :branch: swift3
+    :git: https://github.com/hackiftekhar/IQKeyboardManager.git
+
+CHECKOUT OPTIONS:
+  IQKeyboardManagerSwift:
+    :commit: d27180d877c8d36d5be80ee9d8c24d184ac26081
+    :git: https://github.com/hackiftekhar/IQKeyboardManager.git
+
 SPEC CHECKSUMS:
-  IQKeyboardManagerSwift: e92246955e21dad73ad9dc89b80adb134d8bb395
+  IQKeyboardManagerSwift: e0964d04d6a29b71016fd346dca13ecb80a2823a
   PartyTime: d82316f8e44cfebd7ec630203f5611fd47e05083
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 166da3132e293b3ccff6dd1827b2efe64bb9ff28
+
+COCOAPODS: 1.0.1

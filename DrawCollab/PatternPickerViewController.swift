@@ -34,13 +34,13 @@ class PatternPickerViewController: UIViewController, UICollectionViewDelegate, U
         self.collectionView.reloadData()
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 3
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("pattern", forIndexPath: indexPath) as! PatternCollectionViewCell
-        cell.setupPatternCell(indexPath.row, parent: self)
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "pattern", for: indexPath) as! PatternCollectionViewCell
+        cell.setupPatternCell((indexPath as NSIndexPath).row, parent: self)
         return cell
     }
     /*

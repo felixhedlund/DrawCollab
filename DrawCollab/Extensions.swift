@@ -29,35 +29,35 @@ extension UIColor{
 }
 
 extension UIImage {
-    func maskWithColor(color: UIColor) -> UIImage {
+    func maskWithColor(_ color: UIColor) -> UIImage {
         
-        let maskImage = self.CGImage
+        let maskImage = self.cgImage
         let width = self.size.width
         let height = self.size.height
-        let bounds = CGRectMake(0, 0, width, height)
+        let bounds = CGRect(x: 0, y: 0, width: width, height: height)
         
         let colorSpace = CGColorSpaceCreateDeviceRGB()
-        let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.PremultipliedLast.rawValue)
-        let bitmapContext = CGBitmapContextCreate(nil, Int(width), Int(height), 8, 0, colorSpace, bitmapInfo.rawValue)
+        let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
+        let bitmapContext = CGContext(data: nil, width: Int(width), height: Int(height), bitsPerComponent: 8, bytesPerRow: 0, space: colorSpace, bitmapInfo: bitmapInfo.rawValue)
         
-        CGContextClipToMask(bitmapContext, bounds, maskImage)
-        CGContextSetFillColorWithColor(bitmapContext, color.CGColor)
-        CGContextFillRect(bitmapContext, bounds)
+        bitmapContext?.clip(to: bounds, mask: maskImage!)
+        bitmapContext?.setFillColor(color.cgColor)
+        bitmapContext?.fill(bounds)
         
-        let cImage = CGBitmapContextCreateImage(bitmapContext)
-        let coloredImage = UIImage(CGImage: cImage!)
+        let cImage = bitmapContext?.makeImage()
+        let coloredImage = UIImage(cgImage: cImage!)
         
         return coloredImage
     }
     
-    class func roundedRectImageFromImage(image:UIImage,imageSize:CGSize,cornerRadius:CGFloat)->UIImage{
+    class func roundedRectImageFromImage(_ image:UIImage,imageSize:CGSize,cornerRadius:CGFloat)->UIImage{
         UIGraphicsBeginImageContextWithOptions(imageSize,false,0.0)
-        let bounds=CGRect(origin: CGPointZero, size: imageSize)
+        let bounds=CGRect(origin: CGPoint.zero, size: imageSize)
         UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius).addClip()
-        image.drawInRect(bounds)
+        image.draw(in: bounds)
         let finalImage=UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return finalImage
+        return finalImage!
     }
 }
 

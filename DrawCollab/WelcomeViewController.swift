@@ -28,18 +28,18 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
     var hasChangedToBlack = false
     override func viewDidLoad() {
         super.viewDidLoad()
-        appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
+        appDelegate = UIApplication.shared.delegate as! AppDelegate
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
         self.navigationController?.setNeedsStatusBarAppearanceUpdate()
 
-        let userDefaults = NSUserDefaults.standardUserDefaults()
+        let userDefaults = UserDefaults.standard
         generateRandomProfileColor()
-        if let name = userDefaults.stringForKey("HostName"){
+        if let name = userDefaults.string(forKey: "HostName"){
             nicknameTextField.text = name
         }else{
-            let name = UIDevice.currentDevice().name
+            let name = UIDevice.current.name
             nicknameTextField.text = name
-            userDefaults.setObject(name, forKey: "HostName")
+            userDefaults.set(name, forKey: "HostName")
             userDefaults.synchronize()
         }
         imageButtonWidthConstraint.constant = appDelegate.sizes.welcomeButtonsWidth
@@ -58,7 +58,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
         changeProfileColor(randomColor)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: false)
         UINavigationBar.appearance().tintColor = UIColor(red: 0, green: 122/255, blue: 255/255, alpha: 1)
         appDelegate.mcManager.disconnectFromParty()
@@ -69,30 +69,30 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    func changeProfileColor(color: UIColor){
+    func changeProfileColor(_ color: UIColor){
         if !hasSetButtonImage{
             var image = UIImage(named: "whiteCircle")
             image = image!.maskWithColor(color)
-            imageButton.setImage(image, forState: .Normal)
+            imageButton.setImage(image, for: UIControlState())
             hasSetButtonImage = true
         }else{
-            imageButton.setImage(imageButton.imageView!.image!.maskWithColor(color), forState: .Normal)
+            imageButton.setImage(imageButton.imageView!.image!.maskWithColor(color), for: UIControlState())
         }
-        let colors = CGColorGetComponents(color.CGColor)
+        let colors = color.cgColor.components
         
-        if colors[0] == 0.0 && colors[1] == 0.0 && colors[2] == 0.0 && !hasChangedToBlack{
-            profileImage.image = profileImage.image?.maskWithColor(UIColor.whiteColor())
+        if colors?[0] == 0.0 && colors?[1] == 0.0 && colors?[2] == 0.0 && !hasChangedToBlack{
+            profileImage.image = profileImage.image?.maskWithColor(UIColor.white)
             hasChangedToBlack = true
         }else{
             if hasChangedToBlack{
-                profileImage.image =  profileImage.image?.maskWithColor(UIColor.blackColor())
+                profileImage.image =  profileImage.image?.maskWithColor(UIColor.black)
                 hasChangedToBlack = false
             }
         }
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return UIStatusBarStyle.lightContent
     }
 
     override func didReceiveMemoryWarning() {
@@ -101,45 +101,45 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
     }
 
     
-    @IBAction func didPressImageButton(sender: AnyObject) {
+    @IBAction func didPressImageButton(_ sender: AnyObject) {
         self.generateRandomProfileColor()
     }
     
 
-    @IBAction func didPressSearchPeople(sender: AnyObject) {
+    @IBAction func didPressSearchPeople(_ sender: AnyObject) {
         if let name = nicknameTextField.text{
             if name.characters.count > 0{
-                let hostController = UIStoryboard(name: "SearchPeople", bundle: nil).instantiateViewControllerWithIdentifier("SearchPeople") as! SearchPeopleViewController
+                let hostController = UIStoryboard(name: "SearchPeople", bundle: nil).instantiateViewController(withIdentifier: "SearchPeople") as! SearchPeopleViewController
                 hostController.setupWithHostNameColor(name)
                 self.navigationController?.pushViewController(hostController, animated: true)
             }
         }
     }
     
-    @IBAction func didTapView(sender: AnyObject) {
-        if self.nicknameTextField.isFirstResponder(){
+    @IBAction func didTapView(_ sender: AnyObject) {
+        if self.nicknameTextField.isFirstResponder{
             hideKeyboard()
         }
     }
     
-    func textFieldDidBeginEditing(textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         
     }
     
-    func textFieldDidEndEditing(textField: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         if let text = nicknameTextField.text{
-            let userDefaults = NSUserDefaults.standardUserDefaults()
-            userDefaults.setObject(text, forKey: "HostName")
+            let userDefaults = UserDefaults.standard
+            userDefaults.set(text, forKey: "HostName")
             userDefaults.synchronize()
         }
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         return true
     }
     
     
-    private func hideKeyboard(){
+    fileprivate func hideKeyboard(){
         self.view.endEditing(true)
     }
     

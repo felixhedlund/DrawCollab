@@ -46,7 +46,7 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
     var lastPoint: CGPoint?
     
     var path = UIBezierPath()
-    var pts: [CGPoint] = [CGPointMake(0, 0), CGPointMake(0, 0),CGPointMake(0, 0),CGPointMake(0, 0),CGPointMake(0, 0)]
+    var pts: [CGPoint] = [CGPoint(x: 0, y: 0), CGPoint(x: 0, y: 0),CGPoint(x: 0, y: 0),CGPoint(x: 0, y: 0),CGPoint(x: 0, y: 0)]
     var ctr = 0
     
     var lastBrushImagePoint: CGPoint?
@@ -61,12 +61,12 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate = UIApplication.shared.delegate as! AppDelegate
 
         self.setNeedsStatusBarAppearanceUpdate()
         
         let penImage = UIImage(named: "pencil")
-        self.penButton.setImage(penImage!.maskWithColor(UIColor(red: self.appDelegate.mcManager.redColor, green: appDelegate.mcManager.greenColor, blue: appDelegate.mcManager.blueColor, alpha: appDelegate.mcManager.opacity)), forState: .Normal)
+        self.penButton.setImage(penImage!.maskWithColor(UIColor(red: self.appDelegate.mcManager.redColor, green: appDelegate.mcManager.greenColor, blue: appDelegate.mcManager.blueColor, alpha: appDelegate.mcManager.opacity)), for: UIControlState())
         //self.didPressPen(penButton)
         penButtonIsEnabled = true
         penMarker.backgroundColor = UIColor(white: 1, alpha: 0.50)
@@ -75,9 +75,9 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
         
         setPatternImage()
         
-        self.view.bringSubviewToFront(brushImageView)
+        self.view.bringSubview(toFront: brushImageView)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.rotated), name: UIDeviceOrientationDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
 
         if let image = self.appDelegate.mcManager.lastMainDrawImage{
             self.mainImage.image = image
@@ -96,19 +96,19 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
     func rotated()
     {
         
-        dispatch_async(dispatch_get_main_queue(),{
+        DispatchQueue.main.async(execute: {
             self.collectionView.reloadData()
         })
         
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         self.view.layoutSubviews()
         appDelegate.mcManager.delegate = self
 
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         //self.appDelegate.mcManager.lastMainDrawImage = mainImage.image
     }
     
@@ -121,8 +121,8 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
     
     func setPatternImage(){
         if appDelegate.mcManager.patternNumber == 0{
-            patternImage.hidden = true
-            patternButtonImage.hidden = true
+            patternImage.isHidden = true
+            patternButtonImage.isHidden = true
         }else{
             switch appDelegate.mcManager.patternNumber{
             case 1:
@@ -135,8 +135,8 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
                 patternImage.image = UIImage(named: patternImages[0])
                 patternButtonImage.image = UIImage(named: patternButtonImages[0])
             }
-            patternImage.hidden = false
-            patternButtonImage.hidden = false
+            patternImage.isHidden = false
+            patternButtonImage.isHidden = false
         }
     }
     
@@ -146,7 +146,7 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
     
     func peersChanged(){
         setPatternImage()
-        dispatch_async(dispatch_get_main_queue(),{
+        DispatchQueue.main.async(execute: {
             self.collectionView.reloadData()
         })
         
@@ -157,18 +157,18 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
     func startGameWasReceived() {
         
     }
-    func imageWasReceived(image: UIImage, peer: Peer){
-        dispatch_async(dispatch_get_main_queue(),{
+    func imageWasReceived(_ image: UIImage, peer: Peer){
+        DispatchQueue.main.async(execute: {
             UIGraphicsBeginImageContext(self.mainImage.frame.size)
-            self.mainImage.image?.drawInRect(CGRectMake(0, 0, self.background.frame.size.width, self.background.frame.size.height), blendMode: CGBlendMode.Normal, alpha: 1)
-            image.drawInRect(CGRectMake(0, 0, self.background.frame.size.width, self.background.frame.size.height), blendMode: CGBlendMode.Normal, alpha: CGFloat(peer.opacity))
+            self.mainImage.image?.draw(in: CGRect(x: 0, y: 0, width: self.background.frame.size.width, height: self.background.frame.size.height), blendMode: CGBlendMode.normal, alpha: 1)
+            image.draw(in: CGRect(x: 0, y: 0, width: self.background.frame.size.width, height: self.background.frame.size.height), blendMode: CGBlendMode.normal, alpha: CGFloat(peer.opacity))
             self.mainImage.image = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
             self.appDelegate.mcManager.lastMainDrawImage = self.mainImage.image
         })
         
     }
-    func stringWasReceived(receivedString: NSString){
+    func stringWasReceived(_ receivedString: NSString){
         print("String was received inGame: \(receivedString)")
     }
     
@@ -177,7 +177,7 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
         // Dispose of any resources that can be recreated.
     }
     
-    private func setBrushImageViewPosition(){
+    fileprivate func setBrushImageViewPosition(){
         if let point = lastBrushImagePoint{
             //brushImageView.center = point
             brushLeading.constant = -20 + point.x - brushImageView.frame.size.width/2
@@ -192,7 +192,7 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
     }
     
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if !penButtonIsEnabled{
             brushImage = UIImage(named: "square")
             brushImageView.image = brushImage
@@ -209,9 +209,9 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
         brushImageView.alpha = CGFloat(appDelegate.mcManager.opacity)
         mouseSwiped = false
         let touch = touches.first
-        lastPoint = touch?.locationInView(self.background)
+        lastPoint = touch?.location(in: self.background)
         pts[0] = lastPoint!
-        lastBrushImagePoint = touch?.locationInView(self.view)
+        lastBrushImagePoint = touch?.location(in: self.view)
         setBrushImageViewPosition()
     }
     
@@ -219,7 +219,7 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
     
     
     
-    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         if penButtonIsEnabled{
             self.movePencil(touches, withEvent: event)
         }else{
@@ -227,38 +227,42 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
         }
     }
     
-    private func movePencil(touches: Set<UITouch>, withEvent event: UIEvent?){
+    fileprivate func movePencil(_ touches: Set<UITouch>, withEvent event: UIEvent?){
         mouseSwiped = true
         if let touch = touches.first{
             ctr += 1
-            pts[ctr] = touch.locationInView(self.background)
+            pts[ctr] = touch.location(in: self.background)
             lastPoint = pts[ctr]
             if ctr == 4{
                 //let currentPoint = touch.locationInView(self.background)
                 UIGraphicsBeginImageContext(self.background.frame.size)
-                self.drawImage.image?.drawInRect(CGRect(x: 0, y: 0, width: self.background.frame.size.width, height: self.background.frame.size.height))
+                self.drawImage.image?.draw(in: CGRect(x: 0, y: 0, width: self.background.frame.size.width, height: self.background.frame.size.height))
                 
-                pts[3] = CGPointMake((pts[2].x + pts[4].x)/2.0, (pts[2].y + pts[4].y)/2.0)
+                pts[3] = CGPoint(x: (pts[2].x + pts[4].x)/2.0, y: (pts[2].y + pts[4].y)/2.0)
                 
-                CGContextMoveToPoint(UIGraphicsGetCurrentContext(), pts[0].x, pts[0].y)
-                CGContextAddCurveToPoint(UIGraphicsGetCurrentContext(), pts[1].x, pts[1].y, pts[2].x, pts[2].y, pts[3].x, pts[3].y)
+                let currentContext = UIGraphicsGetCurrentContext()
+                
+                currentContext?.move(to: CGPoint(x: pts[0].x, y: pts[0].y))
+                
+                currentContext?.addCurve(to: CGPoint(x: pts[3].x, y: pts[3].y), control1: CGPoint(x: pts[1].x, y: pts[1].y), control2: CGPoint(x: pts[2].x, y: pts[2].y))
+//                CGContextAddCurveToPoint(UIGraphicsGetCurrentContext(), pts[1].x, pts[1].y, pts[2].x, pts[2].y, pts[3].x, pts[3].y)
                 //CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), currentPoint.x, currentPoint.y)
                 if !penButtonIsEnabled{
-                    CGContextSetLineCap(UIGraphicsGetCurrentContext(), CGLineCap.Square)
-                    CGContextSetLineWidth(UIGraphicsGetCurrentContext(), CGFloat(erasorSize))
+                    currentContext?.setLineCap(CGLineCap.square)
+                    currentContext?.setLineWidth(CGFloat(erasorSize))
                 }else{
-                    CGContextSetLineCap(UIGraphicsGetCurrentContext(), CGLineCap.Round)
-                    CGContextSetLineWidth(UIGraphicsGetCurrentContext(), CGFloat(brushSize))
+                    currentContext?.setLineCap(CGLineCap.round)
+                    currentContext?.setLineWidth(CGFloat(brushSize))
                 }
                 
                 
                 if !penButtonIsEnabled{
-                    CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), 1, 1, 1, 1)
+                    currentContext?.setStrokeColor(red: 1, green: 1, blue: 1, alpha: 1)
                 }else{
-                    CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), appDelegate.mcManager.redColor, appDelegate.mcManager.greenColor, appDelegate.mcManager.blueColor, 1)
+                    currentContext?.setStrokeColor(red: appDelegate.mcManager.redColor, green: appDelegate.mcManager.greenColor, blue: appDelegate.mcManager.blueColor, alpha: 1)
                 }
-                CGContextSetBlendMode(UIGraphicsGetCurrentContext(), CGBlendMode.Normal)
-                CGContextStrokePath(UIGraphicsGetCurrentContext())
+                currentContext?.setBlendMode(CGBlendMode.normal)
+                currentContext?.strokePath()
                 self.drawImage.image = UIGraphicsGetImageFromCurrentImageContext()
                 if !penButtonIsEnabled{
                     self.drawImage.alpha = 1.0
@@ -271,38 +275,38 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
                 pts[1] = pts[4]
                 ctr = 1
                 
-                lastBrushImagePoint = touch.locationInView(self.view)
+                lastBrushImagePoint = touch.location(in: self.view)
                 setBrushImageViewPosition()
             }
         }
     }
     
-    private func moveErasor(touches: Set<UITouch>, withEvent event: UIEvent?){
+    fileprivate func moveErasor(_ touches: Set<UITouch>, withEvent event: UIEvent?){
         mouseSwiped = true
         if let touch = touches.first{
             if let last = lastPoint{
-                let currentPoint = touch.locationInView(self.background)
+                let currentPoint = touch.location(in: self.background)
                 UIGraphicsBeginImageContext(self.background.frame.size)
-                self.drawImage.image?.drawInRect(CGRect(x: 0, y: 0, width: self.background.frame.size.width, height: self.background.frame.size.height))
+                self.drawImage.image?.draw(in: CGRect(x: 0, y: 0, width: self.background.frame.size.width, height: self.background.frame.size.height))
                 
-                CGContextMoveToPoint(UIGraphicsGetCurrentContext(), last.x, last.y)
-                CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), currentPoint.x, currentPoint.y)
+                UIGraphicsGetCurrentContext()?.move(to: CGPoint(x: last.x, y: last.y))
+                UIGraphicsGetCurrentContext()?.addLine(to: CGPoint(x: currentPoint.x, y: currentPoint.y))
                 if !penButtonIsEnabled{
-                    CGContextSetLineCap(UIGraphicsGetCurrentContext(), CGLineCap.Square)
-                    CGContextSetLineWidth(UIGraphicsGetCurrentContext(), CGFloat(erasorSize))
+                    UIGraphicsGetCurrentContext()?.setLineCap(CGLineCap.square)
+                    UIGraphicsGetCurrentContext()?.setLineWidth(CGFloat(erasorSize))
                 }else{
-                    CGContextSetLineCap(UIGraphicsGetCurrentContext(), CGLineCap.Round)
-                    CGContextSetLineWidth(UIGraphicsGetCurrentContext(), CGFloat(brushSize))
+                    UIGraphicsGetCurrentContext()?.setLineCap(CGLineCap.round)
+                    UIGraphicsGetCurrentContext()?.setLineWidth(CGFloat(brushSize))
                 }
                 
                 
                 if !penButtonIsEnabled{
-                    CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), 1, 1, 1, 1)
+                    UIGraphicsGetCurrentContext()?.setStrokeColor(red: 1, green: 1, blue: 1, alpha: 1)
                 }else{
-                    CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), appDelegate.mcManager.redColor, appDelegate.mcManager.greenColor, appDelegate.mcManager.blueColor, 1)
+                    UIGraphicsGetCurrentContext()?.setStrokeColor(red: appDelegate.mcManager.redColor, green: appDelegate.mcManager.greenColor, blue: appDelegate.mcManager.blueColor, alpha: 1)
                 }
-                CGContextSetBlendMode(UIGraphicsGetCurrentContext(), CGBlendMode.Normal)
-                CGContextStrokePath(UIGraphicsGetCurrentContext())
+                UIGraphicsGetCurrentContext()?.setBlendMode(CGBlendMode.normal)
+                UIGraphicsGetCurrentContext()?.strokePath()
                 self.drawImage.image = UIGraphicsGetImageFromCurrentImageContext()
                 if !penButtonIsEnabled{
                     self.drawImage.alpha = 1.0
@@ -311,47 +315,47 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
                 }
                 UIGraphicsEndImageContext()
                 
-                lastBrushImagePoint = touch.locationInView(self.view)
+                lastBrushImagePoint = touch.location(in: self.view)
                 setBrushImageViewPosition()
                 lastPoint = currentPoint
             }
         }
     }
     
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let last = lastPoint{
             if !mouseSwiped{
                 UIGraphicsBeginImageContext(self.background.frame.size)
-                self.drawImage.image?.drawInRect(CGRect(x: 0, y: 0, width: self.background.frame.size.width, height: self.background.frame.size.height))
-                CGContextMoveToPoint(UIGraphicsGetCurrentContext(), last.x, last.y)
-                CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), last.x, last.y)
+                self.drawImage.image?.draw(in: CGRect(x: 0, y: 0, width: self.background.frame.size.width, height: self.background.frame.size.height))
+                UIGraphicsGetCurrentContext()?.move(to: CGPoint(x: last.x, y: last.y))
+                UIGraphicsGetCurrentContext()?.addLine(to: CGPoint(x: last.x, y: last.y))
                 if !penButtonIsEnabled{
-                    CGContextSetLineCap(UIGraphicsGetCurrentContext(), CGLineCap.Square)
-                    CGContextSetLineWidth(UIGraphicsGetCurrentContext(), CGFloat(erasorSize))
+                    UIGraphicsGetCurrentContext()?.setLineCap(CGLineCap.square)
+                    UIGraphicsGetCurrentContext()?.setLineWidth(CGFloat(erasorSize))
                 }else{
-                    CGContextSetLineCap(UIGraphicsGetCurrentContext(), CGLineCap.Round)
-                    CGContextSetLineWidth(UIGraphicsGetCurrentContext(), CGFloat(brushSize))
+                    UIGraphicsGetCurrentContext()?.setLineCap(CGLineCap.round)
+                    UIGraphicsGetCurrentContext()?.setLineWidth(CGFloat(brushSize))
                 }
                 
                 if !penButtonIsEnabled{
-                    CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), 1, 1, 1, 1)
+                    UIGraphicsGetCurrentContext()?.setStrokeColor(red: 1, green: 1, blue: 1, alpha: 1)
                 }else{
-                    CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), appDelegate.mcManager.redColor, appDelegate.mcManager.greenColor, appDelegate.mcManager.blueColor, appDelegate.mcManager.opacity)
+                    UIGraphicsGetCurrentContext()?.setStrokeColor(red: appDelegate.mcManager.redColor, green: appDelegate.mcManager.greenColor, blue: appDelegate.mcManager.blueColor, alpha: appDelegate.mcManager.opacity)
                 }
-                CGContextSetBlendMode(UIGraphicsGetCurrentContext(), CGBlendMode.Normal)
-                CGContextStrokePath(UIGraphicsGetCurrentContext())
-                CGContextFlush(UIGraphicsGetCurrentContext())
+                UIGraphicsGetCurrentContext()?.setBlendMode(CGBlendMode.normal)
+                UIGraphicsGetCurrentContext()?.strokePath()
+                UIGraphicsGetCurrentContext()?.flush()
                 self.drawImage.image = UIGraphicsGetImageFromCurrentImageContext()
                 UIGraphicsEndImageContext()
             }
         }
         UIGraphicsBeginImageContext(self.mainImage.frame.size)
-        self.mainImage.image?.drawInRect(CGRectMake(0, 0, self.background.frame.size.width, self.background.frame.size.height), blendMode: CGBlendMode.Normal, alpha: 1)
+        self.mainImage.image?.draw(in: CGRect(x: 0, y: 0, width: self.background.frame.size.width, height: self.background.frame.size.height), blendMode: CGBlendMode.normal, alpha: 1)
         if !penButtonIsEnabled{
-            self.drawImage.image?.drawInRect(CGRectMake(0, 0, self.background.frame.size.width, self.background.frame.size.height), blendMode: CGBlendMode.Normal, alpha: 1.0)
+            self.drawImage.image?.draw(in: CGRect(x: 0, y: 0, width: self.background.frame.size.width, height: self.background.frame.size.height), blendMode: CGBlendMode.normal, alpha: 1.0)
         }else{
-            CGContextSetAlpha(UIGraphicsGetCurrentContext(), appDelegate.mcManager.opacity)
-            self.drawImage.image?.drawInRect(CGRectMake(0, 0, self.background.frame.size.width, self.background.frame.size.height), blendMode: CGBlendMode.Normal, alpha: appDelegate.mcManager.opacity) //opacity
+            UIGraphicsGetCurrentContext()?.setAlpha(appDelegate.mcManager.opacity)
+            self.drawImage.image?.draw(in: CGRect(x: 0, y: 0, width: self.background.frame.size.width, height: self.background.frame.size.height), blendMode: CGBlendMode.normal, alpha: appDelegate.mcManager.opacity) //opacity
         }
         self.mainImage.image = UIGraphicsGetImageFromCurrentImageContext()
         self.appDelegate.mcManager.lastMainDrawImage = self.mainImage.image
@@ -368,13 +372,13 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
         ctr = 0
         
     }
-    @IBAction func didPressExit(sender: AnyObject) {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-        self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func didPressExit(_ sender: AnyObject) {
+        NotificationCenter.default.removeObserver(self)
+        self.navigationController?.dismiss(animated: true, completion: nil)
         //self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    @IBAction func didPressPen(sender: AnyObject) {
+    @IBAction func didPressPen(_ sender: AnyObject) {
         penButtonIsEnabled = true
         penMarker.backgroundColor = UIColor(white: 1, alpha: 0.50)
         erasorMarker.backgroundColor = UIColor(white: 1, alpha: 0.10)
@@ -387,12 +391,12 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
 //        penButton.enabled = false
 //        erasorButton.enabled = true
     }
-    @IBAction func didPressPattern(sender: AnyObject) {
-        let patternPicker = UIStoryboard(name: "Modals", bundle: nil).instantiateViewControllerWithIdentifier("pattern") as! PatternPickerViewController
-        patternPicker.modalPresentationStyle = .Popover
+    @IBAction func didPressPattern(_ sender: AnyObject) {
+        let patternPicker = UIStoryboard(name: "Modals", bundle: nil).instantiateViewController(withIdentifier: "pattern") as! PatternPickerViewController
+        patternPicker.modalPresentationStyle = .popover
         patternPicker.delegate = self
         var maxSize: CGFloat = 0.0
-        let screenRect = UIScreen.mainScreen().bounds
+        let screenRect = UIScreen.main.bounds
         let screenWidth = screenRect.size.width
         let screenHeight = screenRect.size.height
         if screenWidth < screenHeight{
@@ -405,14 +409,14 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
         if let popoverController = patternPicker.popoverPresentationController{
             popoverController.sourceView = self.patternMarker
             popoverController.sourceRect = patternButton.frame
-            popoverController.permittedArrowDirections = [.Down, .Right]
+            popoverController.permittedArrowDirections = [.down, .right]
             popoverController.delegate = self
         }
         
-        presentViewController(patternPicker, animated: true, completion: nil)
+        present(patternPicker, animated: true, completion: nil)
     }
     
-    @IBAction func didPressErasor(sender: AnyObject) {
+    @IBAction func didPressErasor(_ sender: AnyObject) {
         if let connectedPeers = self.appDelegate.mcManager.partyTimes[appDelegate.mcManager.currentPartyTime]?.connectedPeers as? [MCPeerID]{
             appDelegate.mcManager.sendErasor(connectedPeers)
         }
@@ -423,22 +427,22 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
         penButtonIsEnabled = false
         
         
-        let erasorPicker = UIStoryboard(name: "Modals", bundle: nil).instantiateViewControllerWithIdentifier("erasor") as! ErasorPickerViewController
+        let erasorPicker = UIStoryboard(name: "Modals", bundle: nil).instantiateViewController(withIdentifier: "erasor") as! ErasorPickerViewController
         erasorPicker.previousSize = erasorSize
         erasorPicker.delegate = self
-        erasorPicker.modalPresentationStyle = .Popover
+        erasorPicker.modalPresentationStyle = .popover
         erasorPicker.preferredContentSize = CGSize(width: 265, height: 70)
         if let popoverController = erasorPicker.popoverPresentationController{
             popoverController.sourceView = self.erasorMarker
             popoverController.sourceRect = erasorButton.frame
-            popoverController.permittedArrowDirections = .Any
+            popoverController.permittedArrowDirections = .any
             popoverController.delegate = self
         }
         path.lineWidth = CGFloat(erasorSize)
-        presentViewController(erasorPicker, animated: true, completion: nil)
+        present(erasorPicker, animated: true, completion: nil)
     }
     
-    func erasorSizeWasPicked(erasorSize: Float) {
+    func erasorSizeWasPicked(_ erasorSize: Float) {
         self.erasorSize = erasorSize
         path.lineWidth = CGFloat(erasorSize)
     }
@@ -447,15 +451,15 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
     
     func didPressColor() {
         // initialise color picker view controller
-        let colorPickerVc = UIStoryboard(name: "Modals", bundle: nil).instantiateViewControllerWithIdentifier("sbColorPicker") as! ColorPickerViewController
+        let colorPickerVc = UIStoryboard(name: "Modals", bundle: nil).instantiateViewController(withIdentifier: "sbColorPicker") as! ColorPickerViewController
             //storyboard?.instantiateViewControllerWithIdentifier("sbColorPicker") as! ColorPickerViewController
         colorPickerVc.previousColor = UIColor(red: appDelegate.mcManager.redColor, green: appDelegate.mcManager.greenColor, blue: appDelegate.mcManager.blueColor, alpha: appDelegate.mcManager.opacity)
         colorPickerVc.previousBrushSize = brushSize
         // set modal presentation style
-        colorPickerVc.modalPresentationStyle = .Popover
+        colorPickerVc.modalPresentationStyle = .popover
         
         // set max. size
-        colorPickerVc.preferredContentSize = CGSizeMake(265, 400)
+        colorPickerVc.preferredContentSize = CGSize(width: 265, height: 400)
         
         // set color picker deleagate to current view controller
         // must write delegate method to handle selected color
@@ -471,21 +475,21 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
             popoverController.sourceRect = self.penButton.frame
             
             // show popover arrow at feasible direction
-            popoverController.permittedArrowDirections = UIPopoverArrowDirection.Any
+            popoverController.permittedArrowDirections = UIPopoverArrowDirection.any
             
             // set popover delegate self
             popoverController.delegate = self
         }
         
         //show color popover
-        presentViewController(colorPickerVc, animated: true, completion: nil)
+        present(colorPickerVc, animated: true, completion: nil)
 
     }
     
     
     // MARK: Color picker delegate functions
     // called by color picker after color selected.
-    func colorPickerDidColorSelected(selectedUIColor selectedUIColor: UIColor, brushSize: CGFloat) {
+    func colorPickerDidColorSelected(selectedUIColor: UIColor, brushSize: CGFloat) {
         // update color value within class variable
         if let rgb = selectedUIColor.rgb(){
             print("red: \(rgb.red)")
@@ -498,7 +502,7 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
             self.brushSize = Float(brushSize)
             // set preview background to selected color
             let penImage = UIImage(named: "pencil")
-            self.penButton.setImage(penImage!.maskWithColor(selectedUIColor), forState: .Normal)
+            self.penButton.setImage(penImage!.maskWithColor(selectedUIColor), for: UIControlState())
             if let connectedPeers = self.appDelegate.mcManager.partyTimes[appDelegate.mcManager.currentPartyTime]?.connectedPeers as? [MCPeerID]{
                 appDelegate.mcManager.sendProfileColor(connectedPeers)
             }
@@ -511,7 +515,7 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
     
     
 
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         print(collectionView.frame.size.height)
         var size: CGFloat = 0.0
         
@@ -523,38 +527,38 @@ class DrawViewController: UIViewController, UIPopoverPresentationControllerDeleg
        return CGSize(width: size, height: size)
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return appDelegate.mcManager.peers.count + 1
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("connectionCell", forIndexPath: indexPath) as! ConnectionCollectionViewCell
-        if indexPath.row == 0{
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "connectionCell", for: indexPath) as! ConnectionCollectionViewCell
+        if (indexPath as NSIndexPath).row == 0{
             var name = ""
-            let userDefaults = NSUserDefaults.standardUserDefaults()
-            if let n = userDefaults.stringForKey("HostName"){
+            let userDefaults = UserDefaults.standard
+            if let n = userDefaults.string(forKey: "HostName"){
                 name = n
             }
-            cell.setupCurrentProfileCell(indexPath.row, profileColor: UIColor(red: appDelegate.mcManager.redColor, green: appDelegate.mcManager.greenColor, blue: appDelegate.mcManager.blueColor, alpha: 1), profileName: name)
+            cell.setupCurrentProfileCell((indexPath as NSIndexPath).row, profileColor: UIColor(red: appDelegate.mcManager.redColor, green: appDelegate.mcManager.greenColor, blue: appDelegate.mcManager.blueColor, alpha: 1), profileName: name)
         }else{
-            let peer = appDelegate.mcManager.peers[indexPath.row - 1]
+            let peer = appDelegate.mcManager.peers[(indexPath as NSIndexPath).row - 1]
             let color = peer.color
-            cell.setupConnectionCell(indexPath.row, profileColor: color, profileName: peer.displayName, state: peer.state, isInGame: true, delegate: self)
+            cell.setupConnectionCell(indexPath.row, profileColor: color!, profileName: peer.displayName, state: peer.state, isInGame: true, delegate: self)
         }
         
         return cell
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle{
-        return UIStatusBarStyle.LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle{
+        return UIStatusBarStyle.lightContent
     }
     
     // MARK: Popover delegate functions
     // Override iPhone behavior that presents a popover as fullscreen.
     // i.e. now it shows same popover box within on iPhone & iPad
-    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         // show popover box for iPhone and iPad both
-        return UIModalPresentationStyle.None
+        return UIModalPresentationStyle.none
     }
 }
 

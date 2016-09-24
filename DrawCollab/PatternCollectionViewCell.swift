@@ -21,18 +21,18 @@ class PatternCollectionViewCell: UICollectionViewCell {
     var row: Int!
     var parent: PatternPickerViewController!
     var appDelegate: AppDelegate!
-    func setupPatternCell(row: Int, parent: PatternPickerViewController){
-        appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    func setupPatternCell(_ row: Int, parent: PatternPickerViewController){
+        appDelegate = UIApplication.shared.delegate as! AppDelegate
         self.row = row
         self.parent = parent
         self.setupPatternImage()
     }
     
-    private func setupPatternImage(){
+    fileprivate func setupPatternImage(){
         if row == 0{
-            patternImage.hidden = true
+            patternImage.isHidden = true
         }else{
-            patternImage.hidden = false
+            patternImage.isHidden = false
             if row - 1 > patternButtonImages.count-1{
                 patternImage.image = UIImage(named: patternButtonImages[0])
             }else{
@@ -40,14 +40,14 @@ class PatternCollectionViewCell: UICollectionViewCell {
             }
         }
         if row == appDelegate.mcManager.patternNumber{
-            selectedImage.hidden = false
+            selectedImage.isHidden = false
         }else{
-            selectedImage.hidden = true
+            selectedImage.isHidden = true
         }
     }
     
     
-    @IBAction func didPressPatternButton(sender: AnyObject) {
+    @IBAction func didPressPatternButton(_ sender: AnyObject) {
         appDelegate.mcManager.patternNumber = row
         parent.didChangePattern()
     }

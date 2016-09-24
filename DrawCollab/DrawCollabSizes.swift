@@ -8,6 +8,26 @@
 
 import Foundation
 import UIKit
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 class DrawCollabSizes: NSObject{
     
@@ -18,7 +38,7 @@ class DrawCollabSizes: NSObject{
     var toolbarButtonSize: CGFloat!
     override init() {
         super.init()
-        let screen = UIScreen.mainScreen().bounds
+        let screen = UIScreen.main.bounds
         
         let width = screen.width
         let height = screen.height
